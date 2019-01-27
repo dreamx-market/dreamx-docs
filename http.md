@@ -187,23 +187,27 @@ Return all available currencies
 #### Response
 
 ```
-{
-    "ETH": {
-        "decimals": "18",
-        "address": "0x0000000000000000000000000000000000000000",
-        "name": "Ether"
-    },
-    "REP": {
-        "decimals": "8",
-        "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
-        "name": "Reputation"
-    },
-    "TRX": {
-        "decimals": "8",
-        "address": "0xf59fad2879fb8380ffa6049a48abf9c9959b3b5c",
-        "name": "Aurora"
-    }
-}
+[
+	{
+    "decimals": "18",
+    "address": "0x0000000000000000000000000000000000000000",
+    "name": "Ether",
+    "symbol": "ETH"
+	},
+	{
+    "decimals": "8",
+    "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
+    "name": "Reputation"
+    "symbol": "REP"
+  },
+  {
+    "decimals": "8",
+    "address": "0xf59fad2879fb8380ffa6049a48abf9c9959b3b5c",
+    "name": "Tron",
+    "symbol": "TRX"
+  }
+	...
+]
 ```
 
 ### POST /create_orders
