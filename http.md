@@ -10,20 +10,20 @@
     *   [Errors](#errors)
     *   [Misc](#misc)
 *   [REST API](#rest-api)
-    *   [POST get_currencies](#post-get_currencies)
-    *   [POST create_orders](#post-create_orders)
-    *   [POST get_orders](#post-get_orders)
-    *   [POST delete_orders](#post-delete_orders)
-    *   [POST get_orderbook](#post-get_orderbook)
-    *   [POST get_ticker](#post-get_ticker)
-    *   [POST get_balances](#post-get_balances)
-    *   [POST get_transfers](#post-get_transfers)
-    *   [POST create_transfers](#post-create_transfers)
-    *   [POST get_trades](#post-get_trades)
-    *   [POST create_trades](#post-create_trades)
-    *   [POST get_contract_address](#post-get_contract_address)
-    *   [POST get_chart_data](#post-get_chart_data)
-    *   [POST get_fee_info](#post-get_fee_info)
+    *   [GET /currencies](#get-currencies)
+    *   [POST /create_orders](#post-create_orders)
+    *   [POST /get_orders](#post-get_orders)
+    *   [POST /delete_orders](#post-delete_orders)
+    *   [POST /get_orderbook](#post-get_orderbook)
+    *   [POST /get_ticker](#post-get_ticker)
+    *   [POST /get_balances](#post-get_balances)
+    *   [POST /get_transfers](#post-get_transfers)
+    *   [POST /create_transfers](#post-create_transfers)
+    *   [POST /get_trades](#post-get_trades)
+    *   [POST /create_trades](#post-create_trades)
+    *   [POST /get_contract_address](#post-get_contract_address)
+    *   [POST /get_chart_data](#post-get_chart_data)
+    *   [POST /get_fee_info](#post-get_fee_info)
 
 ## General
 
@@ -180,7 +180,7 @@ Validation error codes:
 
 ## REST API
 
-### POST /get_currencies
+### GET /currencies
 
 Return all available currencies
 
