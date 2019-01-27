@@ -1,0 +1,228 @@
+# WebSocket API Specification
+
+## Table of Contents
+
+- [Channels](#channels)
+    - [Orders](#orders)
+    - [Trades](#trades)
+    - [Ticker](#ticker)
+    - [Chart data](#chart-data)
+
+## Channels
+
+The Websocket API is meant to supplement the REST API by providing updates without resorting to polling. Data is organized into channels to which an API client may subscribe.
+
+### Orders
+
+Subscribe for new orders and order updates.
+
+#### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "orders",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "market": "ETH_SAN",
+        "networkId": 42
+    }
+}
+```
+
+#### Parameters
+
+*   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
+*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
+
+#### Reponse
+
+This message is sent whenever the exchange receives a new order, or when the exchange deems an update necessary (such as when the state of the order changes). The scenarios where an update may occur include:
+* The exchange received a new order.
+* An order was fully or partially filled, so `filled` has changed.
+* The order is cancelled.
+
+An update is not necessary for order expiration, as that information can be derived from the `expiryInSeconds` field in the order.
+
+Updates can be sent in bulk since the payload of the message specifies a collection of updated or new trades and orders.
+
+```
+{
+    "type": "update",
+    "channel": "orders",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload":  [
+        {
+            "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "giveAmount": "10000000000000000",
+            "takeTokenAddress: "0x12459c951127e0c374ff9105dda097662a027093",
+            "takeAmount": "20000000000000000",
+            "filled": "0",
+            "nonce": "1",
+            "expiryTimestampInMilliseconds": "1506550595000",
+            "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+            "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+        },
+        ...
+    ]
+}
+```
+
+*   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
+
+### Trades
+
+Subscribe for new trades.
+
+#### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "trades",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "market": "ETH_SAN",
+        "networkId": 42
+    }
+}
+```
+
+#### Parameters
+
+*   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
+*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
+
+#### Response
+
+This message is sent whenever the exchange receives a new trade.
+
+Updates can be sent in bulk since the payload of the message specifies a collection of updated or new trades and orders.
+
+```
+{
+    "type": "update",
+    "channel": "trades",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload":  [
+        {
+            "id": "1885452",
+            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "giveAmount": "10000000000000000",
+            "takeTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+            "takeAmount": "20000000000000000",
+            "orderHash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
+            "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
+            "buyerFee": "123300",
+            "sellerFee": "23000",
+            "gasFee": "4000",
+            "makerAddress": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
+            "takerAddress": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
+            "transactionHash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
+            "created_at": "2018-12-11 17:12:10"
+        },
+        ...
+    ]
+}
+```
+
+*   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
+
+### Ticker
+
+Subscribe for ticker updates.
+
+#### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "ticker",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "market": "ETH_SAN",
+        "networkId": 42
+    }
+}
+```
+
+#### Parameters
+
+*   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
+*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
+
+#### Response
+
+Updates can be sent in bulk since the payload of the message specifies a collection of updated or new trades and orders.
+
+```
+{
+    "type": "update",
+    "channel": "ticker",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": [
+        {
+            "baseTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "quoteTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+            "last": "0.000981",
+            "high": "0.0010763",
+            "low": "0.0009777",
+            "lowestAsk": "0.00098151",
+            "highestBid": "0.0007853",
+            "percentChange": "-1.83619353",
+            "baseVolume": "7.3922603247161",
+            "quoteVolume": "7462.998433"
+        }
+    ]
+}
+```
+
+### Chart data
+
+Subscribe for new candles.
+
+```
+{
+    "type": "subscribe",
+    "channel": "chart_data",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "market": "ETH_SAN",
+        "periodInSeconds": "14400",
+        "networkId": 42
+    }
+}
+```
+
+#### Parameters
+
+*   periodInSeconds: candlestick period in seconds, valid values are 300, 900, 1800, 7200, 14400, and 86400
+*   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
+*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
+
+#### Response
+
+This message is sent whenever a new candle is recorded.
+
+Updates can be sent in bulk since the payload of the message specifies a collection of updated or new trades and orders.
+
+```
+{
+    "type": "update",
+    "channel": "chart_data",
+    "requestId": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": [
+        { 
+            "date": "1540209600",
+            "high": "0.03153475",
+            "low": "0.031265",
+            "open": "0.03151497",
+            "close": "0.03141781",
+            "volume": "39.82606009",
+            "quoteVolume": "1268.53159161",
+            "weightedAverage": "0.0313954" 
+        }
+    ]
+}
+```
