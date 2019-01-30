@@ -188,13 +188,13 @@ Return all available currencies
 
 ```
 [
-	{
+  {
     "decimals": "18",
     "address": "0x0000000000000000000000000000000000000000",
     "name": "Ether",
     "symbol": "ETH"
-	},
-	{
+  },
+  {
     "decimals": "8",
     "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
     "name": "Reputation"
@@ -206,7 +206,7 @@ Return all available currencies
     "name": "Tron",
     "symbol": "TRX"
   }
-	...
+  ...
 ]
 ```
 
