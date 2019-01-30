@@ -21,7 +21,7 @@
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
     *   [POST /create_trades](#post-create_trades)
-    *   [POST /get_contract_address](#post-get_contract_address)
+    *   [GET /helpers/return_contract_address](#get-helpers_return_contract_address)
     *   [POST /get_chart_data](#post-get_chart_data)
     *   [POST /get_fee_info](#post-get_fee_info)
 
@@ -249,7 +249,7 @@ Submit a signed order to the exchange.
 
 ###### Success Response
 
-Returns HTTP 201 upon success with the following order object.
+Returns upon success with the new order.
 
 ```
 {
@@ -660,7 +660,7 @@ Making a trade involves signing a message for each order you wish to fill across
 ]
 ```
 
-### POST /get_contract_address
+### GET /helpers/return_contract_address
 
 Returns the contract address used for depositing, withdrawing, and posting orders.
 
