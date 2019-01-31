@@ -29,15 +29,15 @@
 
 ### Pagination
 
-Requests that return potentially large collections should respond to the **?page** and **?perPage** parameters. For example:
+Requests that return potentially large collections should respond to the **?page** and **?per_page** parameters. For example:
 
 ```
-curl https://api.example.com/asset_pairs?page=3&perPage=20
+curl https://api.example.com/asset_pairs?page=3&per_page=20
 ```
 
-Page numbering should be 1-indexed, not 0-indexed. If a query provides an unreasonable (ie. too high) **perPage** value, the response can return a validation error as specified in the [errors section](#errors). If the query specifies a **page** that does not exist (ie. there are not enough **records**), the response should just return an empty **records** array.
+Page numbering should be 1-indexed, not 0-indexed. If a query provides an unreasonable (ie. too high) **per_page** value, the response can return a validation error as specified in the [errors section](#errors). If the query specifies a **page** that does not exist (ie. there are not enough **records**), the response should just return an empty **records** array.
 
-All endpoints that are paginated should return a **total**, **page**, **perPage** and a **records** value in the top level of the collection.  The value of **total** should be the total number of records for a given query, whereas **records** should be an array representing the response to the query for that page. **page** and **perPage**, are the same values that were specified in the request. 
+All endpoints that are paginated should return a **total**, **page**, **per_page** and a **records** value in the top level of the collection.  The value of **total** should be the total number of records for a given query, whereas **records** should be an array representing the response to the query for that page. **page** and **per_page**, are the same values that were specified in the request. 
 
 These requests include the [`asset_pairs`](#get-v2-asset-pairs), [`orders`](#get-v2-orders), and [`orderbook`](#get-v2-orderbook) endpoints.
 
@@ -79,8 +79,8 @@ A [Link Header](https://tools.ietf.org/html/rfc5988) can be included in a respon
 For example:
 
 ```
-Link: <https://api.example.com/asset_pairs?page=3&perPage=20>; rel="next",
-<https://api.github.com/user/repos?page=10&perPage=20>; rel="last"
+Link: <https://api.example.com/asset_pairs?page=3&per_page=20>; rel="next",
+<https://api.github.com/user/repos?page=10&per_page=20>; rel="last"
 ```
 
 This `Link` response header contains one or more Hypermedia link relations.
@@ -175,7 +175,7 @@ Validation error codes:
 *   All requests and responses should be of **application/json** content type
 *   All token amounts are sent in amounts of the smallest level of precision (base units). (e.g if a token has 18 decimal places, selling 1 token would show up as selling `'1000000000000000000'` units by this API).
 *   All addresses are sent as lower-case (non-checksummed) Ethereum addresses with the `0x` prefix.
-*   All parameters should use `lowerCamelCase`.
+*   All parameters should use `snake_case`.
 *   Interactions with Ether should specify `0x0000000000000000000000000000000000000000` as its token address.
 
 ## REST API
@@ -190,7 +190,7 @@ Return all available currencies. This endpoint should be [paginated](#pagination
 {
     "total": 43,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
       {
         "decimals": "18",
@@ -296,7 +296,7 @@ Must supply either a `account` or an `orderHash`.
 {
     "total": 984,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
         {
             "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
@@ -368,7 +368,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
     "bids": {
         "total": 325,
         "page": 2,
-        "perPage": 100,
+        "per_page": 100,
         "records": [
             {
                 "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
@@ -388,7 +388,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
     "asks": {
         "total": 500,
         "page": 2,
-        "perPage": 100,
+        "per_page": 100,
         "records": [
             {
                 "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
@@ -410,7 +410,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
 
 Bids will be sorted in descending order by price, and asks will be sorted in ascending order by price. Within the price sorted orders, the orders are further sorted by expiration in ascending order.
 
-The way pagination works for this endpoint is that the **page** and **perPage** query params apply to both `bids` and `asks` collections, and if `page` * `perPage` > `total` for a certain collection, the `records` for that collection should just be empty. 
+The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
 
 ### POST /get_ticker
 
@@ -436,7 +436,7 @@ Designed to behave similar to the API call of the same name provided by the Polo
 {
     "total": 43,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
         {
             "baseTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
@@ -472,7 +472,7 @@ Retrieves all balances associated with a `account`. This endpoint should be [pag
 {
     "total": 43,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
         {
             "token": "0xe41d2489571d322189246dafa5ebde1f4699f498",
@@ -506,7 +506,7 @@ Returns your deposit and withdrawal history within a range, specified by the "st
 {
     "total": 43,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
         {
             "id": "174",
@@ -593,7 +593,7 @@ Must provide at least either an `orderHash`, a `market` or a `account`.
 {
     "total": 43,
     "page": 1,
-    "perPage": 100,
+    "per_page": 100,
     "records": [
         {
             "id": "1885452",
