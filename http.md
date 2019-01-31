@@ -10,7 +10,7 @@
     *   [Errors](#errors)
     *   [Misc](#misc)
 *   [REST API](#rest-api)
-    *   [GET /currencies](#get-currencies)
+    *   [GET /tokens](#get-tokens)
     *   [POST /create_orders](#post-create_orders)
     *   [POST /get_orders](#post-get_orders)
     *   [POST /delete_orders](#post-delete_orders)
@@ -134,7 +134,7 @@ For all **400** responses, see the [error response schema](https://github.com/0x
 
 ```
 {
-    "code": 101,
+    "code": 100,
     "reason": "Validation failed",
     "validationErrors": [
         {
@@ -178,9 +178,9 @@ Validation error codes:
 
 ## REST API
 
-### GET /currencies
+### GET /tokens
 
-Return all available currencies. This endpoint should be [paginated](#pagination).
+Return all available tokens. This endpoint should be [paginated](#pagination).
 
 #### Response
 
