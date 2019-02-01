@@ -16,7 +16,7 @@
     *   [POST /delete_orders](#post-delete_orders)
     *   [POST /get_orderbook](#post-get_orderbook)
     *   [POST /get_ticker](#post-get_ticker)
-    *   [GET /balances](#get-balances)
+    *   [GET /accounts/:address](#get-accounts:address)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
@@ -452,9 +452,9 @@ Designed to behave similar to the API call of the same name provided by the Polo
 }
 ```
 
-### GET /accounts/:accountAddress
+### GET /accounts/:address
 
-Retrieves all balances associated with an `accountAddress`. A balance is only created after the first deposit. This endpoint should be [paginated](#pagination).
+Retrieves all balances associated with an `address`. A balance is only created after the first deposit. This endpoint should be [paginated](#pagination).
 
 #### Request
 
