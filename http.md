@@ -16,7 +16,7 @@
     *   [POST /delete_orders](#post-delete_orders)
     *   [POST /get_orderbook](#post-get_orderbook)
     *   [POST /get_ticker](#post-get_ticker)
-    *   [GET /accounts/:address](#get-accounts:address)
+    *   [GET /accounts/:address](#get-accountsaddress)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
