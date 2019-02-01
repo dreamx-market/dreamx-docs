@@ -119,7 +119,7 @@ When a rate limit is exceeded, a status of **429 Too Many Requests** should be r
 
 Unless the spec defines otherwise, errors to bad requests should respond with HTTP 4xx or status codes.
 
-#### Common error codes
+#### Common error response headers
 
 | Code | Reason                                  |
 | ---- | --------------------------------------- |
