@@ -222,31 +222,31 @@ Submit a signed order to the exchange.
 ```
 {
     "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-    "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-    "giveAmount": "10000000000000000",
-    "takeTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
-    "takeAmount": "20000000000000000",
+    "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+    "give_amount": "10000000000000000",
+    "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+    "take_amount": "20000000000000000",
     "nonce": "1",
     "expiryTimestampInMilliseconds": "1506550595000",
-    "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+    "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
 }
 ```
 
 #### Parameters
-*   giveAmount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
-*   takeAmount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
+*   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
+*   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   orderHash [string]: the result of running `web3.utils.sha3` on the following parameters in their corresponding order:
+*   order_hash [string]: the result of running `web3.utils.sha3` on the following parameters in their corresponding order:
     1. contractAddress (obtained from [POST get_contract_address](#post-get_contract_address))
     2. account
-    3. giveTokenAddress
+    3. give_token_address
     4. giveTokenAmount
-    5. takeTokenAddress
+    5. take_token_address
     6. takeTokenAmount
     7. nonce
     8. expiryTimestampInMilliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `orderHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
+*   signature [string]: the result of calling `web3.eth.sign` with `order_hash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
 
 #### Response
 
@@ -257,14 +257,14 @@ Returns upon success with the new order.
 ```
 {
     "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-    "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-    "giveAmount": "10000000000000000",
-    "takeTokenAddress: "0x12459c951127e0c374ff9105dda097662a027093",
-    "takeAmount": "20000000000000000",
+    "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+    "give_amount": "10000000000000000",
+    "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+    "take_amount": "20000000000000000",
     "filled": "0",
     "nonce": "1",
     "expiryTimestampInMilliseconds": "1506550595000",
-    "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+    "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "created_at": "1506550595"
 }
 ```
@@ -282,11 +282,11 @@ Retrieves a list of orders given query parameters. This endpoint should be [pagi
 ```
 {
     "account": "0xf10105f862C1cB10550F4EeB38697308c7A290Fc",
-    "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b"
+    "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b"
 }
 ```
 
-Must supply either a `account` or an `orderHash`.
+Must supply either a `account` or an `order_hash`.
 
 #### Response
 
@@ -298,10 +298,10 @@ Must supply either a `account` or an `orderHash`.
     "records": [
         {
             "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-            "giveAmount": "10000000000000000",
-            "takeTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
-            "takeAmount": "20000000000000000",
+            "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "give_amount": "10000000000000000",
+            "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "take_amount": "20000000000000000",
             "filled": "0",
             "nonce": "1",
             "expiryTimestampInMilliseconds": "1506550595000",
@@ -313,7 +313,7 @@ Must supply either a `account` or an `orderHash`.
 }
 ```
 
-Returns HTTP 404 if no order with specified orderHash was found.
+Returns HTTP 404 if no order with specified order_hash was found.
 
 ### POST /delete_orders
 
@@ -323,7 +323,7 @@ Cancels an order associated with the address.
 
 ```
 {
-    "orderHash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
+    "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
     "account": "0x257986867faede943786b822282687aacc826b03",
     "nonce": "0",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
@@ -332,11 +332,11 @@ Cancels an order associated with the address.
 
 #### Parameter
 
-*   orderHash [string]: the to-be-cancelled order's orderHash
+*   order_hash [string]: the to-be-cancelled order's order_hash
 *   account [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   signature [string]: the result of calling `web3.eth.sign` with `cancelHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `cancelHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
-    1. orderHash
+    1. order_hash
     2. nonce
 
 #### Response
@@ -370,14 +370,14 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "records": [
             {
                 "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-                "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-                "giveAmount": "10000000000000000",
-                "takeTokenAddress: "0x12459c951127e0c374ff9105dda097662a027093",
-                "takeAmount": "20000000000000000",
+                "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+                "give_amount": "10000000000000000",
+                "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+                "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1",
                 "expiryTimestampInMilliseconds": "1506550595000",
-                "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+                "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
             },
             ...
@@ -390,14 +390,14 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "records": [
             {
                 "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-                "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-                "giveAmount": "10000000000000000",
-                "takeTokenAddress: "0x12459c951127e0c374ff9105dda097662a027093",
-                "takeAmount": "20000000000000000",
+                "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+                "give_amount": "10000000000000000",
+                "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+                "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1",
                 "expiryTimestampInMilliseconds": "1506550595000",
-                "orderHash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+                "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
             },
             ...
@@ -472,8 +472,8 @@ GET /accounts/0x8a37b79E54D69e833d79Cac3647C877Ef72830E1
     "records": [
         {
             "token": "0xe41d2489571d322189246dafa5ebde1f4699f498",
-            "balance": "500000000000000000",
-            "holdBalance": "300000000000000000"
+            "balance": 500000000000000000,
+            "hold_balance": 300000000000000000
         },
         ...
     ]
@@ -510,7 +510,7 @@ Returns your deposit and withdrawal history within a range, specified by the "st
             "token": "0xe41d2489571d322189246dafa5ebde1f4699f498",
             "amount": "1000000000000000000",
             "status": "pending",
-            "transactionHash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
             "blockHash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
             "blockNumber": 371,
             "created_at": "1506550595"
@@ -564,7 +564,7 @@ Returns a paginated list of all trades for a given market, order or user, sorted
 
 ```
 {
-    "orderHash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
+    "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
     "market": "ETH_SAN,
     "account": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
     "startingTimestampInMilliseconds": "1548264003367",
@@ -575,13 +575,13 @@ Returns a paginated list of all trades for a given market, order or user, sorted
 
 #### Parameters
 
-*   orderHash [string]: the order hash to query for associated trades. (required)
+*   order_hash [string]: the order hash to query for associated trades. (required)
 *   account [string]: the address of the order's owner (required)
 *   startingTimestampInMilliseconds [string]: Starting UNIX timestamp of returned results. Defaults to 0 (optional)
 *   endingTimestampInMilliseconds [string]: Ending UNIX timestamp of returned results. Defaults to current timestamp (optional)
 *   sort [string]: Possible values are asc (oldest first) and desc (newest first). Defaults to desc.
 
-Must provide at least either an `orderHash`, a `market` or a `account`.
+Must provide at least either an `order_hash`, a `market` or a `account`.
 
 #### Response
 
@@ -593,18 +593,18 @@ Must provide at least either an `orderHash`, a `market` or a `account`.
     "records": [
         {
             "id": "1885452",
-            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-            "giveAmount": "10000000000000000",
-            "takeTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
-            "takeAmount": "20000000000000000",
-            "orderHash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
+            "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "give_amount": "10000000000000000",
+            "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "take_amount": "20000000000000000",
+            "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
             "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
-            "buyerFee": "123300",
-            "sellerFee": "23000",
-            "gasFee": "4000",
-            "makerAddress": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
-            "takerAddress": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
-            "transactionHash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
+            "buyer_fee": 123300,
+            "seller_fee": 23000,
+            "gas_fee": 4000,
+            "maker_address": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
+            "taker_address": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
+            "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
             "created_at": "2018-12-11 17:12:10"
         }
     ]
@@ -615,7 +615,7 @@ Must provide at least either an `orderHash`, a `market` or a `account`.
 
 Making a trade involves signing a message for each order you wish to fill across and passing in an array of trades. For trades that fill a single order, the usual array with 1 object, or the object alone. The benefit of passing in multiple objects to fill across is that your action is atomic. All trades either succeed or none succeed.
 
-**NOTE**: Currently, all orders being filled in a trade must be for the same giveTokenAddress/takeTokenAddress pair, and must all be signed from the same address.
+**NOTE**: Currently, all orders being filled in a trade must be for the same give_token_address/take_token_address pair, and must all be signed from the same address.
 
 #### Request
 
@@ -624,7 +624,7 @@ Making a trade involves signing a message for each order you wish to fill across
     {
         "account": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
         "amount": "1000000000000000000",
-        "orderHash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
+        "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
         "nonce": "100",
         "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
     }
@@ -633,12 +633,12 @@ Making a trade involves signing a message for each order you wish to fill across
 
 #### Parameters
 
-*   orderHash [string]: the to-be-cancelled order's orderHash
+*   order_hash [string]: the to-be-cancelled order's order_hash
 *   account [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   signature [string]: the result of calling `web3.eth.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
     1. contractAddress (obtained from [POST get_contract_address](#post-get_contract_address))
-    2. orderHash
+    2. order_hash
     3. amount
     4. account
     5. nonce
@@ -655,7 +655,7 @@ Making a trade involves signing a message for each order you wish to fill across
         "quoteTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
         "type": "buy",
         "price": "70000000000000000",
-        "orderHash": "0xcfe4018c59e50e0e1964c979e6213ce5eb8c751cbc98a44251eb48a0985adc52",
+        "order_hash": "0xcfe4018c59e50e0e1964c979e6213ce5eb8c751cbc98a44251eb48a0985adc52",
         "uuid": "250d51a0-b033-11e7-9984-a9ab79bb8f35"
     }
 ]
