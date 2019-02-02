@@ -125,48 +125,24 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
 | ---- | --------------------------------------- |
 | 400  | Bad Request – Invalid request format    |
 | 404  | Not found                               |
+| 422  | Unprocessable entity                    |
 | 429  | Too many requests - Rate limit exceeded |
 | 500  | Internal Server Error                   |
 | 501  | Not Implemented                         |
 
 #### Error reporting format
-For all **400** responses, see the [error response schema](https://github.com/0xProject/0x-monorepo/blob/development/packages/json-schemas/schemas/relayer_api_error_response_schema.json#L1).
 
 ```
 {
-    "code": 100,
     "reason": "Validation failed",
     "validationErrors": [
         {
             "field": "maker",
-            "code": 1002,
             "reason": "Invalid address"
         }
     ]
 }
 ```
-
-General error codes:
-
-```
-100 - Validation Failed
-101 - Malformed JSON
-102 - Order submission disabled
-103 - Throttled
-```
-
-Validation error codes:
-
-```
-1000 - Required field
-1001 - Incorrect format
-1002 - Invalid address
-1003 - Address not supported
-1004 - Value out of range
-1005 - Invalid signature or hash
-1006 - Unsupported option
-```
-
 
 ### Misc.
 
