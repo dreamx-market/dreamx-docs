@@ -16,7 +16,7 @@
     *   [POST /delete_orders](#post-delete_orders)
     *   [POST /get_orderbook](#post-get_orderbook)
     *   [POST /get_ticker](#post-get_ticker)
-    *   [GET /accounts/:address](#get-accountsaddress)
+    *   [GET /balances/:address](#get-accountsaddress)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
@@ -452,14 +452,14 @@ Designed to behave similar to the API call of the same name provided by the Polo
 }
 ```
 
-### GET /accounts/:address
+### GET /balances/:address
 
 Retrieves all balances associated with an `address`. A balance is only created after the first deposit. This endpoint should be [paginated](#pagination).
 
 #### Request
 
 ```
-GET /accounts/0x8a37b79E54D69e833d79Cac3647C877Ef72830E1
+GET /balances/0x8a37b79E54D69e833d79Cac3647C877Ef72830E1
 ```
 
 #### Response
@@ -675,7 +675,7 @@ Returns the contract address used for depositing, withdrawing, and posting order
 
 ### POST /get_chart_data
 
-Returns candlestick chart data. Required GET parameters are "currencyPair", "period" (candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400), "start", and "end". "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned. Fields include:
+Returns candlestick chart data. Required GET parameters are "market", "period" (candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400), "start", and "end". "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned. Fields include:
 
 #### Request
 
