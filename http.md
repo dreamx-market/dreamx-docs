@@ -134,6 +134,7 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
 
 ```
 {
+    "code": 100,
     "reason": "Validation failed",
     "validationErrors": [
         {
@@ -143,6 +144,16 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
     ]
 }
 ```
+
+General error codes:
+
+```
+100 - Validation Failed
+101 - Malformed JSON
+102 - Order submission disabled
+103 - Throttled
+```
+
 
 ### Misc.
 
