@@ -144,8 +144,9 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
     ]
 }
 ```
+A field can have multiple errors, each error is a seperate string 
 
-General error codes:
+Error codes:
 
 ```
 100 - Validation Failed
