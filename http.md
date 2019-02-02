@@ -123,12 +123,12 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
 
 | Code | Reason                                  |
 | ---- | --------------------------------------- |
-| 400  | Bad Request – Invalid request format    |
+| 400  | Bad request – Invalid request format    |
 | 404  | Not found                               |
 | 422  | Unprocessable entity                    |
 | 429  | Too many requests - Rate limit exceeded |
-| 500  | Internal Server Error                   |
-| 501  | Not Implemented                         |
+| 500  | Internal server error                   |
+| 501  | Not implemented                         |
 
 #### Error reporting format
 
@@ -149,7 +149,7 @@ A field can have multiple errors, each error is a seperate string
 Error codes:
 
 ```
-100 - Validation Failed
+100 - Validation failed
 101 - Malformed JSON
 102 - Order submission disabled
 103 - Throttled
