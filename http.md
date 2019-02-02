@@ -139,7 +139,7 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
     "validationErrors": [
         {
             "field": "maker",
-            "reason": "Invalid address"
+            "reason": ["Invalid address"]
         }
     ]
 }
