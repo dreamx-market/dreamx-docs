@@ -227,7 +227,7 @@ Submit a signed order to the exchange.
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   order_hash [string]: the result of running `web3.utils.sha3` on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
-    2. account_addres
+    2. account_address
     3. give_token_address
     4. give_token_amount
     5. take_token_address
