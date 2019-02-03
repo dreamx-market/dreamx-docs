@@ -209,13 +209,13 @@ Submit a signed order to the exchange.
 
 ```
 {
-    "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
     "take_amount": "20000000000000000",
     "nonce": "1",
-    "expiryTimestampInMilliseconds": "1506550595000",
+    "expiry_timestamp_in_milliseconds": "1506550595000",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
 }
@@ -226,15 +226,15 @@ Submit a signed order to the exchange.
 *   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   order_hash [string]: the result of running `web3.utils.sha3` on the following parameters in their corresponding order:
-    1. contractAddress (obtained from [POST get_contract_address](#post-get_contract_address))
-    2. account
+    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
+    2. account_addres
     3. give_token_address
-    4. giveTokenAmount
+    4. give_token_amount
     5. take_token_address
-    6. takeTokenAmount
+    6. take_token_amount
     7. nonce
-    8. expiryTimestampInMilliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `order_hash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
+    8. expiry_timestamp_in_milliseconds
+*   signature [string]: the result of calling `web3.eth.sign` with `order_hash` and `account_addres` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
 
 #### Response
 
@@ -244,14 +244,14 @@ Returns upon success with the new order.
 
 ```
 {
-    "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
     "take_amount": "20000000000000000",
     "filled": "0",
     "nonce": "1",
-    "expiryTimestampInMilliseconds": "1506550595000",
+    "expiry_timestamp_in_milliseconds": "1506550595000",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "created_at": "1506550595"
 }
@@ -269,7 +269,7 @@ Retrieves a list of orders given query parameters. This endpoint should be [pagi
 
 ```
 {
-    "account": "0xf10105f862C1cB10550F4EeB38697308c7A290Fc",
+    "account_address": "0xf10105f862C1cB10550F4EeB38697308c7A290Fc",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b"
 }
 ```
@@ -285,14 +285,14 @@ Must supply either a `account` or an `order_hash`.
     "per_page": 100,
     "records": [
         {
-            "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+            "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
             "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
             "give_amount": "10000000000000000",
             "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
             "take_amount": "20000000000000000",
             "filled": "0",
             "nonce": "1",
-            "expiryTimestampInMilliseconds": "1506550595000",
+            "expiry_timestamp_in_milliseconds": "1506550595000",
             "hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
             "created_at": "1506550595"
         },
@@ -312,7 +312,7 @@ Cancels an order associated with the address.
 ```
 {
     "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
-    "account": "0x257986867faede943786b822282687aacc826b03",
+    "account_address": "0x257986867faede943786b822282687aacc826b03",
     "nonce": "0",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
 }
@@ -357,14 +357,14 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "per_page": 100,
         "records": [
             {
-                "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+                "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
                 "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
                 "give_amount": "10000000000000000",
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
                 "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1",
-                "expiryTimestampInMilliseconds": "1506550595000",
+                "expiry_timestamp_in_milliseconds": "1506550595000",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
             },
@@ -377,14 +377,14 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "per_page": 100,
         "records": [
             {
-                "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+                "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
                 "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
                 "give_amount": "10000000000000000",
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
                 "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1",
-                "expiryTimestampInMilliseconds": "1506550595000",
+                "expiry_timestamp_in_milliseconds": "1506550595000",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
             },
@@ -474,7 +474,7 @@ Returns your deposit and withdrawal history within a range, specified by the "st
 
 ```
 {
-    "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
     "startingTimestampInMilliseconds": "1548264003367",
     "endingTimestampInMilliseconds": "1548264032666"
 }
@@ -516,7 +516,7 @@ Withdraws funds associated with the address. You cannot withdraw funds that are 
 
 ```
 {
-    "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
     "amount": "1000000000000000000",
     "tokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "nonce": "100",
@@ -530,7 +530,7 @@ Withdraws funds associated with the address. You cannot withdraw funds that are 
 *   tokenAddress [string]: the address of the token to be withdrawn, `0x0000000000000000000000000000000000000000` for Ether
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   signature [string]: the result of calling `web3.eth.sign` with `withdrawHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `withdrawHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
-    1. contractAddress (obtained from [POST get_contract_address](#post-get_contract_address))
+    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. tokenAddress
     3. amount
     4. account
@@ -554,7 +554,7 @@ Returns a paginated list of all trades for a given market, order or user, sorted
 {
     "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
     "market": "ETH_SAN,
-    "account": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
+    "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
     "startingTimestampInMilliseconds": "1548264003367",
     "endingTimestampInMilliseconds": "1548264032666",
     "sort": "desc"
@@ -610,7 +610,7 @@ Making a trade involves signing a message for each order you wish to fill across
 ```
 [
     {
-        "account": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
+        "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
         "amount": "1000000000000000000",
         "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
         "nonce": "100",
@@ -625,7 +625,7 @@ Making a trade involves signing a message for each order you wish to fill across
 *   account [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   signature [string]: the result of calling `web3.eth.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
-    1. contractAddress (obtained from [POST get_contract_address](#post-get_contract_address))
+    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. order_hash
     3. amount
     4. account
