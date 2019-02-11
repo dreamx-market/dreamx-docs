@@ -209,7 +209,7 @@ Submit a signed order to the exchange.
 
 ```
 {
-    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
@@ -225,7 +225,7 @@ Submit a signed order to the exchange.
 *   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   order_hash [string]: the result of running `web3.utils.sha3` on the following parameters in their corresponding order:
+*   order_hash [string]: the result of running `web3.utils.soliditySha3` on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. account_address
     3. give_token_address
@@ -234,7 +234,7 @@ Submit a signed order to the exchange.
     6. take_token_amount
     7. nonce
     8. expiry_timestamp_in_milliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `order_hash` and `account_addres` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
+*   signature [string]: the result of calling `web3.eth.accounts.sign` with `order_hash` and `account_address` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
 
 #### Response
 
@@ -244,7 +244,7 @@ Returns upon success with the new order.
 
 ```
 {
-    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
@@ -285,7 +285,7 @@ Must supply either a `account` or an `order_hash`.
     "per_page": 100,
     "records": [
         {
-            "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+            "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
             "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
             "give_amount": "10000000000000000",
             "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
@@ -323,7 +323,7 @@ Cancels an order associated with the address.
 *   order_hash [string]: the to-be-cancelled order's order_hash
 *   account [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `cancelHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `cancelHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
+*   signature [string]: the result of calling `web3.eth.accounts.sign` with `cancelHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `cancelHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
     1. order_hash
     2. nonce
 
@@ -357,7 +357,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "per_page": 100,
         "records": [
             {
-                "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+                "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
                 "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
                 "give_amount": "10000000000000000",
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
@@ -377,7 +377,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
         "per_page": 100,
         "records": [
             {
-                "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+                "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
                 "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
                 "give_amount": "10000000000000000",
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
@@ -474,7 +474,7 @@ Returns your deposit and withdrawal history within a range, specified by the "st
 
 ```
 {
-    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
     "startingTimestampInMilliseconds": "1548264003367",
     "endingTimestampInMilliseconds": "1548264032666"
 }
@@ -516,7 +516,7 @@ Withdraws funds associated with the address. You cannot withdraw funds that are 
 
 ```
 {
-    "account_address": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
+    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
     "amount": "1000000000000000000",
     "tokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "nonce": "100",
@@ -529,7 +529,7 @@ Withdraws funds associated with the address. You cannot withdraw funds that are 
 *   account [string]: the address of the order's owner
 *   tokenAddress [string]: the address of the token to be withdrawn, `0x0000000000000000000000000000000000000000` for Ether
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `withdrawHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `withdrawHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
+*   signature [string]: the result of calling `web3.eth.accounts.sign` with `withdrawHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `withdrawHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. tokenAddress
     3. amount
@@ -624,7 +624,7 @@ Making a trade involves signing a message for each order you wish to fill across
 *   order_hash [string]: the to-be-cancelled order's order_hash
 *   account [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   signature [string]: the result of calling `web3.eth.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.sha3` on the following parameters in their respective order:
+*   signature [string]: the result of calling `web3.eth.accounts.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. order_hash
     3. amount
