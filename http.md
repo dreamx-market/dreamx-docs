@@ -32,7 +32,7 @@
 Requests that return potentially large collections should respond to the **?page** and **?per_page** parameters. For example:
 
 ```
-curl https://api.example.com/asset_pairs?page=3&per_page=20
+curl https://api.ninja.trade/asset_pairs?page=3&per_page=20
 ```
 
 Page numbering should be 1-indexed, not 0-indexed. If a query provides an unreasonable (ie. too high) **per_page** value, the response can return a validation error as specified in the [errors section](#errors). If the query specifies a **page** that does not exist (ie. there are not enough **records**), the response should just return an empty **records** array.
@@ -42,7 +42,7 @@ All endpoints that are paginated should return a **total**, **page**, **per_page
 ### Network Id
 All requests should be able to specify a **?networkId** query param for all supported networks. For example:
 ```
-curl https://api.example.com/asset_pairs?networkId=1
+curl https://api.ninja.trade/asset_pairs?networkId=1
 ```
 If the query param is not provided, it should default to **1** (mainnet).
 
@@ -77,7 +77,7 @@ A [Link Header](https://tools.ietf.org/html/rfc5988) can be included in a respon
 For example:
 
 ```
-Link: <https://api.example.com/asset_pairs?page=3&per_page=20>; rel="next",
+Link: <https://api.ninja.trade/asset_pairs?page=3&per_page=20>; rel="next",
 <https://api.github.com/user/repos?page=10&per_page=20>; rel="last"
 ```
 
@@ -105,7 +105,7 @@ Rate limit guidance for clients can be optionally returned in the response heade
 For example:
 
 ```
-curl -i https://api.example.com/asset_pairs
+curl -i https://api.ninja.trade/asset_pairs
 HTTP/1.1 200 OK
 Date: Mon, 20 Oct 2017 12:30:06 GMT
 Status: 200 OK
@@ -225,7 +225,7 @@ Submit a signed order to the exchange.
 *   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   order_hash [string]: the result of running `web3.utils.soliditySha3` on the following parameters in their corresponding order:
+*   order_hash [string]: the result of running `soliditySha3` on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. account_address
     3. give_token_address
@@ -235,7 +235,7 @@ Submit a signed order to the exchange.
     7. nonce
     8. expiry_timestamp_in_milliseconds
     ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3))
-*   signature [string]: the result of calling `eutil.ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `eutil.hashPersonalMessage(eutil.toBuffer(order_hash))` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
+*   signature [string]: the result of calling `ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `hashPersonalMessage(toBuffer(fromUtf8(order_hash)))`, the vrs values returned by ecsign is then unified into one string using `toRpcSig` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
 
 **Sample Code:** Follow this ([example](scripts/create_order_payload.js)) to create the request payload
 

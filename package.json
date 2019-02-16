@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "git@github.com:hieudoan2609/ninjatrade-docs.git",
   "author": "Hieu <hieudoan2609@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ethereumjs-util": "^6.1.0",
+    "web3-utils": "^1.0.0-beta.46"
+  }
 }
