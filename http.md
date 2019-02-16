@@ -235,7 +235,7 @@ Submit a signed order to the exchange.
     7. nonce
     8. expiry_timestamp_in_milliseconds
     ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3))
-*   signature [string]: the result of calling `ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `hashPersonalMessage`, the vrs values returned by ecsign is then unified into one string using `toRpcSig` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
+*   signature [string]: the result of calling `ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `hashPersonalMessage` with `order_hash`, the vrs values returned by ecsign is then unified into one string using `toRpcSig` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
 
 **Sample Code:** See this ([example](scripts/create_order_payload.js)) for a detailed instruction on creating the payload
 
