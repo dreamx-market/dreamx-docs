@@ -234,7 +234,8 @@ Submit a signed order to the exchange.
     6. take_token_amount
     7. nonce
     8. expiry_timestamp_in_milliseconds
-*   signature [string]: the result of calling `web3.eth.accounts.sign` with `order_hash` and `account_address` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign))
+    ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3))
+*   signature [string]: the result of calling `eutil.ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `eutil.hashPersonalMessage(eutil.toBuffer(order))` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
 
 #### Response
 
