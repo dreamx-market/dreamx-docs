@@ -237,7 +237,7 @@ Submit a signed order to the exchange.
     ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3))
 *   signature [string]: the result of calling `eutil.ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `eutil.hashPersonalMessage(eutil.toBuffer(order_hash))` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
 
-**Sample Code:** Follow this ([example](scripts/create_order_payload)) to create the request payload
+**Sample Code:** Follow this ([example](scripts/create_order_payload.js)) to create the request payload
 
 #### Response
 
