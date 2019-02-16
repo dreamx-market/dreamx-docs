@@ -1,0 +1,8 @@
+{
+  "name": "ninjatrade-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hieudoan2609/ninjatrade-docs.git",
+  "author": "Hieu <hieudoan2609@gmail.com>",
+  "license": "MIT"
+}
