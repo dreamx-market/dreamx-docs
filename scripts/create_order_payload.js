@@ -1,7 +1,6 @@
-const { soliditySha3, fromUtf8 } = require("web3-utils");
+const { soliditySha3 } = require("web3-utils");
 const {
 	hashPersonalMessage,
-	bufferToHex,
 	toBuffer,
 	ecsign,
 	toRpcSig
@@ -47,7 +46,7 @@ const orderHash = soliditySha3(
 	nonce,
 	expiryTimestampInMilliseconds
 );
-const salted_order_hash = hashPersonalMessage(toBuffer(fromUtf8(orderHash)));
+const salted_order_hash = hashPersonalMessage(toBuffer(orderHash));
 const vrs = ecsign(salted_order_hash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);
 
