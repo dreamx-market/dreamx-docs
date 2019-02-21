@@ -153,6 +153,7 @@ Error codes:
 101 - Malformed JSON
 102 - Order submission disabled
 103 - Throttled
+104 - Conflict
 ```
 
 
