@@ -11,6 +11,7 @@
     *   [Misc](#misc)
 *   [REST API](#rest-api)
     *   [GET /tokens](#get-tokens)
+    *   [GET /markets](#get-markets)
     *   [POST /create_orders](#post-create_orders)
     *   [POST /get_orders](#post-get_orders)
     *   [POST /delete_orders](#post-delete_orders)
@@ -197,6 +198,37 @@ Return all available tokens. This endpoint should be [paginated](#pagination).
         "name": "Tron",
         "symbol": "TRX"
       }
+      ...
+    ]
+}
+```
+
+### GET /markets
+
+Return all available markets. This endpoint should be [paginated](#pagination).
+
+#### Response
+
+```
+{
+    "total": 43,
+    "page": 1,
+    "per_page": 100,
+    "records": [
+	    {
+				base_asset: {
+	        "decimals": "18",
+	        "address": "0x0000000000000000000000000000000000000000",
+	        "name": "Ether",
+	        "symbol": "ETH"
+	      },
+	      quote_asset: {
+	        "decimals": "8",
+	        "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
+	        "name": "Reputation",
+	        "symbol": "REP"
+	      }
+	    }
       ...
     ]
 }
