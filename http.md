@@ -21,7 +21,7 @@
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
     *   [POST /create_trades](#post-create_trades)
-    *   [GET /helpers/return_contract_address](#get-helpersreturn_contract_address)
+    *   [GET /return_contract_address](#get-helpersreturn_contract_address)
     *   [POST /get_chart_data](#post-get_chart_data)
     *   [POST /get_fee_info](#post-get_fee_info)
 
@@ -653,7 +653,7 @@ Making a trade involves signing a message for each order you wish to fill across
 ]
 ```
 
-### GET /helpers/return_contract_address
+### GET /return_contract_address
 
 Returns the contract address used for depositing, withdrawing, and posting orders.
 
