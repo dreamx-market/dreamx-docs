@@ -216,13 +216,13 @@ Return all available markets. This endpoint should be [paginated](#pagination).
     "per_page": 100,
     "records": [
       {
-        base_asset: {
+        base_token: {
           "decimals": "18",
           "address": "0x0000000000000000000000000000000000000000",
           "name": "Ether",
           "symbol": "ETH"
         },
-        quote_asset: {
+        quote_token: {
           "decimals": "8",
           "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
           "name": "Reputation",
