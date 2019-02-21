@@ -215,8 +215,8 @@ Return all available markets. This endpoint should be [paginated](#pagination).
     "page": 1,
     "per_page": 100,
     "records": [
-	    {
-				base_asset: {
+      {
+        base_asset: {
 	        "decimals": "18",
 	        "address": "0x0000000000000000000000000000000000000000",
 	        "name": "Ether",
