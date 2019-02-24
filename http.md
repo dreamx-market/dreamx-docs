@@ -12,7 +12,7 @@
 *   [REST API](#rest-api)
     *   [GET /tokens](#get-tokens)
     *   [GET /markets](#get-markets)
-    *   [POST /create_orders](#post-create_orders)
+    *   [POST /orders](#post-orders)
     *   [POST /get_orders](#post-get_orders)
     *   [POST /delete_orders](#post-delete_orders)
     *   [POST /get_orderbook](#post-get_orderbook)
@@ -21,7 +21,7 @@
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
-    *   [POST /create_trades](#post-create_trades)
+    *   [POST /trades](#post-trades)
     *   [GET /return_contract_address](#get-helpersreturn_contract_address)
     *   [POST /get_chart_data](#post-get_chart_data)
     *   [POST /get_fee_info](#post-get_fee_info)
@@ -234,7 +234,7 @@ Return all available markets. This endpoint should be [paginated](#pagination).
 }
 ```
 
-### POST /create_orders
+### POST /orders
 
 Submit a signed order to the exchange.
 
@@ -247,7 +247,7 @@ Submit a signed order to the exchange.
     "give_amount": "10000000000000000",
     "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
     "take_amount": "20000000000000000",
-    "nonce": "1",
+    "nonce": "1551036154000",
     "expiry_timestamp_in_milliseconds": "1506550595000",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
@@ -258,7 +258,7 @@ Submit a signed order to the exchange.
 *   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   order_hash [string]: the result of running `soliditySha3` on the following parameters in their corresponding order:
+*   order_hash [string]: the result of running ([soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3)) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. account_address
     3. give_token_address
@@ -267,7 +267,6 @@ Submit a signed order to the exchange.
     6. take_token_amount
     7. nonce
     8. expiry_timestamp_in_milliseconds
-    ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3))
 *   signature [string]: the result of calling `ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `hashPersonalMessage` with `order_hash`, the values returned by `ecsign` is then unified into one string using `toRpcSig` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
 
 **NOTE:** See this [example](scripts/create_order_payload.js) for a detailed instruction on creating the payload
@@ -286,7 +285,7 @@ Returns upon success with the new order.
     "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
     "take_amount": "20000000000000000",
     "filled": "0",
-    "nonce": "1",
+    "nonce": "1551036154000",
     "expiry_timestamp_in_milliseconds": "1506550595000",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
     "created_at": "1506550595"
@@ -327,7 +326,7 @@ Must supply either a `account` or an `order_hash`.
             "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
             "take_amount": "20000000000000000",
             "filled": "0",
-            "nonce": "1",
+            "nonce": "1551036154000",
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
             "created_at": "1506550595"
@@ -399,7 +398,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
                 "take_amount": "20000000000000000",
                 "filled": "0",
-                "nonce": "1",
+                "nonce": "1551036154000",
                 "expiry_timestamp_in_milliseconds": "1506550595000",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
@@ -419,7 +418,7 @@ Retrieves the orderbook for a given token pair sorted by best price (lowest ask 
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
                 "take_amount": "20000000000000000",
                 "filled": "0",
-                "nonce": "1",
+                "nonce": "1551036154000",
                 "expiry_timestamp_in_milliseconds": "1506550595000",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
                 "created_at": "1506550595"
@@ -635,7 +634,7 @@ Must provide at least either an `order_hash`, a `market` or a `account`.
 }
 ```
 
-### POST /create_trades
+### POST /trades
 
 Making a trade involves signing a message for each order you wish to fill across and passing in an array of trades. For trades that fill a single order, the usual array with 1 object, or the object alone. The benefit of passing in multiple objects to fill across is that your action is atomic. All trades either succeed or none succeed.
 
@@ -648,8 +647,8 @@ Making a trade involves signing a message for each order you wish to fill across
     {
         "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
         "amount": "1000000000000000000",
-        "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
-        "nonce": "100",
+        "nonce": "1551036154000",
+        "trade_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
         "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
     }
 ]
@@ -657,9 +656,10 @@ Making a trade involves signing a message for each order you wish to fill across
 
 #### Parameters
 
-*   order_hash [string]: the to-be-cancelled order's order_hash
-*   account [string]: the address of the order's owner
+*   account_address [string]: the address of the trader
+*		amount [string]: the amount of the order to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
+*		trade_hash [string]: the result of running soliditySha3 on the following parameters in their corresponding order:
 *   signature [string]: the result of calling `web3.eth.accounts.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. order_hash
