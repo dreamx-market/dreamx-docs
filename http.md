@@ -258,7 +258,7 @@ Submit a signed order to the exchange.
 *   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   order_hash [string]: the result of running ([soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3)) on the following parameters in their corresponding order:
+*   order_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. account_address
     3. give_token_address
