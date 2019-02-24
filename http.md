@@ -22,7 +22,7 @@
     *   [POST /create_transfers](#post-create_transfers)
     *   [POST /get_trades](#post-get_trades)
     *   [POST /trades](#post-trades)
-    *   [GET /return_contract_address](#get-helpersreturn_contract_address)
+    *   [GET /return_contract_address](#get-return_contract_address)
     *   [POST /get_chart_data](#post-get_chart_data)
     *   [POST /get_fee_info](#post-get_fee_info)
 
@@ -659,13 +659,15 @@ Making a trade involves signing a message for each order you wish to fill across
 *   account_address [string]: the address of the trader
 *		amount [string]: the amount of the order to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*		trade_hash [string]: the result of running soliditySha3 on the following parameters in their corresponding order:
-*   signature [string]: the result of calling `web3.eth.accounts.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
-    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
+*		trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
+		1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
     2. order_hash
     3. amount
     4. account
     5. nonce
+
+*   signature [string]: the result of calling `web3.eth.accounts.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
+    
 
 #### Response
 
