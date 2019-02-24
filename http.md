@@ -267,7 +267,7 @@ Submit a signed order to the exchange.
     6. take_token_amount
     7. nonce
     8. expiry_timestamp_in_milliseconds
-*   signature [string]: the result of calling `ecsign` with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by by calling `hashPersonalMessage` with `order_hash`, the values returned by `ecsign` is then unified into one string using `toRpcSig` ([ethereumjs-util docs](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign))
+*   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_order_hash` and the private key for `account_address` as its parameters, `salted_order_hash` is obtained by passing `order_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
 
 **NOTE:** See this [example](scripts/create_order_payload.js) for a detailed instruction on creating the payload
 
@@ -646,6 +646,7 @@ Making a trade involves signing a message for each order you wish to fill across
 [
     {
         "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
+        "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
         "amount": "1000000000000000000",
         "nonce": "1551036154000",
         "trade_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
@@ -657,17 +658,18 @@ Making a trade involves signing a message for each order you wish to fill across
 #### Parameters
 
 *   account_address [string]: the address of the trader
+*		order_hash [string]: the hash of the order that is being traded
 *		amount [string]: the amount of the order to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *		trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-		1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
+		1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
     2. order_hash
-    3. amount
-    4. account
+    3. account_address (the address of the trader)
+    4. amount
     5. nonce
-
-*   signature [string]: the result of calling `web3.eth.accounts.sign` with `tradeHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `tradeHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
+*   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_trade_hash` and the private key for `account_address` as its parameters, `salted_trade_hash` is obtained by passing `trade_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
     
+**NOTE:** See this [example](scripts/trade_payload.js) for a detailed instruction on creating the payload
 
 #### Response
 
@@ -677,8 +679,8 @@ Making a trade involves signing a message for each order you wish to fill across
         "amount": "700000000000000",
         "date": "2017-10-13 16:25:36",
         "total": "49000000000000000",
-        "baseTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-        "quoteTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+        "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+        "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
         "type": "buy",
         "price": "70000000000000000",
         "order_hash": "0xcfe4018c59e50e0e1964c979e6213ce5eb8c751cbc98a44251eb48a0985adc52",

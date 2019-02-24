@@ -46,8 +46,8 @@ const orderHash = soliditySha3(
 	nonce,
 	expiryTimestampInMilliseconds
 );
-const salted_order_hash = hashPersonalMessage(toBuffer(orderHash));
-const vrs = ecsign(salted_order_hash, toBuffer(accountPrivateKey));
+const saltedOrderHash = hashPersonalMessage(toBuffer(orderHash));
+const vrs = ecsign(saltedOrderHash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);
 
 console.log(`account_address: ${accountAddress}`);
