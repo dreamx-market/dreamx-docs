@@ -658,11 +658,11 @@ Making a trade involves signing a message for each order you wish to fill across
 #### Parameters
 
 *   account_address [string]: the address of the trader
-*		order_hash [string]: the hash of the order that is being traded
-*		amount [string]: the amount of the order to be traded
+*   order_hash [string]: the hash of the order that is being traded
+*   amount [string]: the amount of the order to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*		trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-		1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
+*   trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
+    1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
     2. order_hash
     3. account_address (the address of the trader)
     4. amount
@@ -679,12 +679,11 @@ Making a trade involves signing a message for each order you wish to fill across
         "amount": "700000000000000",
         "date": "2017-10-13 16:25:36",
         "total": "49000000000000000",
-        "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-        "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
         "type": "buy",
         "price": "70000000000000000",
         "order_hash": "0xcfe4018c59e50e0e1964c979e6213ce5eb8c751cbc98a44251eb48a0985adc52",
-        "uuid": "250d51a0-b033-11e7-9984-a9ab79bb8f35"
+        "uuid": "250d51a0-b033-11e7-9984-a9ab79bb8f35",
+        "market": "ETH_NJA"
     }
 ]
 ```
