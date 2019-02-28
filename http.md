@@ -338,29 +338,34 @@ Must supply either a `account` or an `order_hash`.
 
 Returns HTTP 404 if no order with specified order_hash was found.
 
-### POST /delete_orders
+### DELETE /orders
 
-Cancels an order associated with the address.
+Cancels an order.
 
 #### Request
 
 ```
 {
-    "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
-    "account_address": "0x257986867faede943786b822282687aacc826b03",
-    "nonce": "0",
-    "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+    "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
+    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "nonce": "1551351258000",
+    "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
+    "signature": "0x3c0fdad5fa4495bae51c59447156218d7f1077dd516938d97e7d8524dd0e12cc6a57f7a55739a6e44dcb16ec8c407ee931a6706c773291585e35868b10da125f1c"
 }
 ```
 
 #### Parameter
 
 *   order_hash [string]: the to-be-cancelled order's order_hash
-*   account [string]: the address of the order's owner
+*   account_address [string]: the address of the order's owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   signature [string]: the result of calling `web3.eth.accounts.sign` with `cancelHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `cancelHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
-    1. order_hash
-    2. nonce
+*   cancel_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
+    1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
+    2. order_hash
+    3. nonce
+*   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_cancel_hash` and the private key for `account_address` as its parameters, `salted_cancel_hash` is obtained by passing `cancel_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
+
+**NOTE:** See this [example](scripts/cancel_order_payload.js) for a detailed instruction on creating the payload
 
 #### Response
 
