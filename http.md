@@ -19,7 +19,7 @@
     *   [POST /get_ticker](#post-get_ticker)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
-    *   [POST /create_transfers](#post-create_transfers)
+    *   [POST /withdraw](#post-withdraw)
     *   [POST /get_trades](#post-get_trades)
     *   [POST /trades](#post-trades)
     *   [GET /return_contract_address](#get-return_contract_address)
@@ -370,9 +370,14 @@ Cancels an order.
 
 #### Response
 
+Returns upon success with the new order cancel.
+
 ```
 {
-    "success": "0"
+    "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
+    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
+    "created_at": "2018-12-11 17:12:10"
 }
 ```
 
@@ -466,8 +471,8 @@ Designed to behave similar to the API call of the same name provided by the Polo
     "per_page": 100,
     "records": [
         {
-            "baseTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-            "quoteTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+            "base_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "quote_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
             "last": "0.000981",
             "high": "0.0010763",
             "low": "0.0009777",
@@ -549,9 +554,9 @@ Returns your deposit and withdrawal history within a range, specified by the "st
 }
 ```
 
-### POST /create_transfers
+### POST /withdraw
 
-Withdraws funds associated with the address. You cannot withdraw funds that are tied up in open orders.
+Withdraws funds associated with `account_address`. You cannot withdraw funds that are tied up in open orders.
 
 #### Request
 
@@ -559,29 +564,40 @@ Withdraws funds associated with the address. You cannot withdraw funds that are 
 {
     "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
     "amount": "1000000000000000000",
-    "tokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+    "token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "nonce": "100",
+    "withdraw_hash": "0x2e337f6d1fa78ac49f11f9507087ab757e5f7bce3ab8333ed2ca60c916ce9d54",
     "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
 }
 ```
 
 #### Parameters
 
-*   account [string]: the address of the order's owner
-*   tokenAddress [string]: the address of the token to be withdrawn, `0x0000000000000000000000000000000000000000` for Ether
+*   account_address [string]: the address of the owner
+*   amount [string]: the amount to be withdrawn
+*   token_address [string]: the address of the token to be withdrawn, `0x0000000000000000000000000000000000000000` for Ether
 *   nonce [string]: the current UNIX timestamp in milliseconds
-*   signature [string]: the result of calling `web3.eth.accounts.sign` with `withdrawHash` and `account` as its parameters ([web3 docs](https://web3js.readthedocs.io/en/1.0/web3-eth.html#sign)), `withdrawHash` is obtained by running `web3.utils.soliditySha3` on the following parameters in their respective order:
+*   withdraw_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
-    2. tokenAddress
-    3. amount
-    4. account
+    2. account_address
+    3. token_address
+    4. amount
     5. nonce
+*   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_withdraw_hash` and the private key for `account_address` as its parameters, `salted_withdraw_hash` is obtained by passing `withdraw_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
+
+**NOTE:** See this [example](scripts/withdraw_payload.js) for a detailed instruction on creating the payload
 
 #### Response
 
+Returns upon success with the new withdraw.
+
 ```
 {
-    "success": "0"
+  "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+  "amount": "1000000000000000000",
+  "token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+  "withdraw_hash": "0x2e337f6d1fa78ac49f11f9507087ab757e5f7bce3ab8333ed2ca60c916ce9d54",
+  "created_at": "2018-12-11 17:12:10" 
 }
 ```
 
