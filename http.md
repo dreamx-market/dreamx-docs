@@ -562,12 +562,12 @@ Withdraws funds associated with `account_address`. You cannot withdraw funds tha
 
 ```
 {
-    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
-    "amount": "1000000000000000000",
-    "token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-    "nonce": "100",
-    "withdraw_hash": "0x2e337f6d1fa78ac49f11f9507087ab757e5f7bce3ab8333ed2ca60c916ce9d54",
-    "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "amount": "100000000000000000000",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "nonce": "1551375034000",
+    "withdraw_hash": "0xc9fb6082a0aee990e62f5c8824c9009da8086abace0e061eefb7ed265a63ad7b",
+    "signature": "0xd4c7632c3c23462cb61f2506b43b00a8fddf2a6743ee36c3d6a9bde24a63663217ec7400761309109bc241d07311d5a3f8004ac19e45be89fb713d9ab943f23c1c"
 }
 ```
 

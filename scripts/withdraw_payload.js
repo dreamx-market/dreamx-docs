@@ -14,9 +14,9 @@ const contractAddress = "0x4ef6474f40bf5c9dbc013efaac07c4d0cb17219a";
 /**
  * Your wallet's address and private key, address and privateKey are only exemplar and are to be replaced
  */
-const accountAddress = "0xa77344043e0b0bada9318f41803e07e9dfc57b0b";
+const accountAddress = "0xe37a4faa73fced0a177da51d8b62d02764f2fc45";
 const accountPrivateKey =
-  "0xf1caff04b5ff349674820a4eb6ee11c459ad3698ca581c8a8e82ee09591b7aa2";
+  "0xd15b17f51f613d0d89c64c7b629ffff7ae9c19e509afc9518dac1650e9812c18";
 
 /**
  * The token to be withdrawn
