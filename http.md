@@ -338,7 +338,7 @@ Must supply either a `account` or an `order_hash`.
 
 Returns HTTP 404 if no order with specified order_hash was found.
 
-### DELETE /orders
+### POST /order_cancels
 
 Cancels an order.
 
