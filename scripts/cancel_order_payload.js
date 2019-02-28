@@ -29,7 +29,12 @@ const accountPrivateKey =
  */
 const nonce = 1551351258000;
 
-const cancelHash = soliditySha3(contractAddress, orderHash, nonce);
+const cancelHash = soliditySha3(
+  contractAddress,
+  accountAddress,
+  orderHash,
+  nonce
+);
 const saltedCancelHash = hashPersonalMessage(toBuffer(cancelHash));
 const vrs = ecsign(saltedCancelHash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);

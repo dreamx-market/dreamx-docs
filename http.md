@@ -361,8 +361,9 @@ Cancels an order.
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   cancel_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
-    2. order_hash
-    3. nonce
+    2. account_address
+    3. order_hash
+    4. nonce
 *   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_cancel_hash` and the private key for `account_address` as its parameters, `salted_cancel_hash` is obtained by passing `cancel_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
 
 **NOTE:** See this [example](scripts/cancel_order_payload.js) for a detailed instruction on creating the payload
