@@ -435,7 +435,7 @@ curl https://api.ninja.trade/orderbook/ETH_SAN
 }
 ```
 
-Bids will be sorted in descending order by price, and asks will be sorted in ascending order by price. Within the price sorted orders, the orders are further sorted by expiration in ascending order.
+Bids will be sorted in descending order by price, and asks will be sorted in ascending order by price. Within the price sorted orders, the orders are further sorted by date in ascending order.
 
 The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
 
