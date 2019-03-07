@@ -309,7 +309,7 @@ Retrieves a list of orders given query parameters. This endpoint should be [pagi
 }
 ```
 
-Must supply either a `account_address` or an `order_hash`, if both or only `order_hash` were supplied, return a specific order, if only `account_address` was supplied, return all the orders owned by `account_address`.
+Return all orders by default, if `order_hash` was supplied, return a specific order, if `account_address` was supplied, return all the orders owned by `account_address`.
 
 #### Response
 
