@@ -15,7 +15,7 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders](#get-orders)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [POST /get_orderbook](#post-get_orderbook)
+    *   [GET /orderbook](#get-orderbook)
     *   [POST /get_ticker](#post-get_ticker)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
@@ -300,13 +300,10 @@ Error response will be sent with a non-2xx HTTP status code. See the [Errors](#e
 
 Retrieves a list of orders given query parameters. This endpoint should be [paginated](#pagination). For querying an entire orderbook snapshot, the [orderbook endpoint](#get-orderbook) is recommended.
 
-#### Payload
+#### Request
 
 ```
-{
-    "account_address": "0xf10105f862C1cB10550F4EeB38697308c7A290Fc",
-    "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b"
-}
+curl https://api.ninja.trade/orders?account_address=0xf10105f862C1cB10550F4EeB38697308c7A290Fc&order_hash=0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b
 ```
 
 Return all orders by default, if `order_hash` was supplied, return a specific order, if `account_address` was supplied, return all the orders owned by `account_address`.
@@ -381,16 +378,14 @@ Returns upon success with the new order cancel.
 }
 ```
 
-### POST /get_orderbook
+### GET /orderbook/:market
 
 Retrieves the orderbook for a given token pair sorted by best price (lowest ask first, and highest bid first). This endpoint should be [paginated](#pagination).
 
-#### Payload
+#### Request
 
 ```
-{
-    "market": "ETH_SAN"
-}
+curl https://api.ninja.trade/orderbook/ETH_SAN
 ```
 
 #### Response
