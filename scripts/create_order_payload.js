@@ -1,9 +1,9 @@
 const { soliditySha3 } = require("web3-utils");
 const {
-	hashPersonalMessage,
-	toBuffer,
-	ecsign,
-	toRpcSig
+  hashPersonalMessage,
+  toBuffer,
+  ecsign,
+  toRpcSig
 } = require("ethereumjs-util");
 
 /**
@@ -14,9 +14,9 @@ const contractAddress = "0x4ef6474f40bf5c9dbc013efaac07c4d0cb17219a";
 /**
  * Your wallet's address and private key, address and privateKey are only exemplar and are to be replaced
  */
-const accountAddress = "0xe37a4faa73fced0a177da51d8b62d02764f2fc45";
+const accountAddress = "0xbfd525710ecb49a266337683971bac0d72d746a6";
 const accountPrivateKey =
-	"0xd15b17f51f613d0d89c64c7b629ffff7ae9c19e509afc9518dac1650e9812c18";
+  "0x24b39c598f81d10af245a6b0c1733be41b63ce4d7ea2e694535a2d1c3730c7b9";
 
 /**
  * The current UNIX timestamp in milliseconds
@@ -37,14 +37,14 @@ const takeTokenAddress = "0x0000000000000000000000000000000000000000"; // ETH
 const takeAmount = "500000000000000000"; // 0.5 ETH
 
 const orderHash = soliditySha3(
-	contractAddress,
-	accountAddress,
-	giveTokenAddress,
-	giveAmount,
-	takeTokenAddress,
-	takeAmount,
-	nonce,
-	expiryTimestampInMilliseconds
+  contractAddress,
+  accountAddress,
+  giveTokenAddress,
+  giveAmount,
+  takeTokenAddress,
+  takeAmount,
+  nonce,
+  expiryTimestampInMilliseconds
 );
 const saltedOrderHash = hashPersonalMessage(toBuffer(orderHash));
 const vrs = ecsign(saltedOrderHash, toBuffer(accountPrivateKey));
@@ -57,7 +57,7 @@ console.log(`take_token_address: ${takeTokenAddress}`);
 console.log(`take_amount: ${takeAmount}`);
 console.log(`nonce: ${nonce}`);
 console.log(
-	`expiry_timestamp_in_milliseconds: ${expiryTimestampInMilliseconds}`
+  `expiry_timestamp_in_milliseconds: ${expiryTimestampInMilliseconds}`
 );
 console.log(`order_hash: ${orderHash}`);
 console.log(`signature: ${signature}`);

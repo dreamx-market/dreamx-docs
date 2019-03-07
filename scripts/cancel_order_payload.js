@@ -15,14 +15,14 @@ const contractAddress = "0x4ef6474f40bf5c9dbc013efaac07c4d0cb17219a";
  * The hash of the order to be traded
  */
 const orderHash =
-  "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633";
+  "0x0af93d915d9a51b02decd8aa3eb178834ef27e2bde33356989e834c742e27f4e";
 
 /**
  * Your wallet's address and private key, address and privateKey are only exemplar and are to be replaced
  */
-const accountAddress = "0xe37a4faa73fced0a177da51d8b62d02764f2fc45";
+const accountAddress = "0xbfd525710ecb49a266337683971bac0d72d746a6";
 const accountPrivateKey =
-  "0xd15b17f51f613d0d89c64c7b629ffff7ae9c19e509afc9518dac1650e9812c18";
+  "0x24b39c598f81d10af245a6b0c1733be41b63ce4d7ea2e694535a2d1c3730c7b9";
 
 /**
  * The current UNIX timestamp in milliseconds

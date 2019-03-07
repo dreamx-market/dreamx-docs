@@ -13,7 +13,7 @@
     *   [GET /tokens](#get-tokens)
     *   [GET /markets](#get-markets)
     *   [POST /orders](#post-orders)
-    *   [POST /get_orders](#post-get_orders)
+    *   [GET /orders](#get-orders)
     *   [POST /delete_orders](#post-delete_orders)
     *   [POST /get_orderbook](#post-get_orderbook)
     *   [POST /get_ticker](#post-get_ticker)
@@ -296,7 +296,7 @@ Returns upon success with the new order.
 
 Error response will be sent with a non-2xx HTTP status code. See the [Errors](#errors) section for more information.
 
-### POST /get_orders
+### GET /orders
 
 Retrieves a list of orders given query parameters. This endpoint should be [paginated](#pagination). For querying an entire orderbook snapshot, the [orderbook endpoint](#get-orderbook) is recommended.
 
@@ -309,7 +309,7 @@ Retrieves a list of orders given query parameters. This endpoint should be [pagi
 }
 ```
 
-Must supply either a `account` or an `order_hash`.
+Must supply either a `account_address` or an `order_hash`, if both or only `order_hash` were supplied, return a specific order, if only `account_address` was supplied, return all the orders owned by `account_address`.
 
 #### Response
 
