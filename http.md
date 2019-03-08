@@ -13,7 +13,7 @@
     *   [GET /tokens](#get-tokens)
     *   [GET /markets](#get-markets)
     *   [POST /orders](#post-orders)
-    *   [GET /orders/:order_hash](#get-ordersorderhash)
+    *   [GET /orders/:order_hash](#get-orders_orderhash)
     *   [POST /delete_orders](#post-delete_orders)
     *   [GET /orderbook/:market](#get-orderbookmarket)
     *   [GET /tickers/:market](#get-tickersmarket)
