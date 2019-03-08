@@ -445,12 +445,10 @@ Designed to behave similar to the API call of the same name provided by the Polo
 
 **Please note**: If any field is unavailable due to a lack of trade history or a lack of 24hr data, the field will be set to `nil`. `percent_change`, `base_volume`, and `quote_volume` will never be `nil` but may be 0.
 
-#### Payload
+#### Request
 
 ```
-{
-    curl https://api.ninja.trade/ticker?market=ETH_SAN
-}
+curl https://api.ninja.trade/ticker?market=ETH_SAN
 ```
 
 #### Parameters
