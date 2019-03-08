@@ -16,7 +16,7 @@
     *   [GET /orders](#get-orders)
     *   [POST /delete_orders](#post-delete_orders)
     *   [GET /orderbook/:market](#get-orderbookmarket)
-    *   [GET /ticker](#get-ticker)
+    *   [GET /tickers/:market](#get-tickersmarket)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /withdraw](#post-withdraw)
@@ -439,7 +439,7 @@ Bids will be sorted in descending order by price, and asks will be sorted in asc
 
 The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
 
-### GET /ticker
+### GET /tickers/:market
 
 Designed to behave similar to the API call of the same name provided by the Poloniex HTTP API, with the addition of highs and lows. Returns all necessary 24 hr data. This endpoint should be [paginated](#pagination)
 
@@ -448,12 +448,12 @@ Designed to behave similar to the API call of the same name provided by the Polo
 #### Request
 
 ```
-curl https://api.ninja.trade/ticker?market=ETH_SAN
+curl https://api.ninja.trade/tickers/ETH_SAN
 ```
 
 #### Parameters
 
-*   market [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional)
+*   market [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional, return all tickers if omitted)
 
 #### Response
 
