@@ -15,8 +15,8 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [GET /orderbook/:market](#get-orderbookmarket)
-    *   [GET /tickers/:market](#get-tickersmarket)
+    *   [GET /orderbook/:market_symbol](#get-orderbookmarket)
+    *   [GET /tickers/:market_symbol](#get-tickersmarket)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /withdraw](#post-withdraw)
@@ -383,7 +383,7 @@ Returns upon success with the new order cancel.
 }
 ```
 
-### GET /orderbook/:market
+### GET /orderbook/:market_symbol
 
 Retrieves the orderbook for a given token pair sorted by best price (lowest ask first, and highest bid first). This endpoint should be [paginated](#pagination).
 
@@ -444,7 +444,7 @@ Bids will be sorted in descending order by price, and asks will be sorted in asc
 
 The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
 
-### GET /tickers/:market
+### GET /tickers/:market_symbol
 
 Designed to behave similar to the API call of the same name provided by the Poloniex HTTP API, with the addition of highs and lows. Returns all necessary 24 hr data. This endpoint should be [paginated](#pagination)
 
@@ -458,7 +458,7 @@ curl https://api.ninja.trade/tickers/ETH_SAN
 
 #### Parameters
 
-*   market [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional, return all tickers if omitted)
+*   market_symbol [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional, return all tickers if omitted)
 
 #### Response
 
