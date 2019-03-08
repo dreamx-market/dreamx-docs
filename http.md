@@ -13,7 +13,7 @@
     *   [GET /tokens](#get-tokens)
     *   [GET /markets](#get-markets)
     *   [POST /orders](#post-orders)
-    *   [GET /orders](#get-orders)
+    *   [GET /orders/:order_hash](#get-ordersorderhash)
     *   [POST /delete_orders](#post-delete_orders)
     *   [GET /orderbook/:market](#get-orderbookmarket)
     *   [GET /tickers/:market](#get-tickersmarket)
@@ -296,19 +296,24 @@ Returns upon success with the new order.
 
 Error response will be sent with a non-2xx HTTP status code. See the [Errors](#errors) section for more information.
 
-### GET /orders
+### GET /orders/:order_hash
 
 Retrieves a list of orders given query parameters. This endpoint should be [paginated](#pagination). For querying an entire orderbook snapshot, the [orderbook endpoint](#get-orderbook) is recommended.
 
 #### Request
 
 ```
-curl https://api.ninja.trade/orders?account_address=0xf10105f862C1cB10550F4EeB38697308c7A290Fc&order_hash=0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b
+curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b
 ```
 
-Return all orders by default, if `order_hash` was supplied, return a specific order, if `account_address` was supplied, return all the orders owned by `account_address`.
+#### Parameters
+
+*   order_hash [string]: the order_hash for the order to be returned (optional, return all orders if omitted)
+*   account_address [string]: return all orders for `account_address` (optional)
 
 #### Response
+
+Return all orders by default, if `order_hash` was supplied, return a specific order, if `account_address` was supplied, return all the orders owned by `account_address`.
 
 ```
 {
