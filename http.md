@@ -15,8 +15,8 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders](#get-orders)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [GET /orderbook](#get-orderbookmarket)
-    *   [POST /get_ticker](#post-get_ticker)
+    *   [GET /orderbook/:market](#get-orderbookmarket)
+    *   [GET /ticker](#get-ticker)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
     *   [POST /withdraw](#post-withdraw)
@@ -439,23 +439,23 @@ Bids will be sorted in descending order by price, and asks will be sorted in asc
 
 The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
 
-### POST /get_ticker
+### GET /ticker
 
 Designed to behave similar to the API call of the same name provided by the Poloniex HTTP API, with the addition of highs and lows. Returns all necessary 24 hr data. This endpoint should be [paginated](#pagination)
 
-**Please note**: If any field is unavailable due to a lack of trade history or a lack of 24hr data, the field will be set to `'N/A'`. `percentChange`, `baseVolume`, and `quoteVolume` will never be `'N/A'` but may be 0.
+**Please note**: If any field is unavailable due to a lack of trade history or a lack of 24hr data, the field will be set to `nil`. `percent_change`, `base_volume`, and `quote_volume` will never be `nil` but may be 0.
 
 #### Payload
 
 ```
 {
-    "market": "ETH_SAN"
+    curl https://api.ninja.trade/ticker?market=ETH_SAN
 }
 ```
 
 #### Parameters
 
-*   market: return only ticker of given market, eg: "ETH_SAN" (optional)
+*   market [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional)
 
 #### Response
 
@@ -468,14 +468,15 @@ Designed to behave similar to the API call of the same name provided by the Polo
         {
             "base_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
             "quote_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "symbol": "ETH_SAN",
             "last": "0.000981",
             "high": "0.0010763",
             "low": "0.0009777",
-            "lowestAsk": "0.00098151",
-            "highestBid": "0.0007853",
-            "percentChange": "-1.83619353",
-            "baseVolume": "7.3922603247161",
-            "quoteVolume": "7462.998433"
+            "lowest_ask": "0.00098151",
+            "highest_bid": "0.0007853",
+            "percent_change": "-1.83619353",
+            "base_volume": "7.3922603247161",
+            "quote_volume": "7462.998433"
         }
     ]
 }
