@@ -23,7 +23,7 @@
     *   [POST /get_trades](#post-get_trades)
     *   [POST /trades](#post-trades)
     *   [GET /return_contract_address](#get-return_contract_address)
-    *   [POST /get_chart_data](#post-get_chart_data)
+    *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
     *   [POST /get_fee_info](#post-get_fee_info)
 
 ## General
@@ -721,27 +721,20 @@ Returns the contract address used for depositing, withdrawing, and posting order
 }
 ```
 
-### POST /get_chart_data
+### GET /chart_data/:market_symbol
 
-Returns candlestick chart data. Required GET parameters are "market", "period" (candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400), "start", and "end". "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned. Fields include:
+Returns chart data for given market symbol.
 
 #### Request
 
 ```
-[
-    {
-        "market": "ETH_SAN",
-        "startingTimestampInMilliseconds": "1548264003367",
-        "endingTimestampInMilliseconds": "1548264032666",
-        "periodInSeconds": "14400"
-    }
-]
+curl https://api.ninja.trade/chart_data/ETH_SAN?start=1548264003367&end=1548264032666&period=14400
 ```
 
 #### Parameters
 
-*   startingTimestampInMilliseconds=&endingTimestampInMilliseconds [string]: UNIX timestamps used to specify the date range for the data returned
-*   periodInSeconds [string]: candlestick period in seconds, valid values are 300, 900, 1800, 7200, 14400, and 86400
+*   start=&end [string]: UNIX timestamps used to specify the date range for the data returned (optional, if not supplied, return all available data)
+*   period [string]: candlestick period in milliseconds, valid values are 300000 (5 minutes), 900000 (15 minutes), 1800000 (30 minutes), 3600000 (1 hour), 7200000 (2 hours), 14400000 (4 hours), and 86400000 (1 day)
 
 #### Response
 
@@ -754,8 +747,8 @@ Returns candlestick chart data. Required GET parameters are "market", "period" (
         "open": "0.03144307",
         "close": "0.03124064",
         "volume": "64.36480422",
-        "quoteVolume": "2055.56810329",
-        "weightedAverage": "0.03131241" 
+        "quote_volume": "2055.56810329",
+        "average": "0.03131241" 
     },
     { 
         "date": "1540209600",
@@ -764,19 +757,11 @@ Returns candlestick chart data. Required GET parameters are "market", "period" (
         "open": "0.03151497",
         "close": "0.03141781",
         "volume": "39.82606009",
-        "quoteVolume": "1268.53159161",
-        "weightedAverage": "0.0313954" 
+        "quote_volume": "1268.53159161",
+        "average": "0.0313954" 
     },
     ...
 ]
-```
-
-#### Response
-
-```
-{
-    "address": "0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208"
-}
 ```
 
 ### POST /get_fee_info
