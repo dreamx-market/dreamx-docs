@@ -734,7 +734,7 @@ curl https://api.ninja.trade/chart_data/ETH_SAN?start=1548264003367&end=15482640
 #### Parameters
 
 *   start=&end [string]: UNIX timestamps used to specify the date range for the data returned (optional, if not supplied, return all available data)
-*   period [string]: candlestick period in seconds, valid values are 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
+*   period [string]: candlestick period in seconds, default is 3600, valid values are 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
 #### Response
 
