@@ -728,12 +728,12 @@ Returns chart data for given market symbol.
 #### Request
 
 ```
-curl https://api.ninja.trade/chart_data/ETH_SAN?start=1552339097&end=1551734309&period=3600
+curl https://api.ninja.trade/chart_data/ETH_SAN?start=1551734309&end=1552339097&period=3600
 ```
 
 #### Parameters
 
-*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned (optional, if not supplied, return all available data)
+*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
 *   period [string]: candlestick period in seconds, default is 3600, valid values are 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
 #### Response
