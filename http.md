@@ -741,7 +741,7 @@ curl https://api.ninja.trade/chart_data/ETH_SAN?start=1548264003367&end=15482640
 ```
 [ 
     { 
-        "date": "1539864000",
+        "date": "2019-03-11T12:38:31.000Z",
         "high": "0.03149999",
         "low": "0.031",
         "open": "0.03144307",
@@ -751,7 +751,7 @@ curl https://api.ninja.trade/chart_data/ETH_SAN?start=1548264003367&end=15482640
         "average": "0.03131241" 
     },
     { 
-        "date": "1540209600",
+        "date": "2019-03-11T12:38:31.000Z",
         "high": "0.03153475",
         "low": "0.031265",
         "open": "0.03151497",
