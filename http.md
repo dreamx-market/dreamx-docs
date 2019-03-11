@@ -15,7 +15,7 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [GET /orderbook/:market_symbol](#get-orderbookmarket)
+    *   [GET /orderbook/:market_symbol](#get-orderbookmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
