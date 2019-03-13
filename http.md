@@ -20,11 +20,10 @@
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
     *   [POST /withdraw](#post-withdraw)
-    *   [POST /get_trades](#post-get_trades)
     *   [GET /trades/:account_address](#get-tradesaccount_address)
     *   [GET /return_contract_address](#get-return_contract_address)
     *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
-    *   [POST /get_fee_info](#post-get_fee_info)
+    *   [GET /fees](#get-fees)
 
 ## General
 
@@ -769,7 +768,7 @@ curl https://api.ninja.trade/chart_data/ETH_SAN?start=1551734309&end=1552339097&
 ]
 ```
 
-### POST /get_fee_info
+### GET /fees
 
 Returns current trading fees.
 
@@ -777,7 +776,7 @@ Returns current trading fees.
 
 ```
 { 
-    "makerFee": "0.00100000",
-    "takerFee": "0.00200000"
+    "maker_fee_per_ether": "0.00100000",
+    "taker_fee_per_ether": "0.00200000"
 }
 ```
