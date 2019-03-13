@@ -15,7 +15,7 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [GET /orderbook/:market_symbol](#get-orderbookmarket_symbol)
+    *   [GET /orderbooks/:market_symbol](#get-orderbookmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [POST /get_transfers](#post-get_transfers)
@@ -383,7 +383,7 @@ Returns upon success with the new order cancel.
 }
 ```
 
-### GET /orderbook/:market_symbol
+### GET /orderbooks/:market_symbol
 
 Retrieves the orderbook for a given token pair sorted by best price (lowest ask first, and highest bid first). This endpoint should be [paginated](#pagination).
 
