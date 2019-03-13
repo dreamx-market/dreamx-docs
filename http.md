@@ -566,7 +566,7 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
 }
 ```
 
-Records will be sorted by date in ascending order, the page and per_page query params apply to both deposits and withdraws collections, and if page * per_page > total for a certain collection, the records for that collection should just be empty.
+Records will be sorted by date in descending order, the page and per_page query params apply to both deposits and withdraws collections, and if page * per_page > total for a certain collection, the records for that collection should just be empty.
 
 ### POST /withdraw
 
