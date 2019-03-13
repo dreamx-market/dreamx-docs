@@ -21,7 +21,7 @@
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
     *   [POST /withdraw](#post-withdraw)
     *   [POST /get_trades](#post-get_trades)
-    *   [POST /trades](#post-trades)
+    *   [GET /trades/:account_address](#get-tradesaccount_address)
     *   [GET /return_contract_address](#get-return_contract_address)
     *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
     *   [POST /get_fee_info](#post-get_fee_info)
@@ -615,32 +615,22 @@ Returns upon success with the new withdraw.
 }
 ```
 
-### POST /get_trades
+### GET /trades/:account_address
 
-Returns a paginated list of all trades for a given market, order or user, sorted by date. This endpoint should be [paginated](#pagination).
+Returns a paginated list of trades filterd by the specified parameters. This endpoint should be [paginated](#pagination).
 
 #### Payload
 
 ```
-{
-    "order_hash": "0x22a9ba7f8dd37ed24ae327b14a8a941b0eb072d60e54bcf24640c2af819fc7ec",
-    "market": "ETH_SAN,
-    "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
-    "startingTimestampInMilliseconds": "1548264003367",
-    "endingTimestampInMilliseconds": "1548264032666",
-    "sort": "desc"
-}
+curl https://api.ninja.trade/trades/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09?start=1551734309&end=1552339097&market=ETH_SAN
 ```
 
 #### Parameters
 
-*   order_hash [string]: the order hash to query for associated trades. (required)
-*   account [string]: the address of the order's owner (required)
-*   startingTimestampInMilliseconds [string]: Starting UNIX timestamp of returned results. Defaults to 0 (optional)
-*   endingTimestampInMilliseconds [string]: Ending UNIX timestamp of returned results. Defaults to current timestamp (optional)
-*   sort [string]: Possible values are asc (oldest first) and desc (newest first). Defaults to desc.
-
-Must provide at least either an `order_hash`, a `market` or a `account`.
+*   order_hash [string]: Filter by order_hash. (optional)
+*   account_address [string]: The address of the trade's owner (optional)
+*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
+*   sort [string]: Possible values are asc (oldest first) and desc (newest first) (optional, defaults to desc)
 
 #### Response
 
@@ -658,9 +648,9 @@ Must provide at least either an `order_hash`, a `market` or a `account`.
             "take_amount": "20000000000000000",
             "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
             "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
-            "buyer_fee": 123300,
-            "seller_fee": 23000,
-            "gas_fee": 4000,
+            "maker_fee": "23000",
+            "taker_fee": "123300",
+            "gas_fee": "4000",
             "maker_address": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
             "taker_address": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
