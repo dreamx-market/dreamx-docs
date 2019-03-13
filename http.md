@@ -18,7 +18,7 @@
     *   [GET /orderbooks/:market_symbol](#get-orderbookmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
-    *   [POST /get_transfers](#post-get_transfers)
+    *   [GET /transfers/:account_address](#get-transfersaccount_address)
     *   [POST /withdraw](#post-withdraw)
     *   [POST /get_trades](#post-get_trades)
     *   [POST /trades](#post-trades)
@@ -513,21 +513,16 @@ GET /balances/0x8a37b79E54D69e833d79Cac3647C877Ef72830E1
 }
 ```
 
-### POST /get_transfers
+### GET /transfers/:account_address
 
-Returns your deposit and withdrawal history within a range, specified by the "start" and "end" properties of the JSON input, both of which must be UNIX timestamps. Withdrawals can be marked as "PENDING" if they are queued for dispatch, "PROCESSING" if the transaction has been dispatched, and "COMPLETE" if the transaction has been mined. This endpoint should be [paginated](#pagination).
+Returns the deposits and withdrawals of account within a range, specified by the "start" and "end" query parameters, both of which must be UNIX timestamps in seconds. Records can be marked as "PENDING" if they are unconfirmed, and "COMPLETE" if their transactions have been mined. This endpoint should be [paginated](#pagination).
 
 ```
-{
-    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
-    "startingTimestampInMilliseconds": "1548264003367",
-    "endingTimestampInMilliseconds": "1548264032666"
-}
+curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09?start=1551734309&end=1552339097
 ```
 
 #### Parameters:
-*   startingTimestampInMilliseconds [string]: Inclusive starting UNIX timestamp of returned results in milliseconds. Defaults to 0 (optional)
-*   endingTimestampInMilliseconds [string]: Inclusive ending UNIX timestamp of returned results in milliseconds. Defaults to current timestamp (optional)
+*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
 
 #### Response
 
@@ -544,8 +539,8 @@ Returns your deposit and withdrawal history within a range, specified by the "st
             "amount": "1000000000000000000",
             "status": "pending",
             "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-            "blockHash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
-            "blockNumber": 371,
+            "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
+            "block_number": "371",
             "created_at": "1506550595"
         },
         ...
