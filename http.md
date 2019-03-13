@@ -15,7 +15,7 @@
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
     *   [POST /delete_orders](#post-delete_orders)
-    *   [GET /orderbooks/:market_symbol](#get-orderbookmarket_symbol)
+    *   [GET /orderbooks/:market_symbol](#get-orderbooksmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
@@ -528,25 +528,45 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
 
 ```
 {
-    "total": 43,
-    "page": 1,
-    "per_page": 100,
-    "records": [
-        {
-            "id": "174",
-            "type": "deposit",
-            "token": "0xe41d2489571d322189246dafa5ebde1f4699f498",
-            "amount": "1000000000000000000",
-            "status": "pending",
-            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-            "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
-            "block_number": "371",
-            "created_at": "1506550595"
-        },
-        ...
-    ]
+    "deposits": {
+        "total": 43,
+        "page": 1,
+        "per_page": 100,
+        "records": [
+            {
+                "id": "174",
+                "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+                "amount": "1000000000000000000",
+                "status": "pending",
+                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+                "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
+                "block_number": "371",
+                "created_at": "1506550595"
+            },
+            ...
+        ]
+    },
+    "withdraws": {
+        "total": 50,
+        "page": 1,
+        "per_page": 100,
+        "records": [
+            {
+                "id": "169",
+                "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+                "amount": "1000000000000000000",
+                "status": "pending",
+                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+                "block_hash": nil,
+                "block_number": nil,
+                "created_at": "1506550595"
+            }
+        ]
+    }
 }
 ```
+
+Records will be sorted by date in ascending order, the page and per_page query params apply to both deposits and withdraws collections, and if page * per_page > total for a certain collection, the records for that collection should just be empty.
 
 ### POST /withdraw
 
