@@ -776,7 +776,7 @@ Returns current trading fees.
 
 ```
 { 
-    "maker_fee_per_ether": "0.00100000",
-    "taker_fee_per_ether": "0.00200000"
+    "maker_fee_per_ether": "0.001",
+    "taker_fee_per_ether": "0.002"
 }
 ```
