@@ -20,7 +20,7 @@
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
     *   [POST /withdraw](#post-withdraw)
-    *   [GET /trades/:account_address](#get-tradesaccount_address)
+    *   [GET /trades](#get-trades)
     *   [GET /return_contract_address](#get-return_contract_address)
     *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
     *   [GET /fees](#get-fees)
@@ -614,14 +614,14 @@ Returns upon success with the new withdraw.
 }
 ```
 
-### GET /trades/:account_address
+### GET /trades
 
 Returns a paginated list of trades filterd by the specified parameters. This endpoint should be [paginated](#pagination).
 
 #### Payload
 
 ```
-curl https://api.ninja.trade/trades/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09?start=1551734309&end=1552339097&market=ETH_SAN
+curl https://api.ninja.trade/trades?account_address=0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09&start=1551734309&end=1552339097&market=ETH_SAN
 ```
 
 #### Parameters
