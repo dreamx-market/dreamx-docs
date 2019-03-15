@@ -621,7 +621,7 @@ Returns a paginated list of trades filterd by the specified parameters. This end
 #### Payload
 
 ```
-curl https://api.ninja.trade/trades?account_address=0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09&start=1551734309&end=1552339097&market=ETH_SAN
+curl https://api.ninja.trade/trades?account_address=0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09&start=1551734309&end=1552339097&market_symbol=ETH_SAN
 ```
 
 #### Parameters
