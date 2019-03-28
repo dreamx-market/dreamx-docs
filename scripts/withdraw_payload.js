@@ -36,20 +36,20 @@ const nonce = 1551375034000;
 
 const withdrawHash = soliditySha3(
   contractAddress,
-  accountAddress,
   tokenAddress,
   amount,
+  accountAddress,
   nonce
 );
 const saltedWithdrawHash = hashPersonalMessage(toBuffer(withdrawHash));
 const vrs = ecsign(saltedWithdrawHash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);
 
-console.log(`salted_withdraw_hash ${bufferToHex(saltedWithdrawHash)}`);
-
-console.log(`account_address: ${accountAddress}`);
-console.log(`amount: ${amount}`);
+console.log(`contract_address ${contractAddress}`);
 console.log(`token_address: ${tokenAddress}`);
+console.log(`amount: ${amount}`);
+console.log(`account_address: ${accountAddress}`);
 console.log(`nonce: ${nonce}`);
 console.log(`withdraw_hash: ${withdrawHash}`);
+console.log(`salted_withdraw_hash ${bufferToHex(saltedWithdrawHash)}`);
 console.log(`signature: ${signature}`);

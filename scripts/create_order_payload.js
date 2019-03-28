@@ -3,7 +3,8 @@ const {
   hashPersonalMessage,
   toBuffer,
   ecsign,
-  toRpcSig
+  toRpcSig,
+  bufferToHex
 } = require("ethereumjs-util");
 
 /**
@@ -50,6 +51,7 @@ const saltedOrderHash = hashPersonalMessage(toBuffer(orderHash));
 const vrs = ecsign(saltedOrderHash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);
 
+console.log(`contract_address: ${contractAddress}`);
 console.log(`account_address: ${accountAddress}`);
 console.log(`give_token_address: ${giveTokenAddress}`);
 console.log(`give_amount: ${giveAmount}`);
@@ -60,4 +62,5 @@ console.log(
   `expiry_timestamp_in_milliseconds: ${expiryTimestampInMilliseconds}`
 );
 console.log(`order_hash: ${orderHash}`);
+console.log(`salted_order_hash: ${bufferToHex(saltedOrderHash)}`);
 console.log(`signature: ${signature}`);

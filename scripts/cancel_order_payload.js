@@ -3,7 +3,8 @@ const {
   hashPersonalMessage,
   toBuffer,
   ecsign,
-  toRpcSig
+  toRpcSig,
+  bufferToHex
 } = require("ethereumjs-util");
 
 /**
@@ -39,8 +40,10 @@ const saltedCancelHash = hashPersonalMessage(toBuffer(cancelHash));
 const vrs = ecsign(saltedCancelHash, toBuffer(accountPrivateKey));
 const signature = toRpcSig(vrs.v, vrs.r, vrs.s);
 
+console.log(`contract_address: ${contractAddress}`);
 console.log(`account_address: ${accountAddress}`);
 console.log(`order_hash: ${orderHash}`);
 console.log(`nonce: ${nonce}`);
 console.log(`cancel_hash: ${cancelHash}`);
+console.log(`salted_cancel_hash: ${bufferToHex(saltedCancelHash)}`);
 console.log(`signature: ${signature}`);

@@ -14,7 +14,7 @@
     *   [GET /markets](#get-markets)
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
-    *   [POST /delete_orders](#post-delete_orders)
+    *   [POST /order_cancels](#post-order_cancels)
     *   [GET /orderbooks/:market_symbol](#get-orderbooksmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
@@ -592,9 +592,9 @@ Withdraws funds associated with `account_address`. You cannot withdraw funds tha
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   withdraw_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
-    2. account_address
-    3. token_address
-    4. amount
+    2. token_address
+    3. amount
+    4. account_address
     5. nonce
 *   signature [string]: the result of calling [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) with `salted_withdraw_hash` and the private key for `account_address` as its parameters, `salted_withdraw_hash` is obtained by passing `withdraw_hash` into [hashPersonalMessage](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#hashpersonalmessage), the values returned by [ecsign](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#ecsign) is then unified into one string using [toRpcSig](https://github.com/ethereumjs/ethereumjs-util/blob/master/docs/README.md#torpcsig)
 
