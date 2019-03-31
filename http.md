@@ -21,6 +21,7 @@
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
     *   [POST /withdraw](#post-withdraw)
     *   [GET /trades](#get-trades)
+    *   [POST /trades](#post-trades)
     *   [GET /return_contract_address](#get-return_contract_address)
     *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
     *   [GET /fees](#get-fees)
