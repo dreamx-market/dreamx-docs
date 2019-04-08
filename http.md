@@ -722,7 +722,8 @@ Returns the contract address used for depositing, withdrawing, and posting order
 
 ```
 {
-    "address": "0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208"
+    "address": "0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208",
+    "network_id": "1"
 }
 ```
 
