@@ -492,7 +492,7 @@ Retrieves all balances associated with an `address`. A balance is only created a
 #### Request
 
 ```
-GET /balances/0x8a37b79E54D69e833d79Cac3647C877Ef72830E1
+GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
 ```
 
 #### Response
