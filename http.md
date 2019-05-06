@@ -160,6 +160,7 @@ Error codes:
 
 ### Misc.
 
+*   All addresses should be without checksums
 *   All requests and responses should be of **application/json** content type
 *   All token amounts are sent in amounts of the smallest level of precision (base units). (e.g if a token has 18 decimal places, selling 1 token would show up as selling `'1000000000000000000'` units by this API).
 *   All addresses are sent as lower-case (non-checksummed) Ethereum addresses with the `0x` prefix.
