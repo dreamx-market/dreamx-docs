@@ -19,7 +19,7 @@
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
-    *   [POST /withdraw](#post-withdraw)
+    *   [POST /withdraws](#post-withdraws)
     *   [GET /trades](#get-trades)
     *   [POST /trades](#post-trades)
     *   [GET /return_contract_address](#get-return_contract_address)
@@ -569,7 +569,7 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
 
 Records will be sorted by date in descending order, the page and per_page query params apply to both deposits and withdraws collections, and if page * per_page > total for a certain collection, the records for that collection should just be empty.
 
-### POST /withdraw
+### POST /withdraws
 
 Withdraws funds associated with `account_address`. You cannot withdraw funds that are tied up in open orders.
 
