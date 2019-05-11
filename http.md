@@ -185,19 +185,25 @@ Return all available tokens. This endpoint should be [paginated](#pagination).
         "decimals": "18",
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
-        "symbol": "ETH"
+        "symbol": "ETH",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
       },
       {
         "decimals": "8",
         "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
         "name": "Reputation",
-        "symbol": "REP"
+        "symbol": "REP",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
       },
       {
         "decimals": "8",
         "address": "0xf59fad2879fb8380ffa6049a48abf9c9959b3b5c",
         "name": "Tron",
-        "symbol": "TRX"
+        "symbol": "TRX",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
       }
       ...
     ]
