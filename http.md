@@ -544,7 +544,6 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
                 "id": "174",
                 "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
                 "amount": "1000000000000000000",
-                "status": "pending",
                 "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
                 "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
                 "block_number": "371",
@@ -562,7 +561,6 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
                 "id": "169",
                 "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
                 "amount": "1000000000000000000",
-                "status": "pending",
                 "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
                 "block_hash": nil,
                 "block_number": nil,
@@ -614,11 +612,13 @@ Returns upon success with the new withdraw.
 
 ```
 {
-  "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+  "id" : "1",
+  "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
   "amount": "1000000000000000000",
-  "token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-  "withdraw_hash": "0x2e337f6d1fa78ac49f11f9507087ab757e5f7bce3ab8333ed2ca60c916ce9d54",
-  "created_at": "2018-12-11 17:12:10" 
+  "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+  "block_hash": nil,
+  "block_number": nil,
+  "created_at": "1506550595" 
 }
 ```
 
