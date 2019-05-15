@@ -522,7 +522,7 @@ GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
 
 ### GET /transfers/:account_address
 
-Returns the deposits and withdrawals of account within a range, specified by the "start" and "end" query parameters, both of which must be UNIX timestamps in seconds. Records can be marked as "PENDING" if they are unconfirmed, and "COMPLETE" if their transactions have been mined. This endpoint should be [paginated](#pagination).
+Returns the deposits and withdrawals of account within a range, specified by the "start" and "end" query parameters, both of which must be UNIX timestamps in seconds. This endpoint should be [paginated](#pagination).
 
 ```
 curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09?start=1551734309&end=1552339097
@@ -535,43 +535,36 @@ curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d0
 
 ```
 {
-    "deposits": {
-        "total": 43,
-        "page": 1,
-        "per_page": 100,
-        "records": [
-            {
-                "id": "174",
-                "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
-                "amount": "1000000000000000000",
-                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-                "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
-                "block_number": "371",
-                "created_at": "1506550595"
-            },
-            ...
-        ]
-    },
-    "withdraws": {
-        "total": 50,
-        "page": 1,
-        "per_page": 100,
-        "records": [
-            {
-                "id": "169",
-                "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
-                "amount": "1000000000000000000",
-                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-                "block_hash": nil,
-                "block_number": nil,
-                "created_at": "1506550595"
-            }
-        ]
-    }
+    "total": 50,
+    "page": 1,
+    "per_page": 100,
+    "records": [
+        {
+            "id": "169",
+            "type": "deposit",
+            "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+            "amount": "1000000000000000000",
+            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+            "block_hash": nil,
+            "block_number": nil,
+            "created_at": "1506550595"
+        },
+        {
+            "id": "174",
+            "type": "withdraw",
+            "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+            "amount": "1000000000000000000",
+            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+            "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
+            "block_number": "371",
+            "created_at": "1506550595"
+        },
+        ...
+    ]
 }
 ```
 
-Records will be sorted by date in descending order, the page and per_page query params apply to both deposits and withdraws collections, and if page * per_page > total for a certain collection, the records for that collection should just be empty.
+Records will be sorted by date in descending order.
 
 ### POST /withdraws
 
@@ -613,6 +606,7 @@ Returns upon success with the new withdraw.
 ```
 {
   "id" : "1",
+  "type": "withdraw",
   "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
   "amount": "1000000000000000000",
   "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
