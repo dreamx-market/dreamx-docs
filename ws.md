@@ -3,16 +3,16 @@
 ## Table of Contents
 
 - [Channels](#channels)
-    - [Orders](#orders)
-    - [Trades](#trades)
-    - [Ticker](#ticker)
-    - [Chart data](#chart-data)
+    - [market_orders](#market_orders)
+    - [market_trades](#market_trades)
+    - [market_tickers](#market_tickers)
+    - [market_chart_data](#market_chart_data)
 
 ## Channels
 
 The Websocket API is meant to supplement the REST API by providing updates without resorting to polling. Data is organized into channels to which an API client may subscribe.
 
-### Orders
+### market_orders
 
 Subscribe for new orders and order updates.
 
@@ -21,7 +21,7 @@ Subscribe for new orders and order updates.
 ```
 {
     "type": "subscribe",
-    "channel": "orders",
+    "channel": "market_orders",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
         "market_symbol": "ETH_SAN"
@@ -69,7 +69,7 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 
 *   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
 
-### Trades
+### market_trades
 
 Subscribe for new trades.
 
@@ -78,7 +78,7 @@ Subscribe for new trades.
 ```
 {
     "type": "subscribe",
-    "channel": "trades",
+    "channel": "market_trades",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
         "market_symbol": "ETH_SAN"
@@ -125,7 +125,7 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 
 *   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
 
-### Ticker
+### market_ticker
 
 Subscribe for ticker updates.
 
@@ -134,7 +134,7 @@ Subscribe for ticker updates.
 ```
 {
     "type": "subscribe",
-    "channel": "ticker",
+    "channel": "market_ticker",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
         "market_symbol": "ETH_SAN"
@@ -145,6 +145,7 @@ Subscribe for ticker updates.
 #### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
+*   market_symbol: the symbol of the market to get the ticker from (optional, subscribe to all tickers if omitted)
 
 #### Response
 
@@ -172,14 +173,14 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 }
 ```
 
-### Chart data
+### market_chart_data
 
 Subscribe for new candles.
 
 ```
 {
     "type": "subscribe",
-    "channel": "chart_data",
+    "channel": "market_chart_data",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
         "market_symbol": "ETH_SAN",
@@ -219,10 +220,12 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 }
 ```
 
-### AccountBalances
+### account_balances
 
-### AccountOrders
+### account_orders
 
-### AccountCancels
+### account_cancels
 
-### AccountTrades
+### account_trades
+
+### account_transfers
