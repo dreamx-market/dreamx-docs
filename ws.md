@@ -24,8 +24,7 @@ Subscribe for new orders and order updates.
     "channel": "orders",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
-        "market": "ETH_SAN",
-        "networkId": 42
+        "market_symbol": "ETH_SAN"
     }
 }
 ```
@@ -33,7 +32,6 @@ Subscribe for new orders and order updates.
 #### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
-*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
 
 #### Reponse
 
@@ -83,8 +81,7 @@ Subscribe for new trades.
     "channel": "trades",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
-        "market": "ETH_SAN",
-        "networkId": 42
+        "market_symbol": "ETH_SAN"
     }
 }
 ```
@@ -92,7 +89,6 @@ Subscribe for new trades.
 #### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
-*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
 
 #### Response
 
@@ -141,8 +137,7 @@ Subscribe for ticker updates.
     "channel": "ticker",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
-        "market": "ETH_SAN",
-        "networkId": 42
+        "market_symbol": "ETH_SAN"
     }
 }
 ```
@@ -150,7 +145,6 @@ Subscribe for ticker updates.
 #### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
-*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
 
 #### Response
 
@@ -188,9 +182,8 @@ Subscribe for new candles.
     "channel": "chart_data",
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": {
-        "market": "ETH_SAN",
-        "periodInSeconds": "14400",
-        "networkId": 42
+        "market_symbol": "ETH_SAN",
+        "periodInSeconds": "14400"
     }
 }
 ```
@@ -199,7 +192,6 @@ Subscribe for new candles.
 
 *   periodInSeconds: candlestick period in seconds, valid values are 300, 900, 1800, 7200, 14400, and 86400
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
-*   networkId: the Ethereum network id to which you'd like to subscribe. Default is 1 (mainnet). (optional)
 
 #### Response
 
@@ -226,3 +218,11 @@ Updates can be sent in bulk since the payload of the message specifies a collect
     ]
 }
 ```
+
+### AccountBalances
+
+### AccountOrders
+
+### AccountCancels
+
+### AccountTrades
