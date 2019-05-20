@@ -1,4 +1,4 @@
-# HTTP REST API Specification
+# HTTP REST API Documentation
 
 ## Table of Contents
 

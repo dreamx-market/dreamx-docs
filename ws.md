@@ -1,4 +1,4 @@
-# WebSocket API Specification
+# WebSocket API Documentation
 
 ## Table of Contents
 
