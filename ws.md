@@ -2,27 +2,22 @@
 
 ## Table of Contents
 
-* [Channels](#channels)
-    * [market_orders](#market_orders)
-    * [market_trades](#market_trades)
-    * [market_tickers](#market_tickers)
-    * [market_chart_data](#market_chart_data)
-    * [market_order_cancels](#market_order_cancels)
-    * [account_balances](#account_balances)
-    * [account_orders](#account_orders)
-    * [account_order_cancels](#account_order_cancels)
-    * [account_trades](#account_trades)
-    * [account_transfers](#account_transfers)
+* [market_orders](#market_orders)
+* [market_trades](#market_trades)
+* [market_tickers](#market_tickers)
+* [market_chart_data](#market_chart_data)
+* [market_order_cancels](#market_order_cancels)
+* [account_balances](#account_balances)
+* [account_orders](#account_orders)
+* [account_order_cancels](#account_order_cancels)
+* [account_trades](#account_trades)
+* [account_transfers](#account_transfers)
 
-## Channels
-
-The Websocket API is meant to supplement the REST API by providing updates without resorting to polling. Data is organized into channels to which an API client may subscribe.
-
-### market_orders
+## market_orders
 
 Subscribe for new orders and order updates.
 
-#### Request
+### Request
 
 ```
 {
@@ -35,11 +30,11 @@ Subscribe for new orders and order updates.
 }
 ```
 
-#### Parameters
+### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
 
-#### Reponse
+### Reponse
 
 This message is sent whenever the exchange receives a new order, or when the exchange deems an update necessary (such as when the state of the order changes). The scenarios where an update may occur include:
 * The exchange received a new order.
@@ -57,10 +52,10 @@ Updates can be sent in bulk since the payload of the message specifies a collect
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload":  [
         {
-            "account": "0x9e56625509c2f60af937f23b7b532600390e8c8b",
-            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "account": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
+            "giveTokenAddress": "0x210113d69873c0389085cc09d24338a9965f8218",
             "giveAmount": "10000000000000000",
-            "takeTokenAddress: "0x12459c951127e0c374ff9105dda097662a027093",
+            "takeTokenAddress: "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "takeAmount": "20000000000000000",
             "filled": "0",
             "nonce": "1",
@@ -75,11 +70,11 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 
 *   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
 
-### market_trades
+## market_trades
 
 Subscribe for new trades.
 
-#### Request
+### Request
 
 ```
 {
@@ -92,11 +87,11 @@ Subscribe for new trades.
 }
 ```
 
-#### Parameters
+### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
 
-#### Response
+### Response
 
 This message is sent whenever the exchange receives a new trade.
 
@@ -110,9 +105,9 @@ Updates can be sent in bulk since the payload of the message specifies a collect
     "payload":  [
         {
             "id": "1885452",
-            "giveTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "giveTokenAddress": "0x210113d69873c0389085cc09d24338a9965f8218",
             "giveAmount": "10000000000000000",
-            "takeTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+            "takeTokenAddress": "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "takeAmount": "20000000000000000",
             "orderHash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
             "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
@@ -131,11 +126,11 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 
 *   `requestId` - a string uuid that corresponds to the requestId sent by the client in the `subscribe` message
 
-### market_ticker
+## market_ticker
 
 Subscribe for ticker updates.
 
-#### Request
+### Request
 
 ```
 {
@@ -148,12 +143,12 @@ Subscribe for ticker updates.
 }
 ```
 
-#### Parameters
+### Parameters
 
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
 *   market_symbol: the symbol of the market to get the ticker from (optional, subscribe to all tickers if omitted)
 
-#### Response
+### Response
 
 Updates can be sent in bulk since the payload of the message specifies a collection of updated or new trades and orders.
 
@@ -164,8 +159,8 @@ Updates can be sent in bulk since the payload of the message specifies a collect
     "requestId": "123e4567-e89b-12d3-a456-426655440000",
     "payload": [
         {
-            "baseTokenAddress": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-            "quoteTokenAddress": "0x12459c951127e0c374ff9105dda097662a027093",
+            "baseTokenAddress": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "quoteTokenAddress": "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "last": "0.000981",
             "high": "0.0010763",
             "low": "0.0009777",
@@ -179,7 +174,7 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 }
 ```
 
-### market_chart_data
+## market_chart_data
 
 Subscribe for new candles.
 
@@ -195,12 +190,12 @@ Subscribe for new candles.
 }
 ```
 
-#### Parameters
+### Parameters
 
 *   periodInSeconds: candlestick period in seconds, valid values are 300, 900, 1800, 7200, 14400, and 86400
 *   requestId: a string uuid that will be sent back by the server in response messages so the client can appropriately respond when multiple subscriptions are made
 
-#### Response
+### Response
 
 This message is sent whenever a new candle is recorded.
 
@@ -226,16 +221,16 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 }
 ```
 
-### market_order_cancels
+## market_order_cancels
 
 Subscribe to new order cancels occured within a given market
 
-### account_balances
+## account_balances
 
-### account_orders
+## account_orders
 
-### account_order_cancels
+## account_order_cancels
 
-### account_trades
+## account_trades
 
-### account_transfers
+## account_transfers
