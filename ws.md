@@ -2,17 +2,17 @@
 
 ## Table of Contents
 
-- [Channels](#channels)
-    - [market_orders](#market_orders)
-    - [market_trades](#market_trades)
-    - [market_tickers](#market_tickers)
-    - [market_chart_data](#market_chart_data)
-    - [market_order_cancels](#market_order_cancels)
-    - [account_balances](#account_balances)
-    - [account_orders](#account_orders)
-    - [account_order_cancels](#account_order_cancels)
-    - [account_trades](#account_trades)
-    - [account_transfers](#account_transfers)
+* [Channels](#channels)
+    * [market_orders](#market_orders)
+    * [market_trades](#market_trades)
+    * [market_tickers](#market_tickers)
+    * [market_chart_data](#market_chart_data)
+    * [market_order_cancels](#market_order_cancels)
+    * [account_balances](#account_balances)
+    * [account_orders](#account_orders)
+    * [account_order_cancels](#account_order_cancels)
+    * [account_trades](#account_trades)
+    * [account_transfers](#account_transfers)
 
 ## Channels
 
@@ -227,6 +227,8 @@ Updates can be sent in bulk since the payload of the message specifies a collect
 ```
 
 ### market_order_cancels
+
+Subscribe to new order cancels occured within a given market
 
 ### account_balances
 
