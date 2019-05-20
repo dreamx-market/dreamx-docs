@@ -2,14 +2,11 @@
 
 ## Table of Contents
 
-*   [General](#general)
-    *   [Pagination](#pagination)
-    *   [Network Id](#network-id)
-    *   [Link Header](#link-header)
-    *   [Rate Limits](#rate-limits)
-    *   [Errors](#errors)
-    *   [Misc](#misc)
-*   [REST API](#rest-api)
+*   [Pagination](#pagination)
+*   [Rate Limits](#rate-limits)
+*   [Errors](#errors)
+*   [Misc](#misc)
+*   [Endpoints](#enpoints)
     *   [GET /tokens](#get-tokens)
     *   [GET /markets](#get-markets)
     *   [POST /orders](#post-orders)
@@ -26,87 +23,65 @@
     *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
     *   [GET /fees](#get-fees)
 
-## General
+## Pagination
 
-### Pagination
-
-Requests that return potentially large collections should respond to the **?page** and **?per_page** parameters. For example:
+Endpoints with large responses are paginated via the `page` and `per_page` query parameters, for example:
 
 ```
-curl https://api.ninja.trade/asset_pairs?page=3&per_page=20
+curl https://api.ninja.trade/tokens?page=3&per_page=20
 ```
 
-Page numbering should be 1-indexed, not 0-indexed. If a query provides an unreasonable (ie. too high) **per_page** value, the response can return a validation error as specified in the [errors section](#errors). If the query specifies a **page** that does not exist (ie. there are not enough **records**), the response should just return an empty **records** array.
+Example of a paginated response:
 
-All endpoints that are paginated should return a **total**, **page**, **per_page** and a **records** value in the top level of the collection.  The value of **total** should be the total number of records for a given query, whereas **records** should be an array representing the response to the query for that page. **page** and **per_page**, are the same values that were specified in the request. 
-
-### Network Id
-All requests should be able to specify a **?networkId** query param for all supported networks. For example:
-```
-curl https://api.ninja.trade/asset_pairs?networkId=1
-```
-If the query param is not provided, it should default to **1** (mainnet).
-
-Networks and their Ids:
-
-| Network Id| Network Name |
-| ----------| ------------ |
-| 1         | Mainnet      |
-| 42        | Kovan        |
-| 3         | Ropsten      |
-| 4         | Rinkeby      |
-
- If a certain network is not supported, the response should **400**  as specified in the [error response](#error-response) section. For example:
- 
 ```
 {
-    "code": 100,
-    "reason": "Validation failed",
-    "validationErrors": [
-        {
-            "field": "networkId",
-            "code": 1006,
-            "reason": "Network id 42 is not supported",
-        }
+    "total": 43,
+    "page": 1,
+    "per_page": 100,
+    "records": [
+      {
+        "decimals": "18",
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": "Ether",
+        "symbol": "ETH",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
+      },
+      {
+        "decimals": "8",
+        "address": "0x210113d69873c0389085cc09d24338a9965f8218",
+        "name": "One",
+        "symbol": "ONE",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
+      },
+      {
+        "decimals": "8",
+        "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
+        "name": "Two",
+        "symbol": "TWO",
+        "withdraw_minimum": "20000000000000000",
+        "withdraw_fee": "10000000000000000"
+      }
+      ...
     ]
 }
 ```
 
-### Link Header
+## Rate Limits
 
-A [Link Header](https://tools.ietf.org/html/rfc5988) can be included in a response to provide clients with more context about paging
-For example:
-
-```
-Link: <https://api.ninja.trade/asset_pairs?page=3&per_page=20>; rel="next",
-<https://api.github.com/user/repos?page=10&per_page=20>; rel="last"
-```
-
-This `Link` response header contains one or more Hypermedia link relations.
-
-The possible `rel` values are:
-
-| Name  | Description                                                   |
-| ----- | ------------------------------------------------------------- |
-| next  | The link relation for the immediate next page of results.     |
-| last  | The link relation for the last page of results.               |
-| first | The link relation for the first page of results.              |
-| prev  | The link relation for the immediate previous page of results. |
-
-### Rate Limits
-
-Rate limit guidance for clients can be optionally returned in the response headers:
-
-| Header Name           | Description                                                                  |
-| --------------------- | ---------------------------------------------------------------------------- |
-| X-RateLimit-Limit     | The maximum number of requests you're permitted to make per hour.            |
-| X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.           |
-| X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds. |
-
-For example:
+Information on rate limits will be included in the following headers:
 
 ```
-curl -i https://api.ninja.trade/asset_pairs
+X-RateLimit-Limit - The total amount of requests you can make per hour. 
+X-RateLimit-Remaining - The number of remaining requests.
+X-RateLimit-Reset - When the limit will reset in UTC epoch seconds.
+```
+
+Example:
+
+```
+curl -i https://api.ninja.trade/tokens
 HTTP/1.1 200 OK
 Date: Mon, 20 Oct 2017 12:30:06 GMT
 Status: 200 OK
@@ -114,24 +89,33 @@ X-RateLimit-Limit: 60
 X-RateLimit-Remaining: 56
 X-RateLimit-Reset: 1372700873
 ```
-When a rate limit is exceeded, a status of **429 Too Many Requests** should be returned.
 
-### Errors
+When your quota is depleted, a `429 Too Many Requests` error will be returned.
 
-Unless the spec defines otherwise, errors to bad requests should respond with HTTP 4xx or status codes.
+## Errors
 
-#### Common error response headers
+Status codes:
 
-| Code | Reason                                  |
-| ---- | --------------------------------------- |
-| 400  | Bad request – Invalid request format    |
-| 404  | Not found                               |
-| 422  | Unprocessable entity                    |
-| 429  | Too many requests - Rate limit exceeded |
-| 500  | Internal server error                   |
-| 501  | Not implemented                         |
+```
+400 - Bad request – Invalid request format   
+404 - Not found                              
+422 - Unprocessable entity                   
+429 - Too many requests - Rate limit exceeded
+500 - Internal server error                  
+501 - Not implemented                        
+```
 
-#### Error reporting format
+A Bad Request error can be caused by various reasons, each has a code:
+
+```
+100 - Validation failed
+101 - Malformed JSON
+102 - Order submission disabled
+103 - Throttled
+104 - Conflict
+```
+
+An example error:
 
 ```
 {
@@ -145,20 +129,11 @@ Unless the spec defines otherwise, errors to bad requests should respond with HT
     ]
 }
 ```
+
 A field can have multiple errors, each error is a seperate string 
 
-Error codes:
 
-```
-100 - Validation failed
-101 - Malformed JSON
-102 - Order submission disabled
-103 - Throttled
-104 - Conflict
-```
-
-
-### Misc.
+## Misc.
 
 *   All addresses should be without checksums
 *   All requests and responses should be of **application/json** content type
@@ -167,7 +142,7 @@ Error codes:
 *   All parameters should use `snake_case`.
 *   Interactions with Ether should specify `0x0000000000000000000000000000000000000000` as its token address.
 
-## REST API
+## Enpoints
 
 ### GET /tokens
 
@@ -191,7 +166,7 @@ Return all available tokens. This endpoint should be [paginated](#pagination).
       },
       {
         "decimals": "8",
-        "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
+        "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "Reputation",
         "symbol": "REP",
         "withdraw_minimum": "20000000000000000",
@@ -199,7 +174,7 @@ Return all available tokens. This endpoint should be [paginated](#pagination).
       },
       {
         "decimals": "8",
-        "address": "0xf59fad2879fb8380ffa6049a48abf9c9959b3b5c",
+        "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Tron",
         "symbol": "TRX",
         "withdraw_minimum": "20000000000000000",
@@ -231,7 +206,7 @@ Return all available markets. This endpoint should be [paginated](#pagination).
         },
         quote_token: {
           "decimals": "8",
-          "address": "0xc853ba17650d32daba343294998ea4e33e7a48b9",
+          "address": "0x210113d69873c0389085cc09d24338a9965f8218",
           "name": "Reputation",
           "symbol": "REP"
         }
