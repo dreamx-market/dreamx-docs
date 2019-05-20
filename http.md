@@ -68,14 +68,14 @@ Example of a paginated response:
 }
 ```
 
-## Rate Limits
+## Rate Limits (TO BE IMPLEMENTED)
 
 Information on rate limits will be included in the following headers:
 
 ```
 X-RateLimit-Limit - The total amount of requests you can make per hour. 
 X-RateLimit-Remaining - The number of remaining requests.
-X-RateLimit-Reset - When the limit will reset in UTC epoch seconds.
+X-RateLimit-Reset - When the limit will reset in UTC UNIX seconds.
 ```
 
 Example:
@@ -135,9 +135,11 @@ A field may have multiple reasons for error, each error is a seperate string.
 
 ## Misc.
 
-*   All addresses should be without checksums and prefixed with `0x`
-*   All parameters should use `snake_case`.
+*   Addresses should be without checksums and prefixed with `0x`
+*   Parameters should use `snake_case`.
 *   Interactions with Ether should specify `0x0000000000000000000000000000000000000000` as its token address.
+*   Token amounts should be given in the smallest precision, for example: `1000000000000000000` for 1
+*   Library methods mentioned in this documentation such as `ecsign`, `soliditySha3` or `hashPersonalMessage` etc can be swapped for their equivalent alternatives in other libraries.
 
 ## Endpoints
 
@@ -164,16 +166,16 @@ Get all listed tokens, returns a [paginated](#pagination) response.
       {
         "decimals": "8",
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
-        "name": "Reputation",
-        "symbol": "REP",
+        "name": "One",
+        "symbol": "ONE",
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
       {
         "decimals": "8",
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
-        "name": "Tron",
-        "symbol": "TRX",
+        "name": "Two",
+        "symbol": "TWO",
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       }
@@ -204,8 +206,8 @@ Get all listed markets, returns a [paginated](#pagination) response.
         quote_token: {
           "decimals": "8",
           "address": "0x210113d69873c0389085cc09d24338a9965f8218",
-          "name": "Reputation",
-          "symbol": "REP"
+          "name": "One",
+          "symbol": "ONE"
         }
       }
       ...
@@ -221,7 +223,7 @@ Submit a signed order to the exchange.
 
 ```
 {
-    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+    "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
@@ -234,8 +236,8 @@ Submit a signed order to the exchange.
 ```
 
 #### Parameters
-*   give_amount [string]: giving amount specified in the smallest level of precision of the giving token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
-*   take_amount [string]: taking amount specified in the smallest level of precision of the taking token, precision information can be obtained from [POST get_token_pairs](#post-get_token_pairs)
+*   give_amount [string]: the amount you are giving
+*   take_amount [string]: the amount you are giving
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   order_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
@@ -254,11 +256,11 @@ Submit a signed order to the exchange.
 
 ###### Success Response
 
-Returns upon success with the new order.
+Returns the new order on success.
 
 ```
 {
-    "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+    "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
     "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
     "give_amount": "10000000000000000",
     "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
@@ -271,13 +273,9 @@ Returns upon success with the new order.
 }
 ```
 
-###### Error Response
-
-Error response will be sent with a non-2xx HTTP status code. See the [Errors](#errors) section for more information.
-
 ### GET /orders/:order_hash
 
-Retrieves a list of orders given query parameters. This endpoint should be [paginated](#pagination). For querying an entire orderbook snapshot, the [orderbook endpoint](#get-orderbook) is recommended.
+Get the order with the given `:order_hash`, for getting an entire orderbook, use [GET /orderbook](#get-orderbook) instead, returns a [paginated](#pagination) response.
 
 #### Request
 
@@ -292,8 +290,6 @@ curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308d
 
 #### Response
 
-Return all orders by default, if `order_hash` was supplied, return a specific order, if `account_address` was supplied, return all the orders owned by `account_address`.
-
 ```
 {
     "total": 984,
@@ -301,7 +297,7 @@ Return all orders by default, if `order_hash` was supplied, return a specific or
     "per_page": 100,
     "records": [
         {
-            "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+            "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
             "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
             "give_amount": "10000000000000000",
             "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
@@ -317,18 +313,16 @@ Return all orders by default, if `order_hash` was supplied, return a specific or
 }
 ```
 
-Returns HTTP 404 if no order with specified order_hash was found.
-
 ### POST /order_cancels
 
-Cancels an order.
+Cancel an order.
 
 #### Request
 
 ```
 {
     "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
-    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
     "nonce": "1551351258000",
     "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
     "signature": "0x3c0fdad5fa4495bae51c59447156218d7f1077dd516938d97e7d8524dd0e12cc6a57f7a55739a6e44dcb16ec8c407ee931a6706c773291585e35868b10da125f1c"
@@ -337,8 +331,8 @@ Cancels an order.
 
 #### Parameter
 
-*   order_hash [string]: the to-be-cancelled order's order_hash
-*   account_address [string]: the address of the order's owner
+*   order_hash [string]: the hash of the order to be cancelled
+*   account_address [string]: the address of the owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   cancel_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
@@ -351,25 +345,25 @@ Cancels an order.
 
 #### Response
 
-Returns upon success with the new order cancel.
+Returns the new order cancel on success.
 
 ```
 {
     "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
-    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
     "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
-    "created_at": "2018-12-11 17:12:10"
+    "created_at": "2018-06-28 12:21:15"
 }
 ```
 
-### GET /orderbooks/:market_symbol
+### GET /orderbooks/:market_symbol [LEFT HERE]
 
-Retrieves the orderbook for a given token pair sorted by best price (lowest ask first, and highest bid first). This endpoint should be [paginated](#pagination).
+Get the orderbook for a given market, returns a [paginated](#pagination) collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
 
 #### Request
 
 ```
-curl https://api.ninja.trade/orderbook/ETH_SAN
+curl https://api.ninja.trade/orderbook/ONE_TWO
 ```
 
 #### Response
@@ -402,7 +396,7 @@ curl https://api.ninja.trade/orderbook/ETH_SAN
         "per_page": 100,
         "records": [
             {
-                "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
+                "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
                 "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
                 "give_amount": "10000000000000000",
                 "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
@@ -419,25 +413,15 @@ curl https://api.ninja.trade/orderbook/ETH_SAN
 }
 ```
 
-Bids will be sorted in descending order by price, and asks will be sorted in ascending order by price. Within the price sorted orders, the orders are further sorted by date in ascending order.
-
-The way pagination works for this endpoint is that the **page** and **per_page** query params apply to both `bids` and `asks` collections, and if `page` * `per_page` > `total` for a certain collection, the `records` for that collection should just be empty. 
-
 ### GET /tickers/:market_symbol
 
-Designed to behave similar to the API call of the same name provided by the Poloniex HTTP API, with the addition of highs and lows. Returns all necessary 24 hr data. This endpoint should be [paginated](#pagination)
-
-**Please note**: If any field is unavailable due to a lack of trade history or a lack of 24hr data, the field will be set to `nil`. `percent_change`, `base_volume`, and `quote_volume` will never be `nil` but may be 0.
+Get 24h ticker data for a market, if `:market_symbol` is omitted, returns a [paginated](#pagination) collection of all available tickers, if a field is empty, it will be set to `nil`, `percent_change`, `base_volume` and `quote_volume` will be set to 0 instead.
 
 #### Request
 
 ```
-curl https://api.ninja.trade/tickers/ETH_SAN
+curl https://api.ninja.trade/tickers/ETH_ONE
 ```
-
-#### Parameters
-
-*   market_symbol [string]: the symbol for the market to be returned, e.g: "ETH_SAN" (optional, return all tickers if omitted)
 
 #### Response
 
@@ -450,7 +434,7 @@ curl https://api.ninja.trade/tickers/ETH_SAN
         {
             "base_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
             "quote_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
-            "symbol": "ETH_SAN",
+            "symbol": "ETH_ONE",
             "last": "0.000981",
             "high": "0.0010763",
             "low": "0.0009777",
@@ -497,7 +481,7 @@ GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
 Returns the deposits and withdrawals of account within a range, specified by the "start" and "end" query parameters, both of which must be UNIX timestamps in seconds. This endpoint should be [paginated](#pagination).
 
 ```
-curl https://api.ninja.trade/transfers/0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09?start=1551734309&end=1552339097
+curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
 ```
 
 #### Parameters:
@@ -546,7 +530,7 @@ Withdraws funds associated with `account_address`. You cannot withdraw funds tha
 
 ```
 {
-    "account_address": "0xe37a4faa73fced0a177da51d8b62d02764f2fc45",
+    "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
     "amount": "100000000000000000000",
     "token_address": "0x0000000000000000000000000000000000000000",
     "nonce": "1551375034000",
@@ -595,7 +579,7 @@ Returns a paginated list of trades filterd by the specified parameters. This end
 #### Payload
 
 ```
-curl https://api.ninja.trade/trades?account_address=0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09&start=1551734309&end=1552339097&market_symbol=ETH_SAN
+curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=1551734309&end=1552339097&market_symbol=ETH_ONE
 ```
 
 #### Parameters
@@ -627,7 +611,7 @@ curl https://api.ninja.trade/trades?account_address=0xcd8b267f78f37e947dbadb4239
             "maker_address": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
             "taker_address": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
-            "created_at": "2018-12-11 17:12:10"
+            "created_at": "2018-06-28 12:21:15"
         }
     ]
 }
@@ -707,7 +691,7 @@ Returns chart data for given market symbol.
 #### Request
 
 ```
-curl https://api.ninja.trade/chart_data/ETH_SAN?start=1551734309&end=1552339097&period=3600
+curl https://api.ninja.trade/chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
 ```
 
 #### Parameters
