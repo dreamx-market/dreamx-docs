@@ -217,7 +217,7 @@ Get all listed markets, returns a [paginated](#pagination) response.
 
 ### POST /orders
 
-Submit a signed order to the exchange.
+Submit a signed order.
 
 #### Payload
 
@@ -523,7 +523,7 @@ Records will be sorted by date in descending order by default.
 
 ### POST /withdraws
 
-Submit a signed withdrawal to the exchange.
+Submit a signed withdrawal.
 
 #### Request
 
@@ -570,7 +570,7 @@ Returns the new withdraw on success.
 
 ### GET /trades
 
-Returns a paginated list of trades filterd by the specified parameters. This endpoint should be [paginated](#pagination).
+Get a list of trades filtered by the provided parameters, returns a [paginated](#pagination) response.
 
 #### Payload
 
@@ -580,11 +580,11 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 
 #### Parameters
 
-*   order_hash [string]: Filter by order_hash. (optional)
-*   account_address [string]: The address of the trade's owner (optional)
+*   order_hash [string]: filter by order_hash to get a specific order (optional)
+*   account_address [string]: filter by account_address to get orders belong to a specific account (optional)
 *   start [string]: starting timestamp of returned results in UNIX seconds (optional)
 *   end [string]: ending timestamp of returned results in UNIX seconds (optional)
-*   sort [string]: Possible values are asc (oldest first) and desc (newest first) (optional, defaults to desc)
+*   sort [string]: possible values are asc (oldest first) and desc (newest first) (optional, defaults to desc)
 
 #### Response
 
@@ -605,8 +605,8 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
             "maker_fee": "23000",
             "taker_fee": "123300",
             "gas_fee": "4000",
-            "maker_address": "0x1d1fa573d0d1d4ab62cf59273941a27e3862f55b",
-            "taker_address": "0x2d98a4263084f918130410c66d9ecbe5325f7edf",
+            "maker_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
+            "taker_address": "0x7e85cad78cf70b62a6e1087cbe77ca126dbede00",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
             "created_at": "2018-06-28 12:21:15"
         }
@@ -616,16 +616,16 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 
 ### POST /trades
 
-Making a trade involves signing a message for each order you wish to fill across and passing in an array of trades. For trades that fill a single order, the usual array with 1 object, or the object alone. The benefit of passing in multiple objects to fill across is that your action is atomic. All trades either succeed or none succeed.
+Submit a signed trade or a batch of signed trades, submitting a batch is atomic, the whole batch either succeed or none succeed
 
-**NOTE**: Currently, all orders being filled in a trade must be for the same give_token_address/take_token_address pair, and must all be signed from the same address.
+**NOTE**: When submitting a batch of trades, they must be signed by the sane address and the orders they fill must be of the same give_token_address/take_token_address pair.
 
 #### Request
 
 ```
 [
     {
-        "account_address": "0x2dbdcec64db33e673140fbd0ceef610a273b84db",
+        "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
         "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
         "amount": "1000000000000000000",
         "nonce": "1551036154000",
@@ -637,9 +637,9 @@ Making a trade involves signing a message for each order you wish to fill across
 
 #### Parameters
 
-*   account_address [string]: the address of the trader
+*   account_address [string]: the address of the account that is making the trade
 *   order_hash [string]: the hash of the order that is being traded
-*   amount [string]: the amount of the order to be traded
+*   amount [string]: the amount to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
@@ -663,27 +663,26 @@ Making a trade involves signing a message for each order you wish to fill across
         "price": "70000000000000000",
         "order_hash": "0xcfe4018c59e50e0e1964c979e6213ce5eb8c751cbc98a44251eb48a0985adc52",
         "uuid": "250d51a0-b033-11e7-9984-a9ab79bb8f35",
-        "market": "ETH_NJA"
+        "market": "ETH_ONE"
     }
 ]
 ```
 
 ### GET /return_contract_address
 
-Returns the contract address used for depositing, withdrawing, and posting orders.
+Get the address of the exchange's smart contract
 
 #### Response
 
 ```
 {
-    "address": "0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208",
-    "network_id": "1"
+    "address": "0x9cb8b96256e67976f3337001b88da95e1bfb41a0"
 }
 ```
 
 ### GET /chart_data/:market_symbol
 
-Returns chart data for given market symbol.
+Get chart data of a market
 
 #### Request
 
@@ -695,7 +694,7 @@ curl https://api.ninja.trade/chart_data/ETH_ONE?start=1551734309&end=1552339097&
 
 *   start [string]: starting timestamp of returned results in UNIX seconds (optional)
 *   end [string]: ending timestamp of returned results in UNIX seconds (optional)
-*   period [string]: candlestick period in seconds, default is 3600, valid values are 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
+*   period [string]: the interval period between the candles, defaults to 3600, can be set to 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
 #### Response
 
@@ -727,7 +726,7 @@ curl https://api.ninja.trade/chart_data/ETH_ONE?start=1551734309&end=1552339097&
 
 ### GET /fees
 
-Returns current trading fees.
+Get current trading fees.
 
 #### Response
 
