@@ -94,7 +94,7 @@ When your quota is depleted, a `429 Too Many Requests` error will be returned.
 
 ## Errors
 
-Status codes:
+Errors can have one of the following status codes:
 
 ```
 400 - Bad request – Invalid request format   
@@ -105,7 +105,7 @@ Status codes:
 501 - Not implemented                        
 ```
 
-A Bad Request error can be caused by various reasons, each has a code:
+A Bad Request error can be caused by various reasons, each has a reason code:
 
 ```
 100 - Validation failed
@@ -130,7 +130,7 @@ An example error:
 }
 ```
 
-A field can have multiple errors, each error is a seperate string 
+A field can have multiple errors, each error is a seperate string.
 
 
 ## Misc.
