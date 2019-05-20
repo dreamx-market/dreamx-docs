@@ -75,7 +75,7 @@ Information on rate limits will be included in the following headers:
 ```
 X-RateLimit-Limit - The total amount of requests you can make per hour. 
 X-RateLimit-Remaining - The number of remaining requests.
-X-RateLimit-Reset - When the limit will reset in UTC UNIX seconds.
+X-RateLimit-Reset - When the limit will reset in UNIX seconds.
 ```
 
 Example:
@@ -224,9 +224,9 @@ Submit a signed order to the exchange.
 ```
 {
     "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
-    "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+    "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
     "give_amount": "10000000000000000",
-    "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+    "take_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
     "take_amount": "20000000000000000",
     "nonce": "1551036154000",
     "expiry_timestamp_in_milliseconds": "1506550595000",
@@ -254,16 +254,14 @@ Submit a signed order to the exchange.
 
 #### Response
 
-###### Success Response
-
 Returns the new order on success.
 
 ```
 {
     "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
-    "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+    "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
     "give_amount": "10000000000000000",
-    "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+    "take_token_address: "0x948e2ffa7bb586f535816eab17642ac395b47284",
     "take_amount": "20000000000000000",
     "filled": "0",
     "nonce": "1551036154000",
@@ -298,9 +296,9 @@ curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308d
     "records": [
         {
             "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
-            "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
             "give_amount": "10000000000000000",
-            "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "take_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "take_amount": "20000000000000000",
             "filled": "0",
             "nonce": "1551036154000",
@@ -356,7 +354,7 @@ Returns the new order cancel on success.
 }
 ```
 
-### GET /orderbooks/:market_symbol [LEFT HERE]
+### GET /orderbooks/:market_symbol
 
 Get the orderbook for a given market, returns a [paginated](#pagination) collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
 
@@ -377,9 +375,9 @@ curl https://api.ninja.trade/orderbook/ONE_TWO
         "records": [
             {
                 "account_address": "0xcd8b267f78f37e947dbadb4239fc0a47ce0c8d09",
-                "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+                "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
                 "give_amount": "10000000000000000",
-                "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+                "take_token_address: "0x948e2ffa7bb586f535816eab17642ac395b47284",
                 "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1551036154000",
@@ -397,9 +395,9 @@ curl https://api.ninja.trade/orderbook/ONE_TWO
         "records": [
             {
                 "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
-                "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+                "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
                 "give_amount": "10000000000000000",
-                "take_token_address: "0x12459c951127e0c374ff9105dda097662a027093",
+                "take_token_address: "0x948e2ffa7bb586f535816eab17642ac395b47284",
                 "take_amount": "20000000000000000",
                 "filled": "0",
                 "nonce": "1551036154000",
@@ -432,8 +430,8 @@ curl https://api.ninja.trade/tickers/ETH_ONE
     "per_page": 100,
     "records": [
         {
-            "base_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
-            "quote_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "base_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "quote_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "symbol": "ETH_ONE",
             "last": "0.000981",
             "high": "0.0010763",
@@ -450,12 +448,12 @@ curl https://api.ninja.trade/tickers/ETH_ONE
 
 ### GET /balances/:account_address
 
-Retrieves all balances associated with an `address`. A balance is only created after the first deposit. This endpoint should be [paginated](#pagination).
+Get all non-empty balances of an account, returns a [paginated](#pagination) response.
 
 #### Request
 
 ```
-GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
+GET /balances/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73
 ```
 
 #### Response
@@ -467,7 +465,7 @@ GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
     "per_page": 100,
     "records": [
         {
-            "token": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+            "token": "0x210113d69873c0389085cc09d24338a9965f8218",
             "balance": 500000000000000000,
             "hold_balance": 300000000000000000
         },
@@ -478,14 +476,15 @@ GET /balances/0x8a37b79e54d69e833d79cac3647c877ef72830e1
 
 ### GET /transfers/:account_address
 
-Returns the deposits and withdrawals of account within a range, specified by the "start" and "end" query parameters, both of which must be UNIX timestamps in seconds. This endpoint should be [paginated](#pagination).
+Get all transfers of an account, results may be filtered by date by the `start` and `end` query parameters, returns a [paginated](#pagination) response.
 
 ```
 curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
 ```
 
-#### Parameters:
-*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
+#### Parameters: [LEFT HERE]
+*   start [string]: starting timestamp of returned results in UNIX seconds (optional)
+*   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 
 #### Response
 
@@ -498,7 +497,7 @@ curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c7
         {
             "id": "169",
             "type": "deposit",
-            "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+            "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
             "amount": "1000000000000000000",
             "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
             "block_hash": nil,
@@ -508,7 +507,7 @@ curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c7
         {
             "id": "174",
             "type": "withdraw",
-            "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+            "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
             "amount": "1000000000000000000",
             "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
             "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
@@ -520,11 +519,11 @@ curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c7
 }
 ```
 
-Records will be sorted by date in descending order.
+Records will be sorted by date in descending order by default.
 
 ### POST /withdraws
 
-Withdraws funds associated with `account_address`. You cannot withdraw funds that are tied up in open orders.
+Submit a signed withdrawal to the exchange.
 
 #### Request
 
@@ -541,9 +540,6 @@ Withdraws funds associated with `account_address`. You cannot withdraw funds tha
 
 #### Parameters
 
-*   account_address [string]: the address of the owner
-*   amount [string]: the amount to be withdrawn
-*   token_address [string]: the address of the token to be withdrawn, `0x0000000000000000000000000000000000000000` for Ether
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   withdraw_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
     1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
@@ -557,13 +553,13 @@ Withdraws funds associated with `account_address`. You cannot withdraw funds tha
 
 #### Response
 
-Returns upon success with the new withdraw.
+Returns the new withdraw on success.
 
 ```
 {
   "id" : "1",
   "type": "withdraw",
-  "token_address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+  "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
   "amount": "1000000000000000000",
   "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
   "block_hash": nil,
@@ -586,7 +582,8 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 
 *   order_hash [string]: Filter by order_hash. (optional)
 *   account_address [string]: The address of the trade's owner (optional)
-*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
+*   start [string]: starting timestamp of returned results in UNIX seconds (optional)
+*   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 *   sort [string]: Possible values are asc (oldest first) and desc (newest first) (optional, defaults to desc)
 
 #### Response
@@ -599,9 +596,9 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
     "records": [
         {
             "id": "1885452",
-            "give_token_address": "0xa2b31dacf30a9c50ca473337c01d8a201ae33e32",
+            "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
             "give_amount": "10000000000000000",
-            "take_token_address": "0x12459c951127e0c374ff9105dda097662a027093",
+            "take_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
             "take_amount": "20000000000000000",
             "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
             "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
@@ -696,7 +693,8 @@ curl https://api.ninja.trade/chart_data/ETH_ONE?start=1551734309&end=1552339097&
 
 #### Parameters
 
-*   start=&end [string]: UNIX timestamps in seconds used to specify the date range for the data returned, `start` should indicate the oldest record to return and `end` should indicate the latest (optional, if not supplied, return all available data)
+*   start [string]: starting timestamp of returned results in UNIX seconds (optional)
+*   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 *   period [string]: candlestick period in seconds, default is 3600, valid values are 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
 #### Response
