@@ -264,6 +264,7 @@ Returns the new order on success.
     "take_token_address: "0x948e2ffa7bb586f535816eab17642ac395b47284",
     "take_amount": "20000000000000000",
     "filled": "0",
+    "status": "open",
     "nonce": "1551036154000",
     "expiry_timestamp_in_milliseconds": "1506550595000",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
