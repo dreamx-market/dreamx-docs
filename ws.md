@@ -13,7 +13,7 @@
 
 ## market_orders
 
-Subscribe to new orders in a market.
+Subscribe to new orders and order state changes in a market.
 
 ### Request
 
@@ -116,6 +116,8 @@ This event is emitted when the market has a new trade.
 
 Subscribe for candlestick chart data of a market in a particular period.
 
+### Request
+
 ```
 {
     "type": "subscribe",
@@ -159,9 +161,93 @@ This event is emitted when a new candle has been recorded for the subscribed per
 
 ## account_balances
 
+Subscribe to balance changes in an account.
+
+### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "account_balances",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
+    }
+}
+```
+
+### Parameters
+
+*   account_address [string]: the address of the account to subscribe to.
+
+### Response
+
+This event is emitted when there have been new changes to to an account's balances
+
+```
+{
+    "type": "update",
+    "channel": "account_balances",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": [
+        {
+            "token": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "balance": 500000000000000000,
+            "hold_balance": 300000000000000000
+        },
+        ...
+    ]
+}
+```
+
 ## account_orders
 
-## account_trades
+Subscribe to new orders and order state changes in an account.
+
+### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "account_orders",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
+    }
+}
+```
+
+### Parameters
+
+*   account_address [string]: the address of the account to subscribe to.
+
+### Response
+
+```
+{
+    "type": "update",
+    "channel": "account_orders",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload":  [
+        {
+            "account": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
+            "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "give_amount": "10000000000000000",
+            "take_token_address: "0x948e2ffa7bb586f535816eab17642ac395b47284",
+            "take_amount": "20000000000000000",
+            "filled": "0",
+            "status": "open",
+            "nonce": "1",
+            "expiry_timestamp_in_milliseconds": "1506550595000",
+            "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+            "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+        },
+        ...
+    ]
+}
+```
+
+## account_trades [LEFT HERE]
 
 ## account_transfers
 
