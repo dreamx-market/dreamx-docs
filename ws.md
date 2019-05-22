@@ -219,6 +219,7 @@ Subscribe to new orders and order state changes in an account.
 
 ### Parameters
 
+*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 *   account_address [string]: the address of the account to subscribe to.
 
 ### Response
@@ -247,9 +248,99 @@ Subscribe to new orders and order state changes in an account.
 }
 ```
 
-## account_trades [LEFT HERE]
+## account_trades
+
+Subscribe to new trades of an account
+
+### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "account_trades",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
+    }
+}
+```
+
+### Parameter
+
+*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
+*   account_address [string]: the address of the account to subscribe to.
+
+### Response
+
+```
+{
+    "type": "update",
+    "channel": "tickers",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": [
+        {
+            "id": "1885452",
+            "give_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "give_amount": "10000000000000000",
+            "take_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
+            "take_amount": "20000000000000000",
+            "order_hash": "0xc0cca964a3b829541841ebdc2d938936b9593924cf2bd0de359bc6a5ff4a0ee8",
+            "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
+            "maker_fee": "23000",
+            "taker_fee": "123300",
+            "gas_fee": "4000",
+            "maker_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
+            "taker_address": "0x7e85cad78cf70b62a6e1087cbe77ca126dbede00",
+            "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
+            "created_at": "2018-06-28 12:21:15"
+        }
+    ]
+}
+```
 
 ## account_transfers
+
+Subscribe to new transfers of an account.
+
+### Request
+
+```
+{
+    "type": "subscribe",
+    "channel": "account_transfers",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": {
+        "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
+    }
+}
+```
+
+### Parameters
+
+*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
+*   account_address [string]: the address of the account to subscribe to.
+
+### Response
+
+```
+{
+    "type": "update",
+    "channel": "tickers",
+    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "payload": [
+        {
+            "id": "169",
+            "type": "deposit",
+            "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+            "amount": "1000000000000000000",
+            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+            "block_hash": nil,
+            "block_number": nil,
+            "created_at": "1506550595"
+        }
+    ]
+}
+```
 
 ## tickers
 
