@@ -1,5 +1,7 @@
 # WebSocket API Documentation
 
+NinjaTrade WebSocket API is currently located at wss://api.ninja.trade/websocket
+
 ## Table of Contents
 
 * [market_orders](#market_orders)
@@ -53,7 +55,7 @@ This event is emitted when the market has a new order, or an existing order has 
             "nonce": "1",
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
-            "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+            "created_at": "2019-05-23T06:49:28.110Z"
         },
         ...
     ]
@@ -241,7 +243,7 @@ Subscribe to new orders and order state changes in an account.
             "nonce": "1",
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
-            "signature": "0xc7943d5ad7d45218a42c2adfb4e01b170e74b9d0fbb5da503347cd6147963b9a3f2df9daf4f07c39cfbfb03e45cbce8764bdfed3f546f23db925ba45b9ed6dc000"
+            "created_at": "2019-05-23T06:49:28.110Z"
         },
         ...
     ]

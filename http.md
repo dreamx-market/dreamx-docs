@@ -1,5 +1,7 @@
 # HTTP REST API Documentation
 
+NinjaTrade HTTP API is currently located at https://api.ninja.trade
+
 ## Table of Contents
 
 *   [Pagination](#pagination)
@@ -219,7 +221,7 @@ Get all listed markets, returns a [paginated](#pagination) response.
 
 Submit a signed order.
 
-#### Payload
+#### Request
 
 ```
 {
