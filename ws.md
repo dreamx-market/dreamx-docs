@@ -4,16 +4,16 @@ NinjaTrade's WebSocket API is currently located at wss://api.ninja.trade/websock
 
 ## Table of Contents
 
-* [market_orders](#market_orders)
-* [market_trades](#market_trades)
-* [market_chart_data](#market_chart_data)
-* [account_balances](#account_balances)
-* [account_orders](#account_orders)
-* [account_trades](#account_trades)
-* [account_transfers](#account_transfers)
-* [tickers](#tickers)
+* [MarketOrders](#MarketOrders)
+* [MarketTrades](#MarketTrades)
+* [MarketChartData](#MarketChartData)
+* [AccountBalances](#AccountBalances)
+* [AccountOrders](#AccountOrders)
+* [AccountTrades](#AccountTrades)
+* [AccountTransfers](#AccountTransfers)
+* [Tickers](#Tickers)
 
-## market_orders
+## MarketOrders
 
 Subscribe to new orders and order state changes in a market.
 
@@ -21,10 +21,9 @@ Subscribe to new orders and order state changes in a market.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "market_orders",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "MarketOrders",
         "market_symbol": "ETH_ONE"
     }
 }
@@ -32,7 +31,6 @@ Subscribe to new orders and order state changes in a market.
 
 ### Parameters
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions
 
 ### Response
 
@@ -40,9 +38,7 @@ This event is emitted when the market has a new order, or an existing order has 
 
 ```
 {
-    "type": "update",
-    "channel": "market_orders",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "MarketOrders",
     "payload":  [
         {
             "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
@@ -62,7 +58,7 @@ This event is emitted when the market has a new order, or an existing order has 
 }
 ```
 
-## market_trades
+## MarketTrades
 
 Subscribe for new trades in a market.
 
@@ -70,10 +66,9 @@ Subscribe for new trades in a market.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "market_trades",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "MarketTrades",
         "market_symbol": "ETH_ONE"
     }
 }
@@ -81,7 +76,6 @@ Subscribe for new trades in a market.
 
 ### Parameters
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 
 ### Response
 
@@ -89,9 +83,7 @@ This event is emitted when the market has a new trade.
 
 ```
 {
-    "type": "update",
-    "channel": "market_trades",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "MarketTrades",
     "payload":  [
         {
             "id": "1885452",
@@ -114,7 +106,7 @@ This event is emitted when the market has a new trade.
 }
 ```
 
-## market_chart_data
+## MarketChartData
 
 Subscribe for candlestick chart data of a market in a particular period.
 
@@ -122,10 +114,9 @@ Subscribe for candlestick chart data of a market in a particular period.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "market_chart_data",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "MarketChartData",
         "market_symbol": "ETH_ONE",
         "period": "14400"
     }
@@ -135,7 +126,6 @@ Subscribe for candlestick chart data of a market in a particular period.
 ### Parameters
 
 *   period [string]: the interval period between the candles, defaults to 3600, can be set to 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
-*   request_id [string]: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 
 ### Response
 
@@ -143,9 +133,7 @@ This event is emitted when a new candle has been recorded for the subscribed per
 
 ```
 {
-    "type": "update",
     "channel": "chart_data",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
     "payload": [
         { 
             "created_at": "2019-03-11T12:38:31.000Z",
@@ -161,7 +149,7 @@ This event is emitted when a new candle has been recorded for the subscribed per
 }
 ```
 
-## account_balances
+## AccountBalances
 
 Subscribe to balance changes in an account.
 
@@ -169,10 +157,9 @@ Subscribe to balance changes in an account.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "account_balances",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "AccountBalances",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     }
 }
@@ -188,9 +175,7 @@ This event is emitted when there have been new changes to to an account's balanc
 
 ```
 {
-    "type": "update",
-    "channel": "account_balances",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "AccountBalances",
     "payload": [
         {
             "token": "0x210113d69873c0389085cc09d24338a9965f8218",
@@ -202,7 +187,7 @@ This event is emitted when there have been new changes to to an account's balanc
 }
 ```
 
-## account_orders
+## AccountOrders
 
 Subscribe to new orders and order state changes in an account.
 
@@ -210,10 +195,9 @@ Subscribe to new orders and order state changes in an account.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "account_orders",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "AccountOrders",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     }
 }
@@ -221,16 +205,13 @@ Subscribe to new orders and order state changes in an account.
 
 ### Parameters
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 *   account_address [string]: the address of the account to subscribe to.
 
 ### Response
 
 ```
 {
-    "type": "update",
-    "channel": "account_orders",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "AccountOrders",
     "payload":  [
         {
             "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
@@ -250,7 +231,7 @@ Subscribe to new orders and order state changes in an account.
 }
 ```
 
-## account_trades
+## AccountTrades
 
 Subscribe to new trades of an account
 
@@ -258,10 +239,9 @@ Subscribe to new trades of an account
 
 ```
 {
-    "type": "subscribe",
-    "channel": "account_trades",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "AccountTrades",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     }
 }
@@ -269,16 +249,13 @@ Subscribe to new trades of an account
 
 ### Parameter
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 *   account_address [string]: the address of the account to subscribe to.
 
 ### Response
 
 ```
 {
-    "type": "update",
-    "channel": "tickers",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "Tickers",
     "payload": [
         {
             "id": "1885452",
@@ -300,7 +277,7 @@ Subscribe to new trades of an account
 }
 ```
 
-## account_transfers
+## AccountTransfers
 
 Subscribe to new transfers of an account.
 
@@ -308,10 +285,9 @@ Subscribe to new transfers of an account.
 
 ```
 {
-    "type": "subscribe",
-    "channel": "account_transfers",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "AccountTransfers",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     }
 }
@@ -319,16 +295,13 @@ Subscribe to new transfers of an account.
 
 ### Parameters
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 *   account_address [string]: the address of the account to subscribe to.
 
 ### Response
 
 ```
 {
-    "type": "update",
-    "channel": "tickers",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "Tickers",
     "payload": [
         {
             "id": "169",
@@ -344,7 +317,7 @@ Subscribe to new transfers of an account.
 }
 ```
 
-## tickers
+## Tickers
 
 Subscribe for ticker data of a specific market or of all markets if `market_symbol` is omitted.
 
@@ -352,10 +325,9 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 
 ```
 {
-    "type": "subscribe",
-    "channel": "tickers",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
-    "payload": {
+    "command": "subscribe",
+    "identifier": {
+        "channel": "Tickers",
         "market_symbol": "ETH_ONE"
     }
 }
@@ -363,16 +335,13 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 
 ### Parameters
 
-*   request_id: a random string that will be included in the responses to distinguish between responses made by different subscriptions.
 *   market_symbol: the symbol of the market to subscribe to (optional)
 
 ### Response
 
 ```
 {
-    "type": "update",
-    "channel": "tickers",
-    "request_id": "123e4567-e89b-12d3-a456-426655440000",
+    "channel": "Tickers",
     "payload": [
         {
             "base_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
