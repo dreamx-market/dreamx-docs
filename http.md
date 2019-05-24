@@ -1,6 +1,6 @@
 # HTTP REST API Documentation
 
-NinjaTrade HTTP API is currently located at https://api.ninja.trade
+NinjaTrade's HTTP API is currently located at https://api.ninja.trade
 
 ## Table of Contents
 

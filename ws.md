@@ -1,6 +1,6 @@
 # WebSocket API Documentation
 
-NinjaTrade WebSocket API is currently located at wss://api.ninja.trade/websocket
+NinjaTrade's WebSocket API is currently located at wss://api.ninja.trade/websocket
 
 ## Table of Contents
 
