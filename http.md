@@ -607,7 +607,6 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
             "uuid": "ca5ca940-cd78-11e8-812d-3b7d27265b69",
             "maker_fee": "23000",
             "taker_fee": "123300",
-            "gas_fee": "4000",
             "maker_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
             "taker_address": "0x7e85cad78cf70b62a6e1087cbe77ca126dbede00",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
