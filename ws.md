@@ -1,6 +1,6 @@
 # WebSocket API Documentation
 
-NinjaTrade's ActionCable API is currently located at wss://api.ninja.trade/cable
+NinjaTrade's WebSocket API is currently located at wss://api.ninja.trade/cable
 
 ## Table of Contents
 
@@ -16,6 +16,8 @@ NinjaTrade's ActionCable API is currently located at wss://api.ninja.trade/cable
 
 ## Channels
 
+**Note:** The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify`
+
 ### MarketOrders
 
 Subscribe to new orders and order state changes in a market.
@@ -25,10 +27,10 @@ Subscribe to new orders and order state changes in a market.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "MarketOrders",
         "market_symbol": "ETH_ONE"
-    }
+    })
 }
 ```
 
@@ -70,10 +72,10 @@ Subscribe for new trades in a market.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "MarketTrades",
         "market_symbol": "ETH_ONE"
-    }
+    })
 }
 ```
 
@@ -118,11 +120,11 @@ Subscribe for candlestick chart data of a market in a particular period.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "MarketChartData",
         "market_symbol": "ETH_ONE",
         "period": "14400"
-    }
+    })
 }
 ```
 
@@ -161,10 +163,10 @@ Subscribe to balance changes in an account.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "AccountBalances",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
-    }
+    })
 }
 ```
 
@@ -199,10 +201,10 @@ Subscribe to new orders and order state changes in an account.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "AccountOrders",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
-    }
+    })
 }
 ```
 
@@ -243,10 +245,10 @@ Subscribe to new trades of an account
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "AccountTrades",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
-    }
+    })
 }
 ```
 
@@ -289,10 +291,10 @@ Subscribe to new transfers of an account.
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "AccountTransfers",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
-    }
+    })
 }
 ```
 
@@ -329,10 +331,10 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 ```
 {
     "command": "subscribe",
-    "identifier": {
+    "identifier": JSON.stringify({
         "channel": "Tickers",
         "market_symbol": "ETH_ONE"
-    }
+    })
 }
 ```
 
