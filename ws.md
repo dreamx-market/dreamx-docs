@@ -8,11 +8,11 @@ NinjaTrade's WebSocket API is currently located at wss://api.ninja.trade/cable
   * [MarketOrders](#MarketOrders)
   * [MarketTrades](#MarketTrades)
   * [MarketChartData](#MarketChartData)
+  * [MarketTickers](#MarketTickers)
   * [AccountBalances](#AccountBalances)
   * [AccountOrders](#AccountOrders)
   * [AccountTrades](#AccountTrades)
   * [AccountTransfers](#AccountTransfers)
-  * [Tickers](#Tickers)
 
 ## Channels
 
@@ -153,6 +153,47 @@ This event is emitted when a new candle has been recorded for the subscribed per
 }
 ```
 
+### MarketTickers
+
+Subscribe for ticker data of a specific market or of all markets if `market_symbol` is omitted.
+
+#### Request
+
+```
+{
+    "command": "subscribe",
+    "identifier": JSON.stringify({
+        "channel": "MarketTickers",
+        "market_symbol": "ETH_ONE"
+    })
+}
+```
+
+#### Parameters
+
+*   market_symbol: the symbol of the market to subscribe to (optional)
+
+#### Response
+
+```
+{
+    "channel": "MarketTickers",
+    "payload": [
+        {
+            "market_symbol": "ETH_ONE",
+            "last": "0.000981",
+            "high": "0.0010763",
+            "low": "0.0009777",
+            "lowest_ask": "0.00098151",
+            "highest_bid": "0.0007853",
+            "percent_change": "-1.83619353",
+            "base_volume": "7.3922603247161",
+            "quote_volume": "7462.998433"
+        }
+    ]
+}
+```
+
 ### AccountBalances
 
 Subscribe to balance changes in an account.
@@ -259,7 +300,7 @@ Subscribe to new trades of an account
 
 ```
 {
-    "channel": "Tickers",
+    "channel": "MarketTickers",
     "payload": [
         {
             "id": "1885452",
@@ -304,7 +345,7 @@ Subscribe to new transfers of an account.
 
 ```
 {
-    "channel": "Tickers",
+    "channel": "MarketTickers",
     "payload": [
         {
             "id": "169",
@@ -315,47 +356,6 @@ Subscribe to new transfers of an account.
             "block_hash": nil,
             "block_number": nil,
             "created_at": "1506550595"
-        }
-    ]
-}
-```
-
-### Tickers
-
-Subscribe for ticker data of a specific market or of all markets if `market_symbol` is omitted.
-
-#### Request
-
-```
-{
-    "command": "subscribe",
-    "identifier": JSON.stringify({
-        "channel": "Tickers",
-        "market_symbol": "ETH_ONE"
-    })
-}
-```
-
-#### Parameters
-
-*   market_symbol: the symbol of the market to subscribe to (optional)
-
-#### Response
-
-```
-{
-    "channel": "Tickers",
-    "payload": [
-        {
-            "market_symbol": "ETH_ONE",
-            "last": "0.000981",
-            "high": "0.0010763",
-            "low": "0.0009777",
-            "lowest_ask": "0.00098151",
-            "highest_bid": "0.0007853",
-            "percent_change": "-1.83619353",
-            "base_volume": "7.3922603247161",
-            "quote_volume": "7462.998433"
         }
     ]
 }
