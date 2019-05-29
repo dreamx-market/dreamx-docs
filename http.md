@@ -433,9 +433,7 @@ curl https://api.ninja.trade/tickers/ETH_ONE
     "per_page": 100,
     "records": [
         {
-            "base_token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
-            "quote_token_address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
-            "symbol": "ETH_ONE",
+            "market_symbol": "ETH_ONE",
             "last": "0.000981",
             "high": "0.0010763",
             "low": "0.0009777",
