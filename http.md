@@ -676,7 +676,8 @@ Get the address of the exchange's smart contract
 
 ```
 {
-    "address": "0x9cb8b96256e67976f3337001b88da95e1bfb41a0"
+    "address": "0x9cb8b96256e67976f3337001b88da95e1bfb41a0",
+    "network_id": "3"
 }
 ```
 
