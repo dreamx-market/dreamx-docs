@@ -308,7 +308,7 @@ curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308d
             "nonce": "1551036154000",
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
-            "created_at": "1506550595"
+            "created_at": "2019-06-07T15:15:44.498Z"
         },
         ...
     ]
