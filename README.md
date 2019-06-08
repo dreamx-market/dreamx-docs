@@ -12,6 +12,7 @@
 
 # PRE-PRODUCTION
 
+* API rate-limiting
 * home page
 * recovery page
 * documentation page
