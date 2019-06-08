@@ -198,6 +198,8 @@ Get all listed markets, returns a [paginated](#pagination) response.
     "page": 1,
     "per_page": 100,
     "records": [
+      symbol: "ETH_ONE",
+      status: "active",
       {
         base_token: {
           "decimals": "18",
