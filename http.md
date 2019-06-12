@@ -360,7 +360,7 @@ Returns the new order cancel on success.
 }
 ```
 
-### GET /orderbooks/:market_symbol
+### GET /order_books/:market_symbol
 
 Get the orderbook for a given market, returns a [paginated](#pagination) collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
 
