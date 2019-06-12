@@ -14,7 +14,7 @@ NinjaTrade's HTTP API is currently located at https://api.ninja.trade
     *   [POST /orders](#post-orders)
     *   [GET /orders/:order_hash](#get-ordersorder_hash)
     *   [POST /order_cancels](#post-order_cancels)
-    *   [GET /orderbooks/:market_symbol](#get-orderbooksmarket_symbol)
+    *   [GET /order_books/:market_symbol](#get-order_booksmarket_symbol)
     *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
     *   [GET /balances/:account_address](#get-balancesaccount_address)
     *   [GET /transfers/:account_address](#get-transfersaccount_address)
@@ -278,7 +278,7 @@ Returns the new order on success.
 
 ### GET /orders/:order_hash
 
-Get the order with the given `:order_hash`, for getting an entire orderbook, use [GET /orderbook](#get-orderbook) instead, returns a [paginated](#pagination) response.
+Get the order with the given `:order_hash`, for getting an entire orderbook, use [GET /order_books/:market_symbol](#get-order_booksmarket_symbol) instead, returns a [paginated](#pagination) response.
 
 #### Request
 
