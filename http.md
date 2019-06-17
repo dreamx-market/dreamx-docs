@@ -319,18 +319,22 @@ curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308d
 
 ### POST /order_cancels
 
-Cancel an order.
+Cancel an order or a batch of orders, batch cancelling is atomic, meaning all orders are cancelled or none cancelled.
+
+**NOTE:** When cancelling a batch of orders, cancel messages must be signed by the same address.
 
 #### Request
 
 ```
-{
-    "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
-    "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
-    "nonce": "1551351258000",
-    "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
-    "signature": "0x3c0fdad5fa4495bae51c59447156218d7f1077dd516938d97e7d8524dd0e12cc6a57f7a55739a6e44dcb16ec8c407ee931a6706c773291585e35868b10da125f1c"
-}
+[
+  {
+      "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
+      "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
+      "nonce": "1551351258000",
+      "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
+      "signature": "0x3c0fdad5fa4495bae51c59447156218d7f1077dd516938d97e7d8524dd0e12cc6a57f7a55739a6e44dcb16ec8c407ee931a6706c773291585e35868b10da125f1c"
+  }
+]
 ```
 
 #### Parameter
@@ -621,7 +625,7 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 
 Submit a signed trade or a batch of signed trades, submitting a batch is atomic, the whole batch either succeed or none succeed
 
-**NOTE**: When submitting a batch of trades, they must be signed by the sane address and the orders they fill must be of the same give_token_address/take_token_address pair.
+**NOTE**: When submitting a batch of trades, they must be signed by the same address and the orders they fill must be of the same give_token_address/take_token_address pair.
 
 #### Request
 
