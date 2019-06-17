@@ -353,15 +353,17 @@ Cancel an order or a batch of orders, batch cancelling is atomic, meaning all or
 
 #### Response
 
-Returns the new order cancel on success.
+Returns the new order cancels on success.
 
 ```
-{
+[
+  {
     "order_hash": "0x57a69889d35410e74bed6f1b6849868da2d0b062b47c87b6d11ba894f3690633",
     "account_address": "0x2601eacc505aa1719aacba4de8cd9fd0c069afed",
     "cancel_hash": "0x315dafa1085bbc984fe641c037faeb40c43dbce3ba26400b6fd65cf65bca0ddc",
     "created_at": "2018-06-28 12:21:15"
-}
+  }
+]
 ```
 
 ### GET /order_books/:market_symbol
