@@ -123,7 +123,7 @@ An example error:
 {
     "code": 100,
     "reason": "Validation failed",
-    "validationErrors": [
+    "validation_errors": [
         {
             "field": "maker",
             "reason": ["Invalid address"]
