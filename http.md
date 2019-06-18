@@ -321,8 +321,6 @@ curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308d
 
 Cancel an order or a batch of orders, batch cancelling is atomic, meaning all orders are cancelled or none cancelled.
 
-**NOTE:** When cancelling a batch of orders, cancel messages must be signed by the same address.
-
 #### Request
 
 ```
@@ -626,8 +624,6 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 ### POST /trades
 
 Submit a signed trade or a batch of signed trades, submitting a batch is atomic, the whole batch either succeed or none succeed
-
-**NOTE**: When submitting a batch of trades, they must be signed by the same address and the orders they fill must be of the same give_token_address/take_token_address pair.
 
 #### Request
 
