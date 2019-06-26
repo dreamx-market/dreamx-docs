@@ -137,7 +137,7 @@ This event is emitted when a new candle has been recorded for the subscribed per
 
 ```
 {
-    "channel": "chart_data",
+    "channel": "MarketChartData",
     "payload": [
         { 
             "created_at": "2019-03-11T12:38:31.000Z",
@@ -300,7 +300,7 @@ Subscribe to new trades of an account
 
 ```
 {
-    "channel": "MarketTickers",
+    "channel": "AccountTrades",
     "payload": [
         {
             "id": "1885452",
@@ -345,7 +345,7 @@ Subscribe to new transfers of an account.
 
 ```
 {
-    "channel": "MarketTickers",
+    "channel": "AccountTransfers",
     "payload": [
         {
             "id": "169",
