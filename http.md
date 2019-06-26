@@ -588,6 +588,7 @@ curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c6
 
 #### Parameters
 
+*   market_symbol [string]: filter by market symbol to get the trades of a specific market (optional)
 *   order_hash [string]: filter by order_hash to get a specific order (optional)
 *   account_address [string]: filter by account_address to get orders belong to a specific account (optional)
 *   start [string]: starting timestamp of returned results in UNIX seconds (optional)
