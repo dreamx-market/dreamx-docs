@@ -28,7 +28,7 @@ Subscribe to new orders and order state changes in a market.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "MarketOrders",
+        "channel": "MarketOrdersChannel",
         "market_symbol": "ETH_ONE"
     })
 }
@@ -43,7 +43,7 @@ This event is emitted when the market has a new order, or an existing order has 
 
 ```
 {
-    "channel": "MarketOrders",
+    "channel": "MarketOrdersChannel",
     "payload":  [
         {
             "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
@@ -73,7 +73,7 @@ Subscribe for new trades in a market.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "MarketTrades",
+        "channel": "MarketTradesChannel",
         "market_symbol": "ETH_ONE"
     })
 }
@@ -88,7 +88,7 @@ This event is emitted when the market has a new trade.
 
 ```
 {
-    "channel": "MarketTrades",
+    "channel": "MarketTradesChannel",
     "payload":  [
         {
             "id": "1885452",
@@ -120,7 +120,7 @@ Subscribe for candlestick chart data of a market in a particular period.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "MarketChartData",
+        "channel": "MarketChartDataChannel",
         "market_symbol": "ETH_ONE",
         "period": "14400"
     })
@@ -137,7 +137,7 @@ This event is emitted when a new candle has been recorded for the subscribed per
 
 ```
 {
-    "channel": "MarketChartData",
+    "channel": "MarketChartDataChannel",
     "payload": [
         { 
             "created_at": "2019-03-11T12:38:31.000Z",
@@ -163,7 +163,7 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "MarketTickers",
+        "channel": "MarketTickersChannel",
         "market_symbol": "ETH_ONE"
     })
 }
@@ -177,7 +177,7 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 
 ```
 {
-    "channel": "MarketTickers",
+    "channel": "MarketTickersChannel",
     "payload": [
         {
             "market_symbol": "ETH_ONE",
@@ -204,7 +204,7 @@ Subscribe to balance changes in an account.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "AccountBalances",
+        "channel": "AccountBalancesChannel",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     })
 }
@@ -220,7 +220,7 @@ This event is emitted when there have been new changes to to an account's balanc
 
 ```
 {
-    "channel": "AccountBalances",
+    "channel": "AccountBalancesChannel",
     "payload": [
         {
             "token": "0x210113d69873c0389085cc09d24338a9965f8218",
@@ -242,7 +242,7 @@ Subscribe to new orders and order state changes in an account.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "AccountOrders",
+        "channel": "AccountOrdersChannel",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     })
 }
@@ -256,7 +256,7 @@ Subscribe to new orders and order state changes in an account.
 
 ```
 {
-    "channel": "AccountOrders",
+    "channel": "AccountOrdersChannel",
     "payload":  [
         {
             "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73",
@@ -286,7 +286,7 @@ Subscribe to new trades of an account
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "AccountTrades",
+        "channel": "AccountTradesChannel",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     })
 }
@@ -300,7 +300,7 @@ Subscribe to new trades of an account
 
 ```
 {
-    "channel": "AccountTrades",
+    "channel": "AccountTradesChannel",
     "payload": [
         {
             "id": "1885452",
@@ -331,7 +331,7 @@ Subscribe to new transfers of an account.
 {
     "command": "subscribe",
     "identifier": JSON.stringify({
-        "channel": "AccountTransfers",
+        "channel": "AccountTransfersChannel",
         "account_address": "0x5b0ca08aac665a36158ced95c676fd5a59ed0c73"
     })
 }
@@ -345,7 +345,7 @@ Subscribe to new transfers of an account.
 
 ```
 {
-    "channel": "AccountTransfers",
+    "channel": "AccountTransfersChannel",
     "payload": [
         {
             "id": "169",
