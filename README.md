@@ -1,4 +1,4 @@
-# NinjaTrade API documentation
+# DreamX API documentation
 
 * [HTTP](http.md)
 * [WebSocket](ws.md)

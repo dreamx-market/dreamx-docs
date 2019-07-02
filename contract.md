@@ -8,7 +8,7 @@
 
 ## Smart Contract
 
-NinjaTrade's smart contract is deployed at [to be updated](https://www.google.com/)
+DreamX's smart contract is deployed at [to be updated](https://www.google.com/)
 
 ### Deposit
 

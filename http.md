@@ -1,6 +1,6 @@
 # HTTP REST API Documentation
 
-NinjaTrade's HTTP API is currently located at https://api.ninja.trade
+DreamX's HTTP API is currently located at https://api.dreamx.market
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ NinjaTrade's HTTP API is currently located at https://api.ninja.trade
 Endpoints with large responses are paginated via the `page` and `per_page` query parameters, for example:
 
 ```
-curl https://api.ninja.trade/tokens?page=3&per_page=20
+curl https://api.dreamx.market/tokens?page=3&per_page=20
 ```
 
 Example of a paginated response:
@@ -83,7 +83,7 @@ X-RateLimit-Reset - When the limit will reset in UNIX seconds.
 Example:
 
 ```
-curl -i https://api.ninja.trade/tokens
+curl -i https://api.dreamx.market/tokens
 HTTP/1.1 200 OK
 Date: Mon, 20 Oct 2017 12:30:06 GMT
 Status: 200 OK
@@ -283,7 +283,7 @@ Get the order with the given `:order_hash`, for getting an entire orderbook, use
 #### Request
 
 ```
-curl https://api.ninja.trade/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b
+curl https://api.dreamx.market/orders/0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b
 ```
 
 #### Parameters
@@ -371,7 +371,7 @@ Get the orderbook for a given market, returns a [paginated](#pagination) collect
 #### Request
 
 ```
-curl https://api.ninja.trade/orderbook/ONE_TWO
+curl https://api.dreamx.market/orderbook/ONE_TWO
 ```
 
 #### Response
@@ -428,7 +428,7 @@ Get 24h ticker data for a market, if `:market_symbol` is omitted, returns a [pag
 #### Request
 
 ```
-curl https://api.ninja.trade/tickers/ETH_ONE
+curl https://api.dreamx.market/tickers/ETH_ONE
 ```
 
 #### Response
@@ -487,7 +487,7 @@ GET /balances/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73
 Get all transfers of an account, results may be filtered by date by the `start` and `end` query parameters, returns a [paginated](#pagination) response.
 
 ```
-curl https://api.ninja.trade/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
+curl https://api.dreamx.market/transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
 ```
 
 #### Parameters: [LEFT HERE]
@@ -583,7 +583,7 @@ Get a list of trades filtered by the provided parameters, returns a [paginated](
 #### Payload
 
 ```
-curl https://api.ninja.trade/trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=1551734309&end=1552339097&market_symbol=ETH_ONE
+curl https://api.dreamx.market/trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=1551734309&end=1552339097&market_symbol=ETH_ONE
 ```
 
 #### Parameters
@@ -694,7 +694,7 @@ Get chart data of a market
 #### Request
 
 ```
-curl https://api.ninja.trade/chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
+curl https://api.dreamx.market/chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
 ```
 
 #### Parameters

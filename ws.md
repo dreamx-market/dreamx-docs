@@ -1,6 +1,6 @@
 # WebSocket API Documentation
 
-NinjaTrade's WebSocket API is currently located at wss://api.ninja.trade/cable
+DreamX's WebSocket API is currently located at wss://api.dreamx.market/cable
 
 ## Table of Contents
 

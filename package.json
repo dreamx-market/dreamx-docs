@@ -1,8 +1,8 @@
 {
-  "name": "ninjatrade-docs",
+  "name": "dreamx-docs",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:hieudoan2609/ninjatrade-docs.git",
+  "repository": "git@github.com:hieudoan2609/dreamx-docs.git",
   "author": "Hieu <hieudoan2609@gmail.com>",
   "license": "MIT",
   "dependencies": {

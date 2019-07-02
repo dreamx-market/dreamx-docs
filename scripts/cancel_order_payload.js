@@ -8,7 +8,7 @@ const {
 } = require("ethereumjs-util");
 
 /**
- * https://api.ninja.trade/return_contract_address
+ * https://api.dreamx.market/return_contract_address
  */
 const contractAddress = "0x4ef6474f40bf5c9dbc013efaac07c4d0cb17219a";
 
