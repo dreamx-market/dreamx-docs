@@ -10,15 +10,6 @@
 * WebSocket API compatibility with 3rd-party clients
 * replacing the frontend matching engine with a matching engine more scalable
 
-# PRE-PRODUCTION
-
-* API rate-limiting
-* home page
-* recovery page
-* documentation page
-* test recovery of non-listed token deposits
-* test recovery of funds locked inside deprecated contracts
-
 # HANDLING SUPPORT ISSUES
 
 ## Deposits of non-listed tokens:
