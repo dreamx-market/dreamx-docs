@@ -70,7 +70,7 @@ Example of a paginated response:
 }
 ```
 
-## Rate Limits (TO BE IMPLEMENTED)
+## Rate Limits
 
 Information on rate limits will be included in the following headers:
 
