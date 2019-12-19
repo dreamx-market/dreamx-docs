@@ -2,27 +2,32 @@
 
 DreamX's WebSocket API is currently located at wss://api.dreamx.market/cable
 
-## Table of Contents
+# Table of Contents
 
-* [Channels](#Channels)
-  * [MarketOrders](#MarketOrders)
-  * [MarketTrades](#MarketTrades)
-  * [MarketChartData](#MarketChartData)
-  * [MarketTickers](#MarketTickers)
-  * [AccountBalances](#AccountBalances)
-  * [AccountOrders](#AccountOrders)
-  * [AccountTrades](#AccountTrades)
-  * [AccountTransfers](#AccountTransfers)
+<!-- MarkdownTOC autolink="true" -->
 
-## Channels
+- [Channels](#channels)
+  - [MarketOrders](#marketorders)
+  - [MarketTrades](#markettrades)
+  - [MarketChartData](#marketchartdata)
+  - [MarketTickers](#markettickers)
+  - [AccountBalances](#accountbalances)
+  - [AccountOrders](#accountorders)
+  - [AccountTrades](#accounttrades)
+  - [AccountTransfers](#accounttransfers)
+
+<!-- /MarkdownTOC -->
+
+
+# Channels
 
 **Note:** The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify`
 
-### MarketOrders
+## MarketOrders
 
 Subscribe to new orders and order state changes in a market.
 
-#### Request
+**Request**
 
 ```
 {
@@ -34,10 +39,10 @@ Subscribe to new orders and order state changes in a market.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 
-#### Response
+**Response**
 
 This event is emitted when the market has a new order, or an existing order has changed, such as when an order has been filled or cancelled.
 
@@ -63,11 +68,11 @@ This event is emitted when the market has a new order, or an existing order has 
 }
 ```
 
-### MarketTrades
+## MarketTrades
 
 Subscribe for new trades in a market.
 
-#### Request
+**Request**
 
 ```
 {
@@ -79,10 +84,10 @@ Subscribe for new trades in a market.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 
-#### Response
+**Response**
 
 This event is emitted when the market has a new trade.
 
@@ -110,11 +115,11 @@ This event is emitted when the market has a new trade.
 }
 ```
 
-### MarketChartData
+## MarketChartData
 
 Subscribe for candlestick chart data of a market in a particular period.
 
-#### Request
+**Request**
 
 ```
 {
@@ -127,11 +132,11 @@ Subscribe for candlestick chart data of a market in a particular period.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   period [string]: the interval period between the candles, defaults to 3600, can be set to 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
-#### Response
+**Response**
 
 This event is emitted when a new candle has been recorded for the subscribed period.
 
@@ -153,11 +158,11 @@ This event is emitted when a new candle has been recorded for the subscribed per
 }
 ```
 
-### MarketTickers
+## MarketTickers
 
 Subscribe for ticker data of a specific market or of all markets if `market_symbol` is omitted.
 
-#### Request
+**Request**
 
 ```
 {
@@ -169,11 +174,11 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   market_symbol: the symbol of the market to subscribe to (optional)
 
-#### Response
+**Response**
 
 ```
 {
@@ -194,11 +199,11 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 }
 ```
 
-### AccountBalances
+## AccountBalances
 
 Subscribe to balance changes in an account.
 
-#### Request
+**Request**
 
 ```
 {
@@ -210,11 +215,11 @@ Subscribe to balance changes in an account.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   account_address [string]: the address of the account to subscribe to.
 
-#### Response
+**Response**
 
 This event is emitted when there have been new changes to to an account's balances
 
@@ -232,11 +237,11 @@ This event is emitted when there have been new changes to to an account's balanc
 }
 ```
 
-### AccountOrders
+## AccountOrders
 
 Subscribe to new orders and order state changes in an account.
 
-#### Request
+**Request**
 
 ```
 {
@@ -248,11 +253,11 @@ Subscribe to new orders and order state changes in an account.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   account_address [string]: the address of the account to subscribe to.
 
-#### Response
+**Response**
 
 ```
 {
@@ -276,11 +281,11 @@ Subscribe to new orders and order state changes in an account.
 }
 ```
 
-### AccountTrades
+## AccountTrades
 
 Subscribe to new trades of an account
 
-#### Request
+**Request**
 
 ```
 {
@@ -292,11 +297,11 @@ Subscribe to new trades of an account
 }
 ```
 
-#### Parameter
+**Parameters**
 
 *   account_address [string]: the address of the account to subscribe to.
 
-#### Response
+**Response**
 
 ```
 {
@@ -321,11 +326,11 @@ Subscribe to new trades of an account
 }
 ```
 
-### AccountTransfers
+## AccountTransfers
 
 Subscribe to new transfers of an account.
 
-#### Request
+**Request**
 
 ```
 {
@@ -337,11 +342,11 @@ Subscribe to new transfers of an account.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   account_address [string]: the address of the account to subscribe to.
 
-#### Response
+**Response**
 
 ```
 {
