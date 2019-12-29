@@ -2,30 +2,33 @@
 
 DreamX's HTTP API is currently located at https://api.dreamx.market
 
-## Table of Contents
+<!-- MarkdownTOC autolink="true" -->
 
-*   [Pagination](#pagination)
-*   [Rate Limits](#rate-limits)
-*   [Errors](#errors)
-*   [Misc](#misc)
-*   [Endpoints](#enpoints)
-    *   [GET /tokens](#get-tokens)
-    *   [GET /markets](#get-markets)
-    *   [POST /orders](#post-orders)
-    *   [GET /orders/:order_hash](#get-ordersorder_hash)
-    *   [POST /order_cancels](#post-order_cancels)
-    *   [GET /order_books/:market_symbol](#get-order_booksmarket_symbol)
-    *   [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
-    *   [GET /balances/:account_address](#get-balancesaccount_address)
-    *   [GET /transfers/:account_address](#get-transfersaccount_address)
-    *   [POST /withdraws](#post-withdraws)
-    *   [GET /trades](#get-trades)
-    *   [POST /trades](#post-trades)
-    *   [GET /return_contract_address](#get-return_contract_address)
-    *   [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
-    *   [GET /fees](#get-fees)
+- [Pagination](#pagination)
+- [Rate Limits](#rate-limits)
+- [Errors](#errors)
+- [Misc.](#misc)
+- [Endpoints](#endpoints)
+  - [GET /tokens](#get-tokens)
+  - [GET /markets](#get-markets)
+  - [POST /orders](#post-orders)
+  - [GET /orders](#get-orders)
+  - [POST /order_cancels](#post-order_cancels)
+  - [GET /order_books/:market_symbol](#get-orderbooksmarketsymbol)
+  - [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
+  - [GET /balances/:account_address](#get-balancesaccount_address)
+  - [GET /transfers/:account_address](#get-transfersaccount_address)
+  - [POST /withdraws](#post-withdraws)
+  - [GET /trades](#get-trades)
+  - [POST /trades](#post-trades)
+  - [GET /return_contract_address](#get-returncontractaddress)
+  - [GET /chart_data/:market_symbol](#get-chartdatamarketsymbol)
+  - [GET /fees](#get-fees)
 
-## Pagination
+<!-- /MarkdownTOC -->
+
+
+# Pagination
 
 Endpoints with large responses are paginated via the `page` and `per_page` query parameters, for example:
 
@@ -70,7 +73,7 @@ Example of a paginated response:
 }
 ```
 
-## Rate Limits
+# Rate Limits
 
 Information on rate limits will be included in the following headers:
 
@@ -94,7 +97,7 @@ X-RateLimit-Reset: 1372700873
 
 When your quota is depleted, a `429 Too Many Requests` error will be returned.
 
-## Errors
+# Errors
 
 Errors can have one of the following status codes:
 
@@ -135,7 +138,7 @@ An example error:
 A field may have multiple reasons for error, each error is a seperate string.
 
 
-## Misc.
+# Misc.
 
 *   Addresses should be without checksums and prefixed with `0x`
 *   Parameters should use `snake_case`.
@@ -143,13 +146,13 @@ A field may have multiple reasons for error, each error is a seperate string.
 *   Token amounts should be given in the smallest precision, for example: `1000000000000000000` for 1
 *   Library methods mentioned in this documentation such as `ecsign`, `soliditySha3` or `hashPersonalMessage` etc can be swapped for their equivalent alternatives in other libraries.
 
-## Endpoints
+# Endpoints
 
-### GET /tokens
+## GET /tokens
 
 Get all listed tokens, returns a [paginated](#pagination) response.
 
-#### Response
+**Response**
 
 ```
 {
@@ -186,11 +189,11 @@ Get all listed tokens, returns a [paginated](#pagination) response.
 }
 ```
 
-### GET /markets
+## GET /markets
 
 Get all listed markets, returns a [paginated](#pagination) response.
 
-#### Response
+**Response**
 
 ```
 {
@@ -219,11 +222,11 @@ Get all listed markets, returns a [paginated](#pagination) response.
 }
 ```
 
-### POST /orders
+## POST /orders
 
 Submit a signed order.
 
-#### Request
+**Request**
 
 ```
 {
@@ -239,7 +242,7 @@ Submit a signed order.
 }
 ```
 
-#### Parameters
+**Parameters**
 *   give_amount [string]: the amount you are giving
 *   take_amount [string]: the amount you are giving
 *   nonce [string]: the current UNIX timestamp in milliseconds
@@ -256,7 +259,7 @@ Submit a signed order.
 
 **NOTE:** See this [example](scripts/create_order_payload.js) for a detailed instruction on creating the payload
 
-#### Response
+**Response**
 
 Returns the new order on success.
 
@@ -276,21 +279,21 @@ Returns the new order on success.
 }
 ```
 
-### GET /orders
+## GET /orders
 
 Returns a generic list of orders, for getting an orderbook, use [GET /order_books/:market_symbol](#get-order_booksmarket_symbol) instead.
 
-#### Request
+**Request**
 
 ```
 GET /orders
 ```
 
-#### Parameters
+**Parameters**
 
-*   account_address [string]: return only orders belong to `account_address` (optional)
+* account_address [string]: return only orders belong to `account_address` (optional)
 
-#### Response
+**Response**
 
 ```
 {
@@ -316,11 +319,11 @@ GET /orders
 }
 ```
 
-### POST /order_cancels
+## POST /order_cancels
 
 Cancel an order or a batch of orders, batch cancelling is atomic, meaning all orders are cancelled or none cancelled.
 
-#### Request
+**Request**
 
 ```
 [
@@ -334,7 +337,7 @@ Cancel an order or a batch of orders, batch cancelling is atomic, meaning all or
 ]
 ```
 
-#### Parameter
+**Parameters**
 
 *   order_hash [string]: the hash of the order to be cancelled
 *   account_address [string]: the address of the owner
@@ -348,7 +351,7 @@ Cancel an order or a batch of orders, batch cancelling is atomic, meaning all or
 
 **NOTE:** See this [example](scripts/cancel_order_payload.js) for a detailed instruction on creating the payload
 
-#### Response
+**Response**
 
 Returns the new order cancels on success.
 
@@ -363,17 +366,17 @@ Returns the new order cancels on success.
 ]
 ```
 
-### GET /order_books/:market_symbol
+## GET /order_books/:market_symbol
 
 Get the orderbook for a given market, returns a [paginated](#pagination) collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
 
-#### Request
+**Request**
 
 ```
 GET /orderbook/ONE_TWO
 ```
 
-#### Response
+**Response**
 
 ```
 {
@@ -420,17 +423,17 @@ GET /orderbook/ONE_TWO
 }
 ```
 
-### GET /tickers/:market_symbol
+## GET /tickers/:market_symbol
 
 Get 24h ticker data for a market, if `:market_symbol` is omitted, returns a [paginated](#pagination) collection of all available tickers, if a field is empty, it will be set to `nil`, `percent_change`, `base_volume` and `quote_volume` will be set to 0 instead.
 
-#### Request
+**Request**
 
 ```
 GET /tickers/ETH_ONE
 ```
 
-#### Response
+**Response**
 
 ```
 {
@@ -453,17 +456,17 @@ GET /tickers/ETH_ONE
 }
 ```
 
-### GET /balances/:account_address
+## GET /balances/:account_address
 
 Get all non-empty balances of an account, returns a [paginated](#pagination) response.
 
-#### Request
+**Request**
 
 ```
 GET /balances/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73
 ```
 
-#### Response
+**Response**
 
 ```
 {
@@ -481,7 +484,7 @@ GET /balances/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73
 }
 ```
 
-### GET /transfers/:account_address
+## GET /transfers/:account_address
 
 Get all transfers of an account, results may be filtered by date by the `start` and `end` query parameters, returns a [paginated](#pagination) response.
 
@@ -489,11 +492,11 @@ Get all transfers of an account, results may be filtered by date by the `start` 
 GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
 ```
 
-#### Parameters: [LEFT HERE]
+**Parameters**
 *   start [string]: starting timestamp of returned results in UNIX seconds (optional)
 *   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 
-#### Response
+**Response**
 
 ```
 {
@@ -528,11 +531,11 @@ GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1
 
 Records will be sorted by date in descending order by default.
 
-### POST /withdraws
+## POST /withdraws
 
 Submit a signed withdrawal.
 
-#### Request
+**Request**
 
 ```
 {
@@ -545,7 +548,7 @@ Submit a signed withdrawal.
 }
 ```
 
-#### Parameters
+**Parameters**
 
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   withdraw_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
@@ -558,7 +561,7 @@ Submit a signed withdrawal.
 
 **NOTE:** See this [example](scripts/withdraw_payload.js) for a detailed instruction on creating the payload
 
-#### Response
+**Response**
 
 Returns the new withdraw on success.
 
@@ -575,17 +578,17 @@ Returns the new withdraw on success.
 }
 ```
 
-### GET /trades
+## GET /trades
 
 Get a list of trades filtered by the provided parameters, returns a [paginated](#pagination) response.
 
-#### Payload
+**Request**
 
 ```
 GET /trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=1551734309&end=1552339097&market_symbol=ETH_ONE
 ```
 
-#### Parameters
+**Parameters**
 
 *   market_symbol [string]: filter by market symbol to get the trades of a specific market (optional)
 *   order_hash [string]: filter by order_hash to get a specific order (optional)
@@ -594,7 +597,7 @@ GET /trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=155
 *   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 *   sort [string]: possible values are asc (oldest first) and desc (newest first) (optional, defaults to desc)
 
-#### Response
+**Response**
 
 ```
 {
@@ -621,11 +624,11 @@ GET /trades?account_address=0x5b0ca08aac665a36158ced95c676fd5a59ed0c73&start=155
 }
 ```
 
-### POST /trades
+## POST /trades
 
 Submit a signed trade or a batch of signed trades, submitting a batch is atomic, the whole batch either succeed or none succeed
 
-#### Request
+**Request**
 
 ```
 [
@@ -640,7 +643,7 @@ Submit a signed trade or a batch of signed trades, submitting a batch is atomic,
 ]
 ```
 
-#### Parameters
+**Parameters**
 
 *   account_address [string]: the address of the account that is making the trade
 *   order_hash [string]: the hash of the order that is being traded
@@ -656,7 +659,7 @@ Submit a signed trade or a batch of signed trades, submitting a batch is atomic,
     
 **NOTE:** See this [example](scripts/trade_payload.js) for a detailed instruction on creating the payload
 
-#### Response
+**Response**
 
 ```
 [
@@ -673,11 +676,11 @@ Submit a signed trade or a batch of signed trades, submitting a batch is atomic,
 ]
 ```
 
-### GET /return_contract_address
+## GET /return_contract_address
 
 Get the address of the exchange's smart contract
 
-#### Response
+**Response**
 
 ```
 {
@@ -686,23 +689,23 @@ Get the address of the exchange's smart contract
 }
 ```
 
-### GET /chart_data/:market_symbol
+## GET /chart_data/:market_symbol
 
 Get chart data of a market
 
-#### Request
+**Request**
 
 ```
 GET /chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
 ```
 
-#### Parameters
+**Parameters**
 
 *   start [string]: starting timestamp of returned results in UNIX seconds (optional)
 *   end [string]: ending timestamp of returned results in UNIX seconds (optional)
 *   period [string]: the interval period between the candles, defaults to 3600, can be set to 300 (5 minutes), 900 (15 minutes), 3600 (1 hour), and 86400 (1 day)
 
-#### Response
+**Response**
 
 ```
 [ 
@@ -730,11 +733,11 @@ GET /chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
 ]
 ```
 
-### GET /fees
+## GET /fees
 
 Get current trading fees.
 
-#### Response
+**Response**
 
 ```
 { 
