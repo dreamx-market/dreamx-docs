@@ -15,6 +15,7 @@ DreamX's HTTP API is currently located at https://api.dreamx.market
   - [GET /orders](#get-orders)
   - [POST /order_cancels](#post-order_cancels)
   - [GET /order_books/:market_symbol](#get-orderbooksmarketsymbol)
+  - [GET /tickers](#get-tickers)
   - [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
   - [GET /balances/:account_address](#get-balancesaccount_address)
   - [GET /transfers/:account_address](#get-transfersaccount_address)
@@ -423,9 +424,53 @@ GET /orderbook/ONE_TWO
 }
 ```
 
+## GET /tickers
+
+Get a list of all available tickers.
+
+**Request**
+
+```
+GET /tickers
+```
+
+**Response**
+
+```
+{
+    "total": 2,
+    "page": 1,
+    "per_page": 100,
+    "records": [
+        {
+            "market_symbol": "ETH_TWO",
+            "last": null,
+            "high": null,
+            "low": null,
+            "lowest_ask": null,
+            "highest_bid": null,
+            "percent_change": "0.0",
+            "base_volume": "0.0",
+            "quote_volume": "0.0"
+        },
+        {
+            "market_symbol": "ETH_ONE",
+            "last": "1.9330059020670638",
+            "high": "1.9330059020670638",
+            "low": "1.9295596934284518",
+            "lowest_ask": "1.9330059020670638",
+            "highest_bid": null,
+            "percent_change": "0.1786007787345909",
+            "base_volume": "8.6903857452781687",
+            "quote_volume": "4.5"
+        }
+    ]
+}
+```
+
 ## GET /tickers/:market_symbol
 
-Get 24h ticker data for a market, if `:market_symbol` is omitted, returns a [paginated](#pagination) collection of all available tickers, if a field is empty, it will be set to `nil`, `percent_change`, `base_volume` and `quote_volume` will be set to 0 instead.
+Get 24h ticker data for a market, if a field is empty, it will be set to `nil`, `percent_change`, `base_volume` and `quote_volume` will be set to 0 instead.
 
 **Request**
 
@@ -437,22 +482,15 @@ GET /tickers/ETH_ONE
 
 ```
 {
-    "total": 43,
-    "page": 1,
-    "per_page": 100,
-    "records": [
-        {
-            "market_symbol": "ETH_ONE",
-            "last": "0.000981",
-            "high": "0.0010763",
-            "low": "0.0009777",
-            "lowest_ask": "0.00098151",
-            "highest_bid": "0.0007853",
-            "percent_change": "-1.83619353",
-            "base_volume": "7.3922603247161",
-            "quote_volume": "7462.998433"
-        }
-    ]
+    "market_symbol": "ETH_ONE",
+    "last": "0.000981",
+    "high": "0.0010763",
+    "low": "0.0009777",
+    "lowest_ask": "0.00098151",
+    "highest_bid": "0.0007853",
+    "percent_change": "-1.83619353",
+    "base_volume": "7.3922603247161",
+    "quote_volume": "7462.998433"
 }
 ```
 
