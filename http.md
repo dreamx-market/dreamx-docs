@@ -22,8 +22,8 @@ DreamX's HTTP API is currently located at https://api.dreamx.market
   - [POST /withdraws](#post-withdraws)
   - [GET /trades](#get-trades)
   - [POST /trades](#post-trades)
-  - [GET /return_contract_address](#get-returncontractaddress)
   - [GET /chart_data/:market_symbol](#get-chartdatamarketsymbol)
+  - [GET /return_contract_address](#get-returncontractaddress)
   - [GET /fees](#get-fees)
 
 <!-- /MarkdownTOC -->
@@ -538,32 +538,42 @@ GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1
 
 ```
 {
-    "total": 50,
-    "page": 1,
-    "per_page": 100,
-    "records": [
-        {
-            "id": "169",
-            "type": "deposit",
-            "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
-            "amount": "1000000000000000000",
-            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-            "block_hash": nil,
-            "block_number": nil,
-            "created_at": "1506550595"
-        },
-        {
-            "id": "174",
-            "type": "withdraw",
-            "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
-            "amount": "1000000000000000000",
-            "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-            "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
-            "block_number": "371",
-            "created_at": "1506550595"
-        },
-        ...
-    ]
+    "deposits": {
+        "total": 50,
+        "page": 1,
+        "per_page": 100,
+        "records": [
+            {
+                "id": "169",
+                "type": "deposit",
+                "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+                "amount": "1000000000000000000",
+                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+                "block_hash": nil,
+                "block_number": nil,
+                "created_at": "1506550595"
+            },
+            ...
+        ]
+    },
+    "withdraws": {
+        "total": 50,
+        "page": 1,
+        "per_page": 100,
+        "records": [
+            {
+                "id": "174",
+                "type": "withdraw",
+                "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
+                "amount": "1000000000000000000",
+                "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
+                "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
+                "block_number": "371",
+                "created_at": "1506550595"
+            },
+            ...
+        ]
+    }
 }
 ```
 
@@ -714,19 +724,6 @@ Submit a signed trade or a batch of signed trades, submitting a batch is atomic,
 ]
 ```
 
-## GET /return_contract_address
-
-Get the address of the exchange's smart contract
-
-**Response**
-
-```
-{
-    "address": "0x9cb8b96256e67976f3337001b88da95e1bfb41a0",
-    "network_id": "3"
-}
-```
-
 ## GET /chart_data/:market_symbol
 
 Get chart data of a market
@@ -769,6 +766,19 @@ GET /chart_data/ETH_ONE?start=1551734309&end=1552339097&period=3600
     },
     ...
 ]
+```
+
+## GET /return_contract_address
+
+Get the address of the exchange's smart contract
+
+**Response**
+
+```
+{
+    "address": "0x9cb8b96256e67976f3337001b88da95e1bfb41a0",
+    "network_id": "3"
+}
 ```
 
 ## GET /fees
