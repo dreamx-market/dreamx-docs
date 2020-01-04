@@ -293,6 +293,7 @@ GET /orders
 **Parameters**
 
 * account_address [string]: return only orders belong to `account_address` (optional)
+* status [string]: return orders of a specific status (optional)
 
 **Response**
 
