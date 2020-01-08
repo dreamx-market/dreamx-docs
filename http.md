@@ -550,7 +550,6 @@ GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1
                 "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
                 "amount": "1000000000000000000",
                 "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-                "block_hash": nil,
                 "block_number": nil,
                 "created_at": "1506550595"
             },
@@ -568,7 +567,6 @@ GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1
                 "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
                 "amount": "1000000000000000000",
                 "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-                "block_hash": "0x55d9972705ab92ed16dcbc5491e282df2456131a9404f4b812457c23cffb535c",
                 "block_number": "371",
                 "created_at": "1506550595"
             },
@@ -621,7 +619,6 @@ Returns the new withdraw on success.
   "token_address": "0x210113d69873c0389085cc09d24338a9965f8218",
   "amount": "1000000000000000000",
   "transaction_hash": "0xb844692c9c29ae7d7cb246bacac84f8a435a402d2074a85c37bbf03af928f60f",
-  "block_hash": nil,
   "block_number": nil,
   "created_at": "1506550595" 
 }
