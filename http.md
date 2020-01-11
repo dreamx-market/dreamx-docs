@@ -294,7 +294,6 @@ GET /orders
 
 * account_address [string]: return only orders belong to `account_address` (optional)
 * status [string]: return orders of a specific status (optional)
-* status_not [string]: return all orders excluding a specific status (optional)
 
 **Response**
 
