@@ -47,7 +47,6 @@ Example of a paginated response:
     "records": [
       {
         "decimals": "18",
-        "precision": "4"
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
@@ -56,7 +55,6 @@ Example of a paginated response:
       },
       {
         "decimals": "18",
-        "precision": "2"
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
@@ -65,7 +63,6 @@ Example of a paginated response:
       },
       {
         "decimals": "18",
-        "precision": "2"
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
@@ -166,7 +163,6 @@ Get all listed tokens, returns a [paginated](#pagination) response.
     "records": [
       {
         "decimals": "18",
-        "precision": "4"
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
@@ -175,7 +171,6 @@ Get all listed tokens, returns a [paginated](#pagination) response.
       },
       {
         "decimals": "18",
-        "precision": "2"
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
@@ -184,7 +179,6 @@ Get all listed tokens, returns a [paginated](#pagination) response.
       },
       {
         "decimals": "18",
-        "precision": "2"
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
@@ -211,7 +205,8 @@ Get all listed markets, returns a [paginated](#pagination) response.
       {
         "symbol": "ETH_ONE",
         "status": "active",
-        "precision": 6
+        "amount_precision": 2,
+        "price_precision": 6
       }
       ...
     ]
