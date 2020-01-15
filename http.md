@@ -47,6 +47,7 @@ Example of a paginated response:
     "records": [
       {
         "decimals": "18",
+        "precision": "4"
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
@@ -54,7 +55,8 @@ Example of a paginated response:
         "withdraw_fee": "10000000000000000"
       },
       {
-        "decimals": "8",
+        "decimals": "18",
+        "precision": "2"
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
@@ -62,7 +64,8 @@ Example of a paginated response:
         "withdraw_fee": "10000000000000000"
       },
       {
-        "decimals": "8",
+        "decimals": "18",
+        "precision": "2"
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
@@ -163,6 +166,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
     "records": [
       {
         "decimals": "18",
+        "precision": "4"
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
@@ -170,7 +174,8 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "withdraw_fee": "10000000000000000"
       },
       {
-        "decimals": "8",
+        "decimals": "18",
+        "precision": "2"
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
@@ -178,7 +183,8 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "withdraw_fee": "10000000000000000"
       },
       {
-        "decimals": "8",
+        "decimals": "18",
+        "precision": "2"
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
@@ -202,21 +208,10 @@ Get all listed markets, returns a [paginated](#pagination) response.
     "page": 1,
     "per_page": 100,
     "records": [
-      symbol: "ETH_ONE",
-      status: "active",
       {
-        base_token: {
-          "decimals": "18",
-          "address": "0x0000000000000000000000000000000000000000",
-          "name": "Ether",
-          "symbol": "ETH"
-        },
-        quote_token: {
-          "decimals": "8",
-          "address": "0x210113d69873c0389085cc09d24338a9965f8218",
-          "name": "One",
-          "symbol": "ONE"
-        }
+        "symbol": "ETH_ONE",
+        "status": "active",
+        "precision": 6
       }
       ...
     ]
