@@ -206,7 +206,9 @@ Get all listed markets, returns a [paginated](#pagination) response.
         "symbol": "ETH_ONE",
         "status": "active",
         "amount_precision": 2,
-        "price_precision": 6
+        "price_precision": 6,
+        "base_token_address": "0x0000000000000000000000000000000000000000",
+        "quote_token_address": "0xe62cc4212610289d7374f72c2390a40e78583350"
       }
       ...
     ]
