@@ -50,6 +50,7 @@ Example of a paginated response:
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
+        "precision": 2,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
@@ -58,6 +59,7 @@ Example of a paginated response:
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
+        "precision": 4,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
@@ -66,6 +68,7 @@ Example of a paginated response:
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
+        "precision": 5,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       }
@@ -166,6 +169,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "address": "0x0000000000000000000000000000000000000000",
         "name": "Ether",
         "symbol": "ETH",
+        "precision": 2,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
@@ -174,6 +178,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "address": "0x210113d69873c0389085cc09d24338a9965f8218",
         "name": "One",
         "symbol": "ONE",
+        "precision": 4,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
@@ -182,6 +187,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "address": "0x948e2ffa7bb586f535816eab17642ac395b47284",
         "name": "Two",
         "symbol": "TWO",
+        "precision": 5,
         "withdraw_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       }
@@ -205,7 +211,6 @@ Get all listed markets, returns a [paginated](#pagination) response.
       {
         "symbol": "ETH_ONE",
         "status": "active",
-        "amount_precision": 2,
         "price_precision": 6,
         "base_token_address": "0x0000000000000000000000000000000000000000",
         "quote_token_address": "0xe62cc4212610289d7374f72c2390a40e78583350"
