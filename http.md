@@ -170,7 +170,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "name": "Ether",
         "symbol": "ETH",
         "amount_precision": 2,
-        "withdraw_minimum": "20000000000000000",
+        "transfer_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
       {
@@ -179,7 +179,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "name": "One",
         "symbol": "ONE",
         "amount_precision": 4,
-        "withdraw_minimum": "20000000000000000",
+        "transfer_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       },
       {
@@ -188,7 +188,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
         "name": "Two",
         "symbol": "TWO",
         "amount_precision": 5,
-        "withdraw_minimum": "20000000000000000",
+        "transfer_minimum": "20000000000000000",
         "withdraw_fee": "10000000000000000"
       }
       ...
