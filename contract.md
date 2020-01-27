@@ -1,4 +1,4 @@
-# Smart Contract API Documentation
+# Smart Contract
 
 ## Table of Contents
 

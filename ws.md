@@ -1,4 +1,4 @@
-# WebSocket API Documentation
+# WebSocket
 
 DreamX's WebSocket API is currently located at wss://api.dreamx.market/cable
 
