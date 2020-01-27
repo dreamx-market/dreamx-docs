@@ -2,33 +2,6 @@
 
 DreamX's HTTP API is currently located at https://api.dreamx.market
 
-<!-- MarkdownTOC autolink="true" -->
-
-- [Pagination](#pagination)
-- [Rate Limits](#rate-limits)
-- [Errors](#errors)
-- [Misc.](#misc)
-- [Endpoints](#endpoints)
-  - [GET /tokens](#get-tokens)
-  - [GET /markets](#get-markets)
-  - [POST /orders](#post-orders)
-  - [GET /orders](#get-orders)
-  - [POST /order_cancels](#post-order_cancels)
-  - [GET /order_books/:market_symbol](#get-order_booksmarket_symbol)
-  - [GET /tickers](#get-tickers)
-  - [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
-  - [GET /balances/:account_address](#get-balancesaccount_address)
-  - [GET /transfers/:account_address](#get-transfersaccount_address)
-  - [POST /withdraws](#post-withdraws)
-  - [GET /trades](#get-trades)
-  - [POST /trades](#post-trades)
-  - [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
-  - [GET /return_contract_address](#get-return_contract_address)
-  - [GET /fees](#get-fees)
-
-<!-- /MarkdownTOC -->
-
-
 # Pagination
 
 Endpoints with large responses are paginated via the `page` and `per_page` query parameters, for example:
@@ -245,7 +218,7 @@ Submit a signed order.
 *   take_amount [string]: the amount you are giving
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   order_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
+    1. contract_address (obtained from `GET return_contract_address`
     2. account_address
     3. give_token_address
     4. give_token_amount
@@ -279,7 +252,7 @@ Returns the new order on success.
 
 ## GET /orders
 
-Returns a generic list of orders, for getting an orderbook, use [GET /order_books/:market_symbol](#get-order_booksmarket_symbol) instead.
+Returns a generic list of orders, for getting an orderbook, use `GET /order_books/:market_symbol` instead.
 
 **Request**
 
@@ -342,7 +315,7 @@ Cancel an order or a batch of orders, batch cancelling is atomic, meaning all or
 *   account_address [string]: the address of the owner
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   cancel_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-    1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
+    1. contract_address (obtained from `GET /return_contract_address`)
     2. account_address
     3. order_hash
     4. nonce
@@ -596,7 +569,7 @@ Submit a signed withdrawal.
 
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   withdraw_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-    1. contract_address (obtained from [POST get_contract_address](#post-get_contract_address))
+    1. contract_address (obtained from `POST get_contract_address`)
     2. token_address
     3. amount
     4. account_address
@@ -693,7 +666,7 @@ Submit a signed trade or a batch of signed trades, submitting a batch is atomic,
 *   amount [string]: the amount to be traded
 *   nonce [string]: the current UNIX timestamp in milliseconds
 *   trade_hash [string]: the result of running [soliditySha3](https://web3js.readthedocs.io/en/1.0/web3-utils.html#soliditysha3) on the following parameters in their corresponding order:
-    1. contract_address (obtained from [GET /return_contract_address](#get-return_contract_address))
+    1. contract_address (obtained from `GET /return_contract_address`)
     2. order_hash
     3. account_address (the address of the trader)
     4. amount
