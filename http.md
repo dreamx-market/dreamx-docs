@@ -14,7 +14,7 @@ DreamX's HTTP API is currently located at https://api.dreamx.market
   - [POST /orders](#post-orders)
   - [GET /orders](#get-orders)
   - [POST /order_cancels](#post-order_cancels)
-  - [GET /order_books/:market_symbol](#get-orderbooksmarketsymbol)
+  - [GET /order_books/:market_symbol](#get-order_booksmarket_symbol)
   - [GET /tickers](#get-tickers)
   - [GET /tickers/:market_symbol](#get-tickersmarket_symbol)
   - [GET /balances/:account_address](#get-balancesaccount_address)
@@ -22,8 +22,8 @@ DreamX's HTTP API is currently located at https://api.dreamx.market
   - [POST /withdraws](#post-withdraws)
   - [GET /trades](#get-trades)
   - [POST /trades](#post-trades)
-  - [GET /chart_data/:market_symbol](#get-chartdatamarketsymbol)
-  - [GET /return_contract_address](#get-returncontractaddress)
+  - [GET /chart_data/:market_symbol](#get-chart_datamarket_symbol)
+  - [GET /return_contract_address](#get-return_contract_address)
   - [GET /fees](#get-fees)
 
 <!-- /MarkdownTOC -->
@@ -154,7 +154,7 @@ A field may have multiple reasons for error, each error is a seperate string.
 
 ## GET /tokens
 
-Get all listed tokens, returns a [paginated](#pagination) response.
+Get all listed tokens, returns a paginated response.
 
 **Response**
 
@@ -198,7 +198,7 @@ Get all listed tokens, returns a [paginated](#pagination) response.
 
 ## GET /markets
 
-Get all listed markets, returns a [paginated](#pagination) response.
+Get all listed markets, returns a paginated response.
 
 **Response**
 
@@ -367,7 +367,7 @@ Returns the new order cancels on success.
 
 ## GET /order_books/:market_symbol
 
-Get the orderbook for a given market, returns a [paginated](#pagination) collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
+Get the orderbook for a given market, returns a paginated collection for each side, sellbook will be sorted ascendingly (lowest first), buybook will be sorted descendingly (highest first).
 
 **Request**
 
@@ -494,7 +494,7 @@ GET /tickers/ETH_ONE
 
 ## GET /balances/:account_address
 
-Get all non-empty balances of an account, returns a [paginated](#pagination) response.
+Get all non-empty balances of an account, returns a paginated response.
 
 **Request**
 
@@ -522,7 +522,7 @@ GET /balances/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73
 
 ## GET /transfers/:account_address
 
-Get all transfers of an account, results may be filtered by date by the `start` and `end` query parameters, returns a [paginated](#pagination) response.
+Get all transfers of an account, results may be filtered by date by the `start` and `end` query parameters, returns a paginated response.
 
 ```
 GET /transfers/0x5b0ca08aac665a36158ced95c676fd5a59ed0c73?start=1551734309&end=1552339097
@@ -623,7 +623,7 @@ Returns the new withdraw on success.
 
 ## GET /trades
 
-Get a list of trades filtered by the provided parameters, returns a [paginated](#pagination) response.
+Get a list of trades filtered by the provided parameters, returns a paginated response.
 
 **Request**
 
