@@ -1,6 +1,6 @@
 # Welcome
 
-DreamX currently offers HTTP, WebSocket and Smart Contract APIs as means of interacting with the exchange programmatically, this documentation is intended to serve as a comprehensive reference to all the features exposed by these APIs to aid developers who are developing DreamX related applications.
+DreamX currently offers HTTP, WebSocket and Smart Contract APIs as means of interacting with the exchange programmatically, this documentation is intended to serve as a comprehensive reference to all the features exposed by these APIs, to aid developers who are developing DreamX related applications.
 
 ## Endpoints
 
