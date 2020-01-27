@@ -1,7 +1,3 @@
-# Misc
-
-* The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify` when using javascript
-
 # MarketOrders
 
 Subscribe to new orders and order state changes in a market.
@@ -344,3 +340,7 @@ Subscribe to new transfers of an account.
     ]
 }
 ```
+
+# Misc
+
+* The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify` when using javascript
