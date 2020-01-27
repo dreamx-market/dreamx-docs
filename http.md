@@ -1,7 +1,3 @@
-# HTTP REST API Documentation
-
-DreamX's HTTP API is currently located at https://api.dreamx.market
-
 # Pagination
 
 Endpoints with large responses are paginated via the `page` and `per_page` query parameters, for example:
