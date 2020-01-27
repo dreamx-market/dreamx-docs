@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [HTTP](http.md)
-* [WebSocket](ws.md)
-* [Smart Contract](contract.md)
+* [HTTP API](http.md)
+* [WebSocket API](ws.md)
+* [Smart Contract API](contract.md)
 
