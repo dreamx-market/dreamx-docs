@@ -111,7 +111,7 @@ An example error:
 A field may have multiple reasons for error, each error is a seperate string.
 
 
-# Misc.
+# Misc
 
 *   Addresses should be without checksums and prefixed with `0x`
 *   Parameters should use `snake_case`.

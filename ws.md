@@ -1,29 +1,8 @@
-# WebSocket
+# Misc
 
-DreamX's WebSocket API is currently located at wss://api.dreamx.market/cable
+* The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify` when using javascript
 
-# Table of Contents
-
-<!-- MarkdownTOC autolink="true" -->
-
-- [Channels](#channels)
-  - [MarketOrders](#marketorders)
-  - [MarketTrades](#markettrades)
-  - [MarketChartData](#marketchartdata)
-  - [MarketTickers](#markettickers)
-  - [AccountBalances](#accountbalances)
-  - [AccountOrders](#accountorders)
-  - [AccountTrades](#accounttrades)
-  - [AccountTransfers](#accounttransfers)
-
-<!-- /MarkdownTOC -->
-
-
-# Channels
-
-**Note:** The payload of `identifier` should always be JSON encoded, for example with `JSON.stringify`
-
-## MarketOrders
+# MarketOrders
 
 Subscribe to new orders and order state changes in a market.
 
@@ -68,7 +47,7 @@ This event is emitted when the market has a new order, or an existing order has 
 }
 ```
 
-## MarketTrades
+# MarketTrades
 
 Subscribe for new trades in a market.
 
@@ -115,7 +94,7 @@ This event is emitted when the market has a new trade.
 }
 ```
 
-## MarketChartData
+# MarketChartData
 
 Subscribe for candlestick chart data of a market in a particular period.
 
@@ -158,7 +137,7 @@ This event is emitted when a new candle has been recorded for the subscribed per
 }
 ```
 
-## MarketTickers
+# MarketTickers
 
 Subscribe for ticker data of a specific market or of all markets if `market_symbol` is omitted.
 
@@ -199,7 +178,7 @@ Subscribe for ticker data of a specific market or of all markets if `market_symb
 }
 ```
 
-## AccountBalances
+# AccountBalances
 
 Subscribe to balance changes in an account.
 
@@ -237,7 +216,7 @@ This event is emitted when there have been new changes to to an account's balanc
 }
 ```
 
-## AccountOrders
+# AccountOrders
 
 Subscribe to new orders and order state changes in an account.
 
@@ -281,7 +260,7 @@ Subscribe to new orders and order state changes in an account.
 }
 ```
 
-## AccountTrades
+# AccountTrades
 
 Subscribe to new trades of an account
 
@@ -326,7 +305,7 @@ Subscribe to new trades of an account
 }
 ```
 
-## AccountTransfers
+# AccountTransfers
 
 Subscribe to new transfers of an account.
 
