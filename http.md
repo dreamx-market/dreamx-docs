@@ -348,7 +348,7 @@ GET /orderbook/ONE_TWO
 
 ```
 {
-    "bids": {
+    "bid": {
         "total": 325,
         "page": 2,
         "per_page": 100,
@@ -368,7 +368,7 @@ GET /orderbook/ONE_TWO
             ...
         ]
     },
-    "asks": {
+    "ask": {
         "total": 500,
         "page": 2,
         "per_page": 100,
