@@ -37,6 +37,7 @@ This event is emitted when the market has a new order, or an existing order has 
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "market_symbol": "ETH_ONE",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+            "sell": true,
             "created_at": "2019-05-23T06:49:28.110Z"
         },
         ...
@@ -85,6 +86,7 @@ This event is emitted when the market has a new trade.
             "taker_address": "0x7e85cad78cf70b62a6e1087cbe77ca126dbede00",
             "market_symbol": "ETH_ONE",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
+            "sell": true,
             "created_at": "2018-06-28 12:21:15"
         },
         ...
@@ -252,6 +254,7 @@ Subscribe to new orders and order state changes in an account.
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "market_symbol": "ETH_ONE",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+            "sell": true,
             "created_at": "2019-05-23T06:49:28.110Z"
         },
         ...
@@ -299,6 +302,7 @@ Subscribe to new trades of an account
             "taker_address": "0x7e85cad78cf70b62a6e1087cbe77ca126dbede00",
             "market_symbol": "ETH_ONE",
             "transaction_hash": "0x1b651d0c0578008296f0edf237fdbece67797a0bee9a28c5e4313e44844b25a2",
+            "sell": true,
             "created_at": "2018-06-28 12:21:15"
         }
     ]

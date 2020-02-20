@@ -243,6 +243,7 @@ Returns the new order on success.
     "expiry_timestamp_in_milliseconds": "1506550595000",
     "market_symbol": "ETH_ONE",
     "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+    "sell": true,
     "created_at": "1506550595"
 }
 ```
@@ -282,6 +283,7 @@ GET /orders
             "expiry_timestamp_in_milliseconds": "1506550595000",
             "market_symbol": "ETH_ONE",
             "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+            "sell": true,
             "created_at": "2019-06-07T15:15:44.498Z"
         },
         ...
@@ -366,6 +368,7 @@ GET /orderbook/ONE_TWO
                 "expiry_timestamp_in_milliseconds": "1506550595000",
                 "market_symbol": "ETH_ONE",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+                "sell": true,
                 "created_at": "1506550595"
             },
             ...
@@ -387,6 +390,7 @@ GET /orderbook/ONE_TWO
                 "expiry_timestamp_in_milliseconds": "1506550595000",
                 "market_symbol": "ETH_ONE",
                 "order_hash": "0x853c9a43f316e19a8bc5b0e8513d7dd500b5df308dd1b558721c40beeec3541b",
+                "sell": true,
                 "created_at": "1506550595"
             },
             ...
